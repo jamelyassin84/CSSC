@@ -41,6 +41,9 @@ import { MatSelectModule } from '@angular/material/select'
 import { FormsModule } from '@angular/forms'
 import { AdminComponent } from './pages/home/admin/admin.component'
 import { DropdownComponent } from './components/dropdown/dropdown.component'
+import { StoreModule } from '@ngrx/store'
+import { CampusReducer } from './reducers/campus.reducers'
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -88,6 +91,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component'
 		AngularFireAuthModule,
 		AngularFireStorageModule,
 		AngularFirestoreModule,
+		StoreModule.forRoot({ campus: CampusReducer }),
 	],
 	providers: [],
 	bootstrap: [AppComponent],

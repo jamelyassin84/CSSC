@@ -1,9 +1,9 @@
 <div class="p-2">
     <div class="d-flex jcc">
-        <h1 class="m-0 pt-2 text-info">{{ campus }} Campus</h1>
+        <h1 class="m-0 pt-2 text-info">{{ campus | async }} Campus</h1>
         <mat-form-field class="ml-auto m-0">
             <mat-label> Campus</mat-label>
-            <mat-select (selectionChange)="setCampus()" [(ngModel)]="campus">
+            <mat-select (selectionChange)="setCampus($event)">
                 <mat-option *ngFor="let campus of campuses" [value]="campus">
                     {{ campus }} Campus
                 </mat-option>

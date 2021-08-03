@@ -1,5 +1,9 @@
-import { campuses } from './../../constants/AppConstants'
 import { Component, OnInit } from '@angular/core'
+import { campuses } from './../../constants/AppConstants'
+import { Campus } from './../../Models/Campus'
+import { AppState } from './../../app.state'
+import { Observable } from 'rxjs'
+import { Store } from '@ngrx/store'
 
 @Component({
 	selector: 'app-campus-picker',
@@ -7,12 +11,19 @@ import { Component, OnInit } from '@angular/core'
 	styleUrls: ['./campus-picker.component.scss'],
 })
 export class CampusPickerComponent implements OnInit {
-	campuses = campuses
-	constructor() {}
+	constructor(private store: Store<AppState>) {
+		this.campus = this.store.select('campus')
+	}
 
-	ngOnInit(): void {}
+	campus!: Observable<Campus>
 
-	campus = 'Barotac Nuevo'
+	campuses: any[] = campuses
 
-	setCampus() {}
+	ngOnInit(): void {
+		this.store.dispatch({ type: 'Barotac Nuevo' })
+	}
+
+	setCampus(event: any) {
+		this.store.dispatch({ type: event.value })
+	}
 }
