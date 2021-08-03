@@ -44,3 +44,7 @@ export function pop() {
 	audio.volume = 0.1
 	audio.play()
 }
+
+export function AuthError(error: any) {
+	Alert(error.code, error.message, 'error')
+}

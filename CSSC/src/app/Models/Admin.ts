@@ -1,13 +1,14 @@
 export type Admin = {
-    username:string,
-    password:string,
-    name:string,
-    position:string,
-    campus:string,
-    type:AdminType,
+	email: string
+	password: string
+	name: string
+	position: string
+	campus: string | null
+	type: string
+	confirm_password: string
 }
 
-enum AdminType {
-    SuperAdmin = 'Super Admin',
-    Admin = "Administrator"
+export enum AdminType {
+	SuperAdmin = 'Super Admin',
+	Admin = 'Administrator',
 }

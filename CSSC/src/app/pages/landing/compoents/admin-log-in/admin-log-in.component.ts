@@ -2,7 +2,7 @@ import { ModalService } from './../../../../services/modal.service'
 import { Component, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Router } from '@angular/router'
-import { Alert, Welcome } from 'src/app/components/Alert'
+import { Alert, AuthError, Welcome } from 'src/app/components/Alert'
 
 @Component({
 	selector: 'app-admin-log-in',
@@ -36,7 +36,7 @@ export class AdminLogInComponent implements OnInit {
 				this.modal.close()
 			})
 			.catch((error) => {
-				Alert(error.code, error.message, 'error')
+				AuthError(error)
 			})
 	}
 }
