@@ -1,11 +1,20 @@
+<ng-template #addPartylist>
+    <app-add-party-list></app-add-party-list>
+</ng-template>
+<ng-template #viewMembers>
+    <app-view-member></app-view-member>
+</ng-template>
+<ng-template #addMember>
+    <app-add-member></app-add-member>
+</ng-template>
+
 <div class="card">
     <div class="card-header d-flex aic">
-        Partylist
+        Partylists
 
-        <button class="btn btn-outline-dark btn-sm ml-auto">
-			<i class="bi bi-plus"></i>
-			Add partylist
-		</button>
+        <div class="ml-auto">
+            <btn-modal size="lg" title="Add a Partylist" btnTitle="Add partylist" btnClass="btn btn-outline-dark btn-sm " [template]="addPartylist" icon="bi bi-plus"></btn-modal>
+        </div>
     </div>
     <div class="card-body">
         <div class="row">
@@ -48,8 +57,8 @@
                             <button class="dropdown-item">
 								Remove partylist
 							</button>
-                            <button class="dropdown-item">Members</button>
-                            <button class="dropdown-item">Add a member</button>
+                            <btn-modal size="lg" title="Members" btnTitle="Members" btnClass="dropdown-item" [template]="viewMembers"></btn-modal>
+                            <btn-modal size="lg" title="Add a member" btnTitle="Add a Member" btnClass="dropdown-item" [template]="addMember"></btn-modal>
                         </ng-template>
                     </td>
                 </tr>

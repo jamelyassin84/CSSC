@@ -1,11 +1,13 @@
+<ng-template #addVoter>
+    <app-add-voter></app-add-voter>
+</ng-template>
 <div class="card">
     <div class="card-header d-flex aic">
         Voters
 
-        <button class="btn btn-outline-dark btn-sm ml-auto">
-			<i class="bi bi-plus"></i>
-			Add voter
-		</button>
+        <div class="ml-auto">
+            <btn-modal size="lg" title="Add a Voter" btnTitle="Add voter" btnClass="btn btn-outline-dark btn-sm " [template]="addVoter" icon="bi bi-plus"></btn-modal>
+        </div>
     </div>
     <div class="card-body">
         <div class="row">
