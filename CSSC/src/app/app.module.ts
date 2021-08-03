@@ -34,7 +34,8 @@ import { DashboardComponent } from './pages/home/dashboard/dashboard.component'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { CampusPickerComponent } from './components/campus-picker/campus-picker.component'
 import { MatSelectModule } from '@angular/material/select'
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { AdminComponent } from './pages/home/admin/admin.component'
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -57,6 +58,7 @@ import { FormsModule } from '@angular/forms'
 		FooterComponent,
 		DashboardComponent,
 		CampusPickerComponent,
+  AdminComponent,
 	],
 	imports: [
 		BrowserModule,

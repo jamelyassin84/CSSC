@@ -1,3 +1,4 @@
+import { AdminComponent } from './pages/home/admin/admin.component'
 import { PartylistsComponent } from './pages/home/partylists/partylists.component'
 import { CandidateComponent } from './pages/home/candidate/candidate.component'
 import { DashboardComponent } from './pages/home/dashboard/dashboard.component'
@@ -31,7 +32,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'administrators',
-				component: PartylistsComponent,
+				component: AdminComponent,
 			},
 			{
 				path: 'voters',
