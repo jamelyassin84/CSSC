@@ -1,10 +1,10 @@
-import { Admin, AdminType } from './../../Models/Admin'
+import { Admin, AdminType, Collections } from './../../Models/Admin'
 import { Component, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Alert, AuthError } from 'src/app/components/Alert'
 import { AppState } from './../../app.state'
 import { Store } from '@ngrx/store'
-// import { BaseService } from 'src/app/services/base.service'
+import { BaseService } from 'src/app/services/base.service'
 
 @Component({
 	selector: 'app-add-admin',
@@ -14,9 +14,9 @@ import { Store } from '@ngrx/store'
 export class AddAdminComponent implements OnInit {
 	constructor(
 		private auth: AngularFireAuth,
-		private store: Store<AppState>
-	) // private service: BaseService
-	{
+		private store: Store<AppState>,
+		private service: BaseService
+	) {
 		this.store.select('campus').subscribe((campus) => {
 			this.data.campus = campus
 		})
@@ -34,13 +34,23 @@ export class AddAdminComponent implements OnInit {
 
 	save() {
 		this.auth
-			.createUserWithEmailAndPassword(this.data.email, this.data.password)
+			.createUserWithEmailAndPassword(
+				this.data.email || '',
+				this.data.password || ''
+			)
 			.then(() => {
-				// new BaseService(
-				// 	this.service.firestore,
-				// 	Collections.Admin,
-				// 	[]
-				// ).add(this.data)
+				for (let key in this.data) {
+					key === 'email' ||
+					key === 'password' ||
+					key === 'confirm_password'
+						? delete this.data[key]
+						: ''
+				}
+				new BaseService(
+					this.service.firestore,
+					Collections.Admin,
+					[]
+				).add(this.data)
 				Alert(
 					'Admin Creation Successfull',
 					`New administrator on ${this.data.campus} campus  has been created`,
@@ -53,12 +63,4 @@ export class AddAdminComponent implements OnInit {
 	}
 
 	ngOnInit(): void {}
-}
-export enum Collections {
-	Admin = 'admins',
-	Candidate = 'candidates',
-	Partylisst = 'party-lists',
-	Platform = 'platforms',
-	Voters = 'voters',
-	Votes = 'votes',
 }

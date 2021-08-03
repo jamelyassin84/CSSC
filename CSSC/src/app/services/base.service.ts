@@ -1,14 +1,17 @@
 import { Inject, Injectable, Optional } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/firestore'
+import { Collections } from '../Models/Admin'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class BaseService {
 	constructor(
-		@Optional() public firestore: AngularFirestore,
-		@Inject('collection') public collection: string = '',
-		@Inject('where') public where: any
+		public firestore: AngularFirestore,
+		@Inject('collection')
+		@Optional()
+		public collection: Collections | string = '',
+		@Inject('where') @Optional() public where: any
 	) {}
 
 	wheres(ref: any) {
