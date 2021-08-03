@@ -34,8 +34,9 @@ import { DashboardComponent } from './pages/home/dashboard/dashboard.component'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { CampusPickerComponent } from './components/campus-picker/campus-picker.component'
 import { MatSelectModule } from '@angular/material/select'
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'
 import { AdminComponent } from './pages/home/admin/admin.component'
+import { DropdownComponent } from './components/dropdown/dropdown.component'
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -58,7 +59,8 @@ import { AdminComponent } from './pages/home/admin/admin.component'
 		FooterComponent,
 		DashboardComponent,
 		CampusPickerComponent,
-  AdminComponent,
+		AdminComponent,
+		DropdownComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -72,11 +74,12 @@ import { AdminComponent } from './pages/home/admin/admin.component'
 		MatIconModule,
 		MatToolbarModule,
 		MatProgressBarModule,
-		NgbModule,
 		MatProgressSpinnerModule,
 		MatSidenavModule,
 		MatSelectModule,
 		FormsModule,
+		NgbModule,
+		BrowserAnimationsModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
