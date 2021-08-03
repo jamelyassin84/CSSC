@@ -1,0 +1,25 @@
+<nav class="nav navbar pl-5">
+    <img style="height: 70px" class="logo" src="../../../../assets/logo/cssc.png" alt="" />
+    <btn-modal size="lg" title="Login as Administrator" btnTitle="Login as Administrator" btnClass="btn-dark btn" [template]="loginAsAdmin" icon="bi bi-box-arrow-in-right"></btn-modal>
+</nav>
+
+<div class="row">
+    <div class="col-md-6 p-5">
+        <h1 class="p-5">
+            Cast your <span class="text-danger"> vote </span> on your favorite electoral candidate!
+        </h1>
+        <div class="p-5">
+            <btn-modal size="lg" title="Login as Voter" btnTitle="Vote Now!" btnClass="landing btn btn-outline-danger btn-lg rounded " [template]="voterLogin"></btn-modal>
+        </div>
+    </div>
+    <div class="col-md-6 p-5">
+        <img class="logo" src="../../../../assets/landing/bg.png" alt="" />
+    </div>
+</div>
+
+<ng-template #loginAsAdmin>
+    <app-admin-log-in></app-admin-log-in>
+</ng-template>
+<ng-template #voterLogin>
+    <app-voter-login></app-voter-login>
+</ng-template>

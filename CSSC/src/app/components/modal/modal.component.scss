@@ -1,0 +1,14 @@
+.landing {
+    font-size: 2rem;
+    border-radius: 30px !important;
+    padding: 1rem 4rem;
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 1368px) {
+    .landing {
+        font-size: 1rem;
+        padding: 0.5rem 2rem;
+        font-weight: 600;
+    }
+}

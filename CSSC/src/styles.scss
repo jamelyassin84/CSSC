@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~bootstrap/scss/bootstrap';
+@import '~@angular/material/theming';
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css');
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+label {
+    margin-left: 2px;
+}
+
+.aic {
+    align-items: center;
+}
+
+.jcc {
+    justify-content: center;
+}
+
+.circle {
+    border-radius: 50% !important;
+}
+
+.rounded {
+    border-radius: 30px !important;
+}
+
+.bb {
+    border-bottom: 1px solid rgba(150, 150, 150, 0.2);
+}
+
+.bl {
+    border-left: 1px solid rgba(150, 150, 150, 0.2);
+}
+
+.br {
+    border-right: 1px solid rgba(150, 150, 150, 0.2);
+}
+
+#chat-sidebar {
+    width: 550px !important;
+}
+
+.table th,
+.table td {
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+
+.accordion button {
+    width: 100% !important;
+    text-align: left !important;
+}

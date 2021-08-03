@@ -1,0 +1,32 @@
+<app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true" [navbarBrandFull]="{src: 'assets/logo/cssc.png', width: 120, height: 40, alt: 'CoreUI Logo'}" [navbarBrandMinimized]="{src: 'assets/logo/cssc1.png', width: 30, height: 30, alt: 'CoreUI Logo'}"
+    [sidebarToggler]="'lg'" [asideMenuToggler]="'lg'">
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item dropdown" dropdown placement="bottom right">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+                <img src="assets/vote.svg" class="img-avatar" alt=" " />
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                <a class="dropdown-item" href="#"><i class="fa fa-check text-success"></i> Submit Vote</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-times text-danger"></i> Close Voting</a>
+            </div>
+        </li>
+    </ul>
+</app-header>
+<div class="app-body">
+    <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
+        <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
+        <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar>
+    <main class="main">
+        <cui-breadcrumb>
+            <li class="breadcrumb-menu d-md-down-none fixed"></li>
+        </cui-breadcrumb>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+</div>
+<app-footer>
+    <span><a>CSSG</a> &copy; 2021 ISCOF</span>
+    <span class="ml-auto">Powered by <a href="https://www.facebook.com/jamel.bayoneta/">Jamel Eid Yassin</a></span>
+</app-footer>
