@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment.prod'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 
@@ -21,6 +22,9 @@ import { VoteComponent } from './pages/home/vote/vote.component'
 import { NavbarComponent } from './shared/navbar/navbar.component'
 import { SidebarComponent } from './shared/sidebar/sidebar.component'
 import { FooterComponent } from './shared/footer/footer.component'
+import { AngularFireAuthModule } from '@angular/fire/auth'
+import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { AngularFireStorageModule } from '@angular/fire/storage'
 
 import { AngularFireModule } from '@angular/fire'
 import { MatGridListModule } from '@angular/material/grid-list'
@@ -80,6 +84,10 @@ import { DropdownComponent } from './components/dropdown/dropdown.component'
 		FormsModule,
 		NgbModule,
 		BrowserAnimationsModule,
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireAuthModule,
+		AngularFireStorageModule,
+		AngularFirestoreModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

@@ -1,14 +1,30 @@
+import { ModalService } from './../../services/modal.service'
 import { Input } from '@angular/core'
-import { Component, OnInit } from '@angular/core'
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap'
+import { Component } from '@angular/core'
+import {
+	NgbModal,
+	ModalDismissReasons,
+	NgbModalRef,
+} from '@ng-bootstrap/ng-bootstrap'
+import { OnDestroy } from '@angular/core'
 
 @Component({
 	selector: 'btn-modal',
 	templateUrl: './modal.component.html',
 	styleUrls: ['./modal.component.scss'],
 })
-export class ModalComponent implements OnInit {
-	constructor(private modalService: NgbModal) {}
+export class ModalComponent implements OnDestroy {
+	constructor(private modalService: NgbModal, private modalS: ModalService) {
+		this.subscription = this.modalS.closeListener().subscribe(() => {
+			this.modalService.dismissAll()
+		})
+	}
+
+	subscription: any
+
+	ngOnDestroy(): void {
+		this.subscription.unsubscribe()
+	}
 
 	closeResult = ''
 	@Input() size: any = 'lg'
