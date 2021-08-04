@@ -38,7 +38,7 @@ export class AddVoterComponent implements OnInit {
 	save() {
 		Fire(
 			'Add an Administrator',
-			'Are you sure you want to add this administrator?',
+			'Are you sure you want to add this voter?',
 			'info',
 			() => {
 				new BaseService(

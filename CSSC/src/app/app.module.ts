@@ -42,12 +42,13 @@ import { FormsModule } from '@angular/forms'
 import { AdminComponent } from './pages/home/admin/admin.component'
 import { DropdownComponent } from './components/dropdown/dropdown.component'
 import { StoreModule } from '@ngrx/store'
-import { CampusReducer } from './reducers/campus.reducers';
-import { AddAdminComponent } from './modals/add-admin/add-admin.component';
-import { AddVoterComponent } from './modals/add-voter/add-voter.component';
-import { AddPartyListComponent } from './modals/add-party-list/add-party-list.component';
-import { AddMemberComponent } from './modals/add-member/add-member.component';
+import { CampusReducer } from './reducers/campus.reducers'
+import { AddAdminComponent } from './modals/add-admin/add-admin.component'
+import { AddVoterComponent } from './modals/add-voter/add-voter.component'
+import { AddPartyListComponent } from './modals/add-party-list/add-party-list.component'
+import { AddMemberComponent } from './modals/add-member/add-member.component'
 import { ViewMemberComponent } from './modals/view-member/view-member.component'
+import { TextareaAutosizeModule } from 'ngx-textarea-autosize'
 
 @NgModule({
 	declarations: [
@@ -73,11 +74,11 @@ import { ViewMemberComponent } from './modals/view-member/view-member.component'
 		CampusPickerComponent,
 		AdminComponent,
 		DropdownComponent,
-  AddAdminComponent,
-  AddVoterComponent,
-  AddPartyListComponent,
-  AddMemberComponent,
-  ViewMemberComponent,
+		AddAdminComponent,
+		AddVoterComponent,
+		AddPartyListComponent,
+		AddMemberComponent,
+		ViewMemberComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -101,6 +102,7 @@ import { ViewMemberComponent } from './modals/view-member/view-member.component'
 		AngularFireAuthModule,
 		AngularFireStorageModule,
 		AngularFirestoreModule,
+		TextareaAutosizeModule,
 		StoreModule.forRoot({ campus: CampusReducer }),
 	],
 	providers: [],

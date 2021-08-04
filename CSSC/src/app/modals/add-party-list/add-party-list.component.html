@@ -1,1 +1,19 @@
-<p>add-party-list works!</p>
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <label for="">Partylist Name</label>
+        <input [(ngModel)]="data.title" type="email" class="form-control" />
+    </div>
+    <div class="col-md-12 mb-3">
+        <label for="">Platform</label>
+        <textarea autosize [(ngModel)]="data.description" class="form-control"></textarea>
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div (click)="save()" class="btn btn-dark w-100">
+            <i class="bi bi-save mr-2"></i> Save
+        </div>
+    </div>
+</div>

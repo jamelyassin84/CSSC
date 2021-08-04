@@ -8,7 +8,7 @@
     <app-add-member></app-add-member>
 </ng-template>
 
-<div class="card">
+<div class="card" style="min-height: 50vh">
     <div class="card-header d-flex aic">
         Partylists
 
@@ -17,25 +17,7 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="row">
-            <div class="col-md-12">
-                <mat-form-field class="ml-auto m-0">
-                    <mat-label> Partylist</mat-label>
-                    <mat-select>
-                        <mat-option> All </mat-option>
-                        <mat-option *ngFor="let item of [1, 2, 3, 4, 5]">
-                            MAKAMASA
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-        </div>
-
-        <table class="
-				table table-responsive-sm table-hover table-outline
-				mb-0
-				bg-white
-			">
+        <table class="table table-outline mb-0 bg-white">
             <thead>
                 <tr class="thead-dark">
                     <th>Title</th>
@@ -44,17 +26,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of [1, 2, 3, 4, 5]">
+                <tr *ngFor="let item of partylists">
                     <td>
-                        <h4 class="badge badge-danger">MAKAMASA</h4>
+                        <h4 class="badge badge-danger">{{ item.title }}</h4>
                     </td>
                     <td>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam minima magnam ipsum rerum veritatis eaque, architecto voluptate reprehenderit dolores saepe, ab minus corporis cum dolorum perspiciatis molestiae. Delectus, corporis cum.
+                        {{ item.description }}
                     </td>
                     <td class="text-right">
                         <app-dropdown [buttons]="dropdown"></app-dropdown>
                         <ng-template #dropdown>
-                            <button class="dropdown-item">
+                            <button (click)="remove(item.id)" class="dropdown-item">
 								Remove partylist
 							</button>
                             <btn-modal size="lg" title="Members" btnTitle="Members" btnClass="dropdown-item" [template]="viewMembers"></btn-modal>

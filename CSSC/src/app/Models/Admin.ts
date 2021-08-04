@@ -17,7 +17,7 @@ export enum AdminType {
 export enum Collections {
 	Admin = 'admins',
 	Candidate = 'candidates',
-	Partylisst = 'party-lists',
+	Partylist = 'party-lists',
 	Platform = 'platforms',
 	Voters = 'voters',
 	Votes = 'votes',

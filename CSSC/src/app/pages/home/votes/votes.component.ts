@@ -13,7 +13,7 @@ export class VotesComponent implements OnInit {
 	constructor(private service: BaseService) {}
 
 	ngOnInit(): void {
-		this.getAdmin()
+		this.getVoters()
 	}
 
 	voters: Voter[] = []
@@ -30,7 +30,7 @@ export class VotesComponent implements OnInit {
 		section: '',
 	}
 
-	getAdmin() {
+	getVoters() {
 		this.departments = []
 		this.courses = []
 		this.years = []
