@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Alert, Welcome } from 'src/app/components/Alert'
 import { ModalService } from 'src/app/services/modal.service'
+import { UserService } from 'src/app/services/user.service'
 
 @Component({
 	selector: 'app-voter-login',
@@ -15,7 +16,8 @@ export class VoterLoginComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private firestore: AngularFirestore,
-		private modal: ModalService
+		private modal: ModalService,
+		private user: UserService
 	) {}
 
 	ngOnInit(): void {}
@@ -31,8 +33,8 @@ export class VoterLoginComponent implements OnInit {
 			.collection(Collections.Voters, (ref) =>
 				ref.where('id_number', '==', this.id_number)
 			)
-			.snapshotChanges()
-			.subscribe((data: any[]) => {
+			.get()
+			.subscribe((data: any) => {
 				if (data.length === 0) {
 					Alert(
 						'Sorry',
@@ -41,7 +43,10 @@ export class VoterLoginComponent implements OnInit {
 					)
 					return
 				}
-				let user: Voter = data[0]
+				data.forEach((doc: any) => {
+					data = Object.assign({ id: doc.id }, doc.data())
+				})
+				let user: Voter = data
 				localStorage.setItem('role', 'voter')
 				localStorage.setItem('user', JSON.stringify(user))
 				Welcome(
@@ -49,6 +54,7 @@ export class VoterLoginComponent implements OnInit {
 				)
 				this.router.navigate(['home/vote'])
 				this.modal.close()
+				this.user.hasLogin()
 			})
 	}
 }

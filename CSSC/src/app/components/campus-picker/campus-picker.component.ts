@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service'
 import { Component, OnInit } from '@angular/core'
 import { campuses } from './../../constants/AppConstants'
 import { Campus } from './../../Models/Campus'
@@ -14,16 +15,25 @@ import { ReloadService } from 'src/app/services/reload.service'
 export class CampusPickerComponent implements OnInit {
 	constructor(
 		private store: Store<AppState>,
-		private Component: ReloadService
+		private Component: ReloadService,
+		private user: UserService
 	) {
 		this.campus = this.store.select('campus')
 	}
+
+	isSuperAdmin = this.user.isSuperAdmin()
 
 	campus!: Observable<Campus>
 
 	campuses: any[] = campuses
 
 	ngOnInit(): void {
+		if (!this.isSuperAdmin) {
+			let data: any = localStorage.getItem('user')
+			data = JSON.parse(data)
+			this.store.dispatch({ type: data.campus || 'Barotac Nuevo' })
+			return
+		}
 		this.store.dispatch({ type: 'Barotac Nuevo' })
 	}
 

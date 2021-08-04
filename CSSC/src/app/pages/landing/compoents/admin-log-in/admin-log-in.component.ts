@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { Router } from '@angular/router'
 import { Alert, AuthError, Welcome } from 'src/app/components/Alert'
 import { BaseService } from 'src/app/services/base.service'
+import { UserService } from 'src/app/services/user.service'
 
 @Component({
 	selector: 'app-admin-log-in',
@@ -17,7 +18,8 @@ export class AdminLogInComponent implements OnInit {
 		private router: Router,
 		private auth: AngularFireAuth,
 		private modal: ModalService,
-		private service: BaseService
+		private service: BaseService,
+		private user: UserService
 	) {}
 
 	ngOnInit(): void {}
@@ -46,6 +48,7 @@ export class AdminLogInComponent implements OnInit {
 						if (data.length === 0) {
 							localStorage.setItem('role', AdminType.SuperAdmin)
 							Welcome('CSSC System Super Administrator')
+							this.user.hasLogin()
 						}
 						if (data.length !== 0) {
 							localStorage.setItem('role', AdminType.Admin)
@@ -56,6 +59,7 @@ export class AdminLogInComponent implements OnInit {
 							Welcome(
 								`Admin ${data[0].name} (${data[0].position})`
 							)
+							this.user.hasLogin()
 						}
 					})
 				this.router.navigate(['home/dashboard'])

@@ -9,7 +9,11 @@ import { Router } from '@angular/router'
 	styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-	constructor(private router: Router, private user: UserService) {}
+	constructor(private router: Router, private user: UserService) {
+		this.user.listenToLogin().subscribe(() => {
+			this.ngOnInit()
+		})
+	}
 
 	sidebar: any[] = []
 	url = this.router.url
