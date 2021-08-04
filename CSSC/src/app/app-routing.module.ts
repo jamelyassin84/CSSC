@@ -1,6 +1,8 @@
+import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.component'
+import { NotFoundComponent } from './pages/not-found/not-found.component'
+import { NoInternetComponent } from './pages/no-internet/no-internet.component'
 import { AdminComponent } from './pages/home/admin/admin.component'
 import { PartylistsComponent } from './pages/home/partylists/partylists.component'
-import { CandidateComponent } from './pages/home/candidate/candidate.component'
 import { DashboardComponent } from './pages/home/dashboard/dashboard.component'
 import { HomeIndexComponent } from './pages/home/home-index/home-index.component'
 import { VoteComponent } from './pages/home/vote/vote.component'
@@ -39,6 +41,18 @@ const routes: Routes = [
 				component: VotesComponent,
 			},
 		],
+	},
+	{
+		path: 'no-internet',
+		component: NoInternetComponent,
+	},
+	{
+		path: 'not-authorized',
+		component: NotAuthorizedComponent,
+	},
+	{
+		path: '**',
+		component: NotFoundComponent,
 	},
 ]
 
