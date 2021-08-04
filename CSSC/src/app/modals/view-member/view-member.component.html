@@ -1,1 +1,27 @@
-<p>view-member works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th><i class="bi bi-person"></i></th>
+            <th>Name</th>
+            <th>Position</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let candidate of candidates">
+            <td>
+                <img [src]="candidate.photo" alt="" />
+            </td>
+            <td>{{ candidate.name }}</td>
+            <td>{{ candidate.position }}</td>
+            <td>
+                <button class="btn btn-outline-dark btn-sm mr-1">
+					View Platform
+				</button>
+                <button (click)="remove(candidate.id)" class="btn btn-outline-danger btn-sm mr-1">
+					Remove Candidate
+				</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

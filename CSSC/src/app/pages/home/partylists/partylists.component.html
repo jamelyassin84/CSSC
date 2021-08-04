@@ -2,7 +2,7 @@
     <app-add-party-list></app-add-party-list>
 </ng-template>
 <ng-template #viewMembers>
-    <app-view-member></app-view-member>
+    <app-view-member [partylist]="partylist"></app-view-member>
 </ng-template>
 <ng-template #addMember>
     <app-add-member [partylist]="partylist"></app-add-member>
@@ -39,7 +39,7 @@
                             <button (click)="remove(item.id)" class="dropdown-item">
 								Remove partylist
 							</button>
-                            <btn-modal (click)="setPartylist(item.title)" size="lg" title="Members" btnTitle="Members" btnClass="dropdown-item" [template]="viewMembers"></btn-modal>
+                            <btn-modal (click)="setPartylist(item.title)" size="lg" [title]="item.title + ' Members'" btnTitle="Members" btnClass="dropdown-item" [template]="viewMembers"></btn-modal>
                             <btn-modal (click)="setPartylist(item.title)" size="lg" [title]="'Add a member to ' + item.title" btnTitle="Add a Member" btnClass="dropdown-item" [template]="addMember"></btn-modal>
                         </ng-template>
                     </td>
