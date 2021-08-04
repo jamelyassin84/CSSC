@@ -1,8 +1,8 @@
 export const SUPERADMIN = [
 	{
-		name: 'Dashboard',
+		name: 'Election Results',
 		route: 'dashboard',
-		icon: 'bi-pie-chart',
+		icon: 'bi-bar-chart-line',
 	},
 	{
 		name: 'Administrators',
@@ -13,9 +13,9 @@ export const SUPERADMIN = [
 
 export const ADMIN = [
 	{
-		name: 'Dashboard',
+		name: 'Election Results',
 		route: 'dashboard',
-		icon: 'bi-pie-chart',
+		icon: 'bi-bar-chart-line',
 	},
 	{
 		name: 'Voters',
@@ -31,9 +31,9 @@ export const ADMIN = [
 
 export const VOTER = [
 	{
-		name: 'Dashboard',
+		name: 'Election Results',
 		route: 'dashboard',
-		icon: 'bi-pie-chart',
+		icon: 'bi-bar-chart-line',
 	},
 	{
 		name: 'Cast a vote',
