@@ -48,7 +48,10 @@ import { AddVoterComponent } from './modals/add-voter/add-voter.component'
 import { AddPartyListComponent } from './modals/add-party-list/add-party-list.component'
 import { AddMemberComponent } from './modals/add-member/add-member.component'
 import { ViewMemberComponent } from './modals/view-member/view-member.component'
-import { TextareaAutosizeModule } from 'ngx-textarea-autosize'
+import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+import { NoInternetComponent } from './pages/no-internet/no-internet.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.component'
 
 @NgModule({
 	declarations: [
@@ -79,6 +82,9 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize'
 		AddPartyListComponent,
 		AddMemberComponent,
 		ViewMemberComponent,
+  NoInternetComponent,
+  NotFoundComponent,
+  NotAuthorizedComponent,
 	],
 	imports: [
 		BrowserModule,
