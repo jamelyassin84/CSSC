@@ -17,6 +17,11 @@ export class PartylistsComponent implements OnInit {
 	}
 
 	partylists: PartyList[] = []
+	partylist: string = ''
+
+	setPartylist(partylist: string) {
+		this.partylist = partylist
+	}
 
 	getPartylists() {
 		new BaseService(

@@ -15,7 +15,7 @@ export const SUPERADMIN = [
 		icon: 'bi-person-square',
 	},
 	{
-		name: 'PartyList',
+		name: 'Partylist',
 		route: 'party-lists',
 		icon: 'bi-card-checklist',
 	},
@@ -38,7 +38,7 @@ export const ADMIN = [
 		icon: 'bi-person-square',
 	},
 	{
-		name: 'PartyList',
+		name: 'Partylist',
 		route: 'party-lists',
 		icon: 'bi-card-checklist',
 	},
