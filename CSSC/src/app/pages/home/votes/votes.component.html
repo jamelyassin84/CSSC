@@ -16,8 +16,8 @@
                     <mat-label> Department</mat-label>
                     <mat-select>
                         <mat-option> All </mat-option>
-                        <mat-option *ngFor="let item of [1, 2, 3, 4, 5]">
-                            CICT
+                        <mat-option *ngFor="let item of departments">
+                            {{ item }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -27,8 +27,8 @@
                     <mat-label> Course</mat-label>
                     <mat-select>
                         <mat-option> All </mat-option>
-                        <mat-option *ngFor="let item of [1, 2, 3, 4, 5]">
-                            BSIT
+                        <mat-option *ngFor="let item of courses">
+                            {{ item }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -38,8 +38,8 @@
                     <mat-label> Year</mat-label>
                     <mat-select>
                         <mat-option> All </mat-option>
-                        <mat-option *ngFor="let item of [1, 2, 3, 4, 5]">
-                            1st
+                        <mat-option *ngFor="let item of years">
+                            {{ item }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -49,8 +49,8 @@
                     <mat-label> Section </mat-label>
                     <mat-select>
                         <mat-option> All </mat-option>
-                        <mat-option *ngFor="let item of [1, 2, 3, 4, 5]">
-                            1-A
+                        <mat-option *ngFor="let item of sections">
+                            {{ item }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -69,21 +69,27 @@
                     </th>
                     <th>ID Number</th>
                     <th>Name</th>
-
+                    <th>Department</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>Section</th>
                     <th class="text-right"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of [1, 2, 3, 4, 5]">
+                <tr *ngFor="let voter of voters">
                     <td class="text-center">
                         <i class="bi bi-person h1 text-danger"></i>
                     </td>
-                    <td>POB-500-2020</td>
-
-                    <td>Michael Scoffield</td>
+                    <td>{{ voter.id_number }}</td>
+                    <td>{{ voter.name }}</td>
+                    <td>{{ voter.department }}</td>
+                    <td>{{ voter.course }}</td>
+                    <td>{{ voter.year }}</td>
+                    <td>{{ voter.section }}</td>
 
                     <td class="text-right">
-                        <button class="btn btn-danger btn-sm">
+                        <button (click)="remove(voter.id)" class="btn btn-danger btn-sm">
 							Remove Voter
 						</button>
                     </td>

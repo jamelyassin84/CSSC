@@ -1,7 +1,7 @@
-import { Candidate } from "./Candidtate";
-import { User } from "./User";
+import { Candidate } from './Candidtate'
+import { Voter } from './User'
 
 export type Votes = {
-    voter:User,
-    candidate:Candidate,
+	voter: Voter
+	candidate: Candidate
 }

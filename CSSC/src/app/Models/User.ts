@@ -1,4 +1,5 @@
-export type User = {
+export type Voter = {
+	id?: string
 	id_number: string
 	name: string
 	department: string

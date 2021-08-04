@@ -1,15 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import { Voter } from './../../../Models/User'
+import { Component, OnInit } from '@angular/core'
+import { BaseService } from 'src/app/services/base.service'
+import { Collections } from 'src/app/Models/Admin'
+import { Fire } from 'src/app/components/Alert'
 
 @Component({
-  selector: 'app-votes',
-  templateUrl: './votes.component.html',
-  styleUrls: ['./votes.component.scss']
+	selector: 'app-votes',
+	templateUrl: './votes.component.html',
+	styleUrls: ['./votes.component.scss'],
 })
 export class VotesComponent implements OnInit {
+	constructor(private service: BaseService) {}
 
-  constructor() { }
+	ngOnInit(): void {
+		this.getAdmin()
+	}
 
-  ngOnInit(): void {
-  }
+	voters: Voter[] = []
 
+	departments: string[] = []
+	courses: string[] = []
+	years: string[] = []
+	sections: string[] = []
+
+	getAdmin() {
+		this.departments = []
+		this.courses = []
+		this.years = []
+		this.sections = []
+		new BaseService(
+			this.service.firestore,
+			Collections.Voters,
+			[],
+			this.service.store
+		)
+			.fetchAll()
+			.subscribe((voters: any) => {
+				this.voters = voters
+				for (let data of voters) {
+					if (!this.departments.includes(data.department)) {
+						this.departments.push(data.department)
+					}
+					if (!this.courses.includes(data.course)) {
+						this.courses.push(data.course)
+					}
+					if (!this.years.includes(data.year)) {
+						this.years.push(data.year)
+					}
+					if (!this.sections.includes(data.section)) {
+						this.sections.push(data.section)
+					}
+				}
+			})
+	}
+
+	remove(id: string | any) {
+		Fire(
+			'Remove Data',
+			'Are you sure you want to remove this data?',
+			'info',
+			() => {
+				new BaseService(
+					this.service.firestore,
+					Collections.Voters,
+					[],
+					this.service.store
+				).remove(id)
+			}
+		)
+	}
 }
