@@ -25,8 +25,10 @@ export class BaseService {
 	campus: string = ''
 
 	wheres(builder: any) {
-		for (let key in this.where) {
-			builder = builder.where(key, '==', this.where.value)
+		for (let index of this.where) {
+			for (let key in index) {
+				builder = builder.where(key, '==', index[key])
+			}
 		}
 		return builder.where('campus', '==', this.campus)
 	}

@@ -23,6 +23,13 @@ export class VotesComponent implements OnInit {
 	years: string[] = []
 	sections: string[] = []
 
+	filters: any = {
+		department: '',
+		course: '',
+		year: '',
+		section: '',
+	}
+
 	getAdmin() {
 		this.departments = []
 		this.courses = []
@@ -54,6 +61,29 @@ export class VotesComponent implements OnInit {
 			})
 	}
 
+	changeHandler() {
+		let builder: any = []
+		for (let key in this.filters) {
+			if (this.filters[key] !== 'All') {
+				if (this.filters[key] !== '') {
+					let object: any = {}
+					object[key] = this.filters[key]
+					builder.push(object)
+				}
+			}
+		}
+		new BaseService(
+			this.service.firestore,
+			Collections.Voters,
+			builder,
+			this.service.store
+		)
+			.fetchAll()
+			.subscribe((voters: any) => {
+				this.voters = voters
+			})
+	}
+
 	remove(id: string | any) {
 		Fire(
 			'Remove Data',
@@ -66,6 +96,7 @@ export class VotesComponent implements OnInit {
 					[],
 					this.service.store
 				).remove(id)
+				this.changeHandler()
 			}
 		)
 	}

@@ -14,9 +14,9 @@
             <div class="col-md-3">
                 <mat-form-field class="ml-auto m-0">
                     <mat-label> Department</mat-label>
-                    <mat-select>
-                        <mat-option> All </mat-option>
-                        <mat-option *ngFor="let item of departments">
+                    <mat-select (selectionChange)="changeHandler()" [(ngModel)]="filters.department">
+                        <mat-option value="All"> All </mat-option>
+                        <mat-option *ngFor="let item of departments" [value]="item">
                             {{ item }}
                         </mat-option>
                     </mat-select>
@@ -25,9 +25,9 @@
             <div class="col-md-3">
                 <mat-form-field class="ml-auto m-0">
                     <mat-label> Course</mat-label>
-                    <mat-select>
-                        <mat-option> All </mat-option>
-                        <mat-option *ngFor="let item of courses">
+                    <mat-select (selectionChange)="changeHandler()" [(ngModel)]="filters.course">
+                        <mat-option value="All"> All </mat-option>
+                        <mat-option *ngFor="let item of courses" [value]="item">
                             {{ item }}
                         </mat-option>
                     </mat-select>
@@ -36,9 +36,9 @@
             <div class="col-md-3">
                 <mat-form-field class="ml-auto m-0">
                     <mat-label> Year</mat-label>
-                    <mat-select>
-                        <mat-option> All </mat-option>
-                        <mat-option *ngFor="let item of years">
+                    <mat-select (selectionChange)="changeHandler()" [(ngModel)]="filters.year">
+                        <mat-option value="All"> All </mat-option>
+                        <mat-option *ngFor="let item of years" [value]="item">
                             {{ item }}
                         </mat-option>
                     </mat-select>
@@ -47,9 +47,9 @@
             <div class="col-md-3">
                 <mat-form-field class="ml-auto m-0">
                     <mat-label> Section </mat-label>
-                    <mat-select>
-                        <mat-option> All </mat-option>
-                        <mat-option *ngFor="let item of sections">
+                    <mat-select (selectionChange)="changeHandler()" [(ngModel)]="filters.section">
+                        <mat-option value="All"> All </mat-option>
+                        <mat-option *ngFor="let item of sections" [value]="item">
                             {{ item }}
                         </mat-option>
                     </mat-select>
