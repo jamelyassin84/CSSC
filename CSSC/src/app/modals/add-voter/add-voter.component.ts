@@ -13,17 +13,13 @@ import { Collections } from 'src/app/Models/Admin'
 	styleUrls: ['./add-voter.component.scss'],
 })
 export class AddVoterComponent implements OnInit {
-	constructor(
-		private auth: AngularFireAuth,
-		private store: Store<AppState>,
-		private service: BaseService
-	) {
+	constructor(private store: Store<AppState>, private service: BaseService) {
 		this.store.select('campus').subscribe((campus) => {
 			this.data.campus = campus
 		})
 	}
 
-	data: Voter = {
+	data: Voter | any = {
 		id_number: '',
 		name: '',
 		campus: '',
@@ -36,6 +32,15 @@ export class AddVoterComponent implements OnInit {
 	ngOnInit(): void {}
 
 	save() {
+		for (let key in this.data) {
+			if (this.data[key] === '') {
+				return Alert(
+					'Error',
+					`One or more fields should not be empty`,
+					'error'
+				)
+			}
+		}
 		Fire(
 			'Add an Administrator',
 			'Are you sure you want to add this voter?',

@@ -22,7 +22,7 @@ export class AddAdminComponent implements OnInit {
 		})
 	}
 
-	data: Admin = {
+	data: Admin | any = {
 		email: '',
 		password: '',
 		name: '',
@@ -33,6 +33,15 @@ export class AddAdminComponent implements OnInit {
 	}
 
 	save() {
+		for (let key in this.data) {
+			if (this.data[key] === '') {
+				return Alert(
+					'Error',
+					`One or more fields should not be empty`,
+					'error'
+				)
+			}
+		}
 		Fire(
 			'Add an Administrator',
 			'Are you sure you want to add this administrator?',

@@ -7,7 +7,7 @@ import { Candidate } from 'src/app/Models/Candidtate'
 import { Alert, Fire } from 'src/app/components/Alert'
 import { Collections } from 'src/app/Models/Admin'
 import { AngularFireStorage } from '@angular/fire/storage'
-import { finalize } from 'rxjs/operators'
+
 import { Observable } from 'rxjs'
 
 @Component({
@@ -25,7 +25,7 @@ export class AddMemberComponent implements OnInit {
 
 	@Input() partylist = ''
 
-	data: Candidate = {
+	data: Candidate | any = {
 		partylist: '',
 		position: '',
 		photo: '',
@@ -48,6 +48,15 @@ export class AddMemberComponent implements OnInit {
 	uploadPercent: number | any = 0
 	downloadURL: Observable<string> | any
 	save() {
+		for (let key in this.data) {
+			if (this.data[key] === '') {
+				return Alert(
+					'Error',
+					`One or more fields should not be empty`,
+					'error'
+				)
+			}
+		}
 		Fire(
 			`Register ${this.data.name}?`,
 			`Are you sure you want to add   ${this.data.name} in ${this.partylist} Partylist?`,

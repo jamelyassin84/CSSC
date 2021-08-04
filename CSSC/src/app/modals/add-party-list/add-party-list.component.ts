@@ -13,23 +13,28 @@ import { Collections } from 'src/app/Models/Admin'
 	styleUrls: ['./add-party-list.component.scss'],
 })
 export class AddPartyListComponent implements OnInit {
-	constructor(
-		private auth: AngularFireAuth,
-		private store: Store<AppState>,
-		private service: BaseService
-	) {
+	constructor(private store: Store<AppState>, private service: BaseService) {
 		this.store.select('campus').subscribe((campus) => {
 			this.data.campus = campus
 		})
 	}
 
-	data: PartyList = {
+	data: PartyList | any = {
 		title: '',
 		description: '',
 		campus: '',
 	}
 
 	save() {
+		for (let key in this.data) {
+			if (this.data[key] === '') {
+				return Alert(
+					'Error',
+					`One or more fields should not be empty`,
+					'error'
+				)
+			}
+		}
 		Fire(
 			'Add an Administrator',
 			'Are you sure you want to add this patylist?',
