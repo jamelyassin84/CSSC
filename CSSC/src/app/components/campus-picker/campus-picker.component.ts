@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { campuses } from './../../constants/AppConstants'
 import { Campus } from './../../Models/Campus'
-import { AppState } from './../../app.state'
+import { AppState } from '../../store/app.state'
 import { Observable } from 'rxjs'
 import { Store } from '@ngrx/store'
 

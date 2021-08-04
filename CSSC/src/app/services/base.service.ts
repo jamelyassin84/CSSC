@@ -1,4 +1,4 @@
-import { AppState } from './../app.state'
+import { AppState } from '../store/app.state'
 import { Store } from '@ngrx/store'
 import { Campus } from './../Models/Campus'
 import { Inject, Injectable, Optional } from '@angular/core'

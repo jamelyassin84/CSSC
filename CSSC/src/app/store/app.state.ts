@@ -1,4 +1,4 @@
-import { Campus } from './Models/Campus'
+import { Campus } from '../Models/Campus'
 
 export interface AppState {
 	readonly campus: Campus

@@ -1,6 +1,6 @@
 import { BaseService } from 'src/app/services/base.service'
 import { Store } from '@ngrx/store'
-import { AppState } from './../../app.state'
+import { AppState } from '../../store/app.state'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Voter } from './../../Models/User'
 import { Component, OnInit } from '@angular/core'

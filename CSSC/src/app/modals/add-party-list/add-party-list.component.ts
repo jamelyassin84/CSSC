@@ -1,7 +1,7 @@
 import { Store } from '@ngrx/store'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Component, OnInit } from '@angular/core'
-import { AppState } from 'src/app/app.state'
+import { AppState } from 'src/app/store/app.state'
 import { BaseService } from 'src/app/services/base.service'
 import { PartyList } from 'src/app/Models/Partylist'
 import { Alert, Fire } from 'src/app/components/Alert'
