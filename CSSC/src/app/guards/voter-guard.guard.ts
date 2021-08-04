@@ -5,10 +5,10 @@ import { CanActivate, Router } from '@angular/router'
 @Injectable({
 	providedIn: 'root',
 })
-export class SuperAdminGuard implements CanActivate {
+export class VoterGuardGuard implements CanActivate {
 	constructor(private router: Router, private user: UserService) {}
 	canActivate() {
-		if (!this.user.isSuperAdmin()) {
+		if (!this.user.isVoter()) {
 			this.router.navigate(['not-authorized'])
 			return false
 		}

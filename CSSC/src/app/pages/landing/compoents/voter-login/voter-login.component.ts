@@ -12,6 +12,6 @@ export class VoterLoginComponent implements OnInit {
 	ngOnInit(): void {}
 
 	login() {
-		this.router.navigate(['vote'])
+		this.router.navigate(['home/vote'])
 	}
 }

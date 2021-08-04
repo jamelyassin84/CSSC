@@ -1,3 +1,5 @@
+import { VoterGuardGuard } from './guards/voter-guard.guard'
+import { AdminGuard } from './guards/admin.guard'
 import { environment } from './../environments/environment.prod'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
@@ -48,10 +50,11 @@ import { AddVoterComponent } from './modals/add-voter/add-voter.component'
 import { AddPartyListComponent } from './modals/add-party-list/add-party-list.component'
 import { AddMemberComponent } from './modals/add-member/add-member.component'
 import { ViewMemberComponent } from './modals/view-member/view-member.component'
-import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
-import { NoInternetComponent } from './pages/no-internet/no-internet.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { TextareaAutosizeModule } from 'ngx-textarea-autosize'
+import { NoInternetComponent } from './pages/no-internet/no-internet.component'
+import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.component'
+import { SuperAdminGuard } from './guards/super-admin.guard'
 
 @NgModule({
 	declarations: [
@@ -82,9 +85,9 @@ import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.co
 		AddPartyListComponent,
 		AddMemberComponent,
 		ViewMemberComponent,
-  NoInternetComponent,
-  NotFoundComponent,
-  NotAuthorizedComponent,
+		NoInternetComponent,
+		NotFoundComponent,
+		NotAuthorizedComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -111,7 +114,7 @@ import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.co
 		TextareaAutosizeModule,
 		StoreModule.forRoot({ campus: CampusReducer }),
 	],
-	providers: [],
+	providers: [AdminGuard, SuperAdminGuard, VoterGuardGuard],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
