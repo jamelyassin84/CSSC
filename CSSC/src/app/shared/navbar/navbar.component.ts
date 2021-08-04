@@ -9,11 +9,17 @@ import { UserService } from 'src/app/services/user.service'
 	styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-	constructor(private router: Router, private user: UserService) {}
+	constructor(private router: Router, private user: UserService) {
+		this.user.listenToLogin().subscribe(() => {
+			this.ngOnInit()
+		})
+	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.name = this.user.name()
+	}
 
-	name = this.user.name()
+	name = ''
 
 	logout() {
 		Fire('Log-Out?', 'Are you sure you want to Log-Out?', 'info', () => {

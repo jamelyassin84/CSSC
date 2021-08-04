@@ -38,6 +38,6 @@ export const VOTER = [
 	{
 		name: 'Cast a vote',
 		route: 'vote',
-		icon: 'bi-brush',
+		icon: 'bi-vector-pen',
 	},
 ]

@@ -50,7 +50,7 @@ export class VoterLoginComponent implements OnInit {
 				localStorage.setItem('role', 'voter')
 				localStorage.setItem('user', JSON.stringify(user))
 				Welcome(
-					`${user.name} ${user.campus} ${user.course} of ${user.department} Department`
+					`${user.name} ${user.course} ${user.section} of ${user.department} Department`
 				)
 				this.router.navigate(['home/vote'])
 				this.modal.close()
