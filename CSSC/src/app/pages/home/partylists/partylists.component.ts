@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core'
+import { Subscription } from 'rxjs'
 import { Fire } from 'src/app/components/Alert'
 import { Collections } from 'src/app/Models/Admin'
 import { PartyList } from 'src/app/Models/Partylist'
 import { BaseService } from 'src/app/services/base.service'
+import { ReloadService } from 'src/app/services/reload.service'
 
 @Component({
 	selector: 'app-partylists',
@@ -10,7 +12,22 @@ import { BaseService } from 'src/app/services/base.service'
 	styleUrls: ['./partylists.component.scss'],
 })
 export class PartylistsComponent implements OnInit {
-	constructor(private service: BaseService) {}
+	constructor(
+		private service: BaseService,
+		private component: ReloadService
+	) {
+		this.subscriptions.add(
+			this.component.shouldReload().subscribe(() => {
+				this.ngOnInit()
+			})
+		)
+	}
+
+	private subscriptions = new Subscription()
+
+	ngOnDestroy(): void {
+		this.subscriptions.unsubscribe()
+	}
 
 	ngOnInit(): void {
 		this.getPartylists()

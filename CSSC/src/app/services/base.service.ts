@@ -22,7 +22,7 @@ export class BaseService {
 		})
 	}
 
-	campus: string = ''
+	campus: Campus = ''
 
 	wheres(builder: any) {
 		for (let index of this.where) {
@@ -35,13 +35,10 @@ export class BaseService {
 
 	fetchAll() {
 		const builder = this.firestore.collection(this.collection).ref
-		return this.firestore
-			.collection(this.collection, () => this.wheres(builder))
-			.valueChanges({ idField: 'id' })
+		return this.firestore.collection(this.collection, () => this.wheres(builder)).valueChanges({ idField: 'id' })
 	}
 
 	fetchOne(doc: string) {
-		let data: any[] = []
 		this.firestore
 			.collection(this.collection)
 			.doc(doc)

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core'
 import { BaseService } from 'src/app/services/base.service'
 import { Collections } from 'src/app/Models/Admin'
 import { Fire } from 'src/app/components/Alert'
+import { ReloadService } from 'src/app/services/reload.service'
+import { Subscription } from 'rxjs'
 
 @Component({
 	selector: 'app-votes',
@@ -10,8 +12,22 @@ import { Fire } from 'src/app/components/Alert'
 	styleUrls: ['./votes.component.scss'],
 })
 export class VotesComponent implements OnInit {
-	constructor(private service: BaseService) {}
+	constructor(
+		private service: BaseService,
+		private component: ReloadService
+	) {
+		this.subscriptions.add(
+			this.component.shouldReload().subscribe(() => {
+				this.ngOnInit()
+			})
+		)
+	}
 
+	private subscriptions = new Subscription()
+
+	ngOnDestroy(): void {
+		this.subscriptions.unsubscribe()
+	}
 	ngOnInit(): void {
 		this.getVoters()
 	}

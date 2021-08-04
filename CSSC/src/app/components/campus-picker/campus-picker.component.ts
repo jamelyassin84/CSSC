@@ -4,6 +4,7 @@ import { Campus } from './../../Models/Campus'
 import { AppState } from '../../store/app.state'
 import { Observable } from 'rxjs'
 import { Store } from '@ngrx/store'
+import { ReloadService } from 'src/app/services/reload.service'
 
 @Component({
 	selector: 'app-campus-picker',
@@ -11,7 +12,10 @@ import { Store } from '@ngrx/store'
 	styleUrls: ['./campus-picker.component.scss'],
 })
 export class CampusPickerComponent implements OnInit {
-	constructor(private store: Store<AppState>) {
+	constructor(
+		private store: Store<AppState>,
+		private Component: ReloadService
+	) {
 		this.campus = this.store.select('campus')
 	}
 
@@ -25,5 +29,6 @@ export class CampusPickerComponent implements OnInit {
 
 	setCampus(event: any) {
 		this.store.dispatch({ type: event.value })
+		this.Component.willReload()
 	}
 }

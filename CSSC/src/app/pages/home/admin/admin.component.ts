@@ -2,6 +2,8 @@ import { BaseService } from 'src/app/services/base.service'
 import { Admin, Collections } from './../../../Models/Admin'
 import { Component, OnInit } from '@angular/core'
 import { Fire } from 'src/app/components/Alert'
+import { Subscription } from 'rxjs'
+import { ReloadService } from 'src/app/services/reload.service'
 
 @Component({
 	selector: 'app-admin',
@@ -9,7 +11,22 @@ import { Fire } from 'src/app/components/Alert'
 	styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-	constructor(private service: BaseService) {}
+	constructor(
+		private service: BaseService,
+		private component: ReloadService
+	) {
+		this.subscriptions.add(
+			this.component.shouldReload().subscribe(() => {
+				this.ngOnInit()
+			})
+		)
+	}
+
+	private subscriptions = new Subscription()
+
+	ngOnDestroy(): void {
+		this.subscriptions.unsubscribe()
+	}
 
 	ngOnInit(): void {
 		this.getAdmin()
