@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <ul class="pt-5">
+    <ul>
         <li *ngFor="let item of sidebar; let i = index" [ngClass]="{ 'mT-30': i === 0 }" [class.active]="url.includes(item.route)">
             <a (click)="handleChangeTab()" role="button" [routerLink]="item.route" class="nav-link">
                 <span class="icon-holder">
