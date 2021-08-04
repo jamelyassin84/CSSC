@@ -4,6 +4,7 @@ import { Campus } from './../Models/Campus'
 import { Inject, Injectable, Optional } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { Collections } from '../Models/Admin'
+import { Subject } from 'rxjs'
 
 @Injectable({
 	providedIn: 'root',
@@ -35,7 +36,9 @@ export class BaseService {
 
 	fetchAll() {
 		const builder = this.firestore.collection(this.collection).ref
-		return this.firestore.collection(this.collection, () => this.wheres(builder)).valueChanges({ idField: 'id' })
+		return this.firestore
+			.collection(this.collection, () => this.wheres(builder))
+			.valueChanges({ idField: 'id' })
 	}
 
 	fetchOne(doc: string) {
@@ -51,18 +54,17 @@ export class BaseService {
 			})
 	}
 
-	fetchOneInArray() {
+	async fetchOneInArray() {
+		let data: any = {}
 		const builder = this.firestore.collection(this.collection).ref
-		return this.firestore
+		this.firestore
 			.collection(this.collection, () => this.wheres(builder))
 			.valueChanges()
 			.subscribe((values: any) => {
 				values.forEach((doc: any) => {
-					return {
-						id: doc.id,
-						data: doc.data(),
-					}
+					data = Object.assign({ id: doc.id, data: doc.data() })
 				})
+				return data
 			})
 	}
 

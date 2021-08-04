@@ -54,8 +54,6 @@ export class AddAdminComponent implements OnInit {
 					)
 					.then(() => {
 						for (let key in this.data) {
-							key === 'email' ||
-							key === 'password' ||
 							key === 'confirm_password'
 								? delete this.data[key]
 								: ''

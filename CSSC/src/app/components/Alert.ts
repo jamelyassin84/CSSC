@@ -36,7 +36,7 @@ export function Alert(title: string, text: string, type: any) {
 }
 
 export function Welcome(name: String) {
-	Alert('Success', `Welcome Back! ${name}`, 'success')
+	Alert('Welcome Back!', `${name}`, 'success')
 }
 
 export function pop() {
