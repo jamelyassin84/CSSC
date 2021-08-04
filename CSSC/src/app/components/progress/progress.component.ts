@@ -19,6 +19,6 @@ export class ProgressComponent implements OnInit {
 		})
 	}
 
-	isLoading: boolean = true
+	isLoading: boolean = false
 	ngOnInit(): void {}
 }
