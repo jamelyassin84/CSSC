@@ -1,8 +1,9 @@
 .side {
     width: 199px;
+    position: fixed;
 }
 
 .main {
-    width: 99vw;
-    min-height: 93.3vh;
+    width: 100%;
+    height: auto;
 }

@@ -1,3 +1,6 @@
+import { AppState } from './../app.state'
+import { Store } from '@ngrx/store'
+import { Campus } from './../Models/Campus'
 import { Inject, Injectable, Optional } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { Collections } from '../Models/Admin'
@@ -11,21 +14,28 @@ export class BaseService {
 		@Inject('collection')
 		@Optional()
 		public collection: Collections | string = '',
-		@Inject('where') @Optional() public where: any
-	) {}
+		@Inject('where') @Optional() public where: any,
+		public store: Store<AppState>
+	) {
+		this.store.select('campus').subscribe((campus) => {
+			this.campus = campus
+		})
+	}
 
-	wheres(ref: any) {
+	campus: string = ''
+
+	wheres(builder: any) {
 		for (let key in this.where) {
-			ref = ref.where(key, '==', this.where.value)
+			builder = builder.where(key, '==', this.where.value)
 		}
-		return ref
+		return builder.where('campus', '==', this.campus)
 	}
 
 	fetchAll() {
+		const builder = this.firestore.collection(this.collection).ref
 		return this.firestore
-			.collection(this.collection, (ref) => this.where(ref))
-			.valueChanges()
-			.subscribe()
+			.collection(this.collection, () => this.wheres(builder))
+			.valueChanges({ idField: 'id' })
 	}
 
 	fetchOne(doc: string) {
@@ -34,20 +44,18 @@ export class BaseService {
 			.collection(this.collection)
 			.doc(doc)
 			.get()
-			.subscribe((values: any) => {
-				values.forEach((doc: any) => {
-					data.push({
-						id: doc.id,
-						data: doc.data(),
-					})
-				})
+			.subscribe((value: any) => {
+				return {
+					value: value.id,
+					data: value.data(),
+				}
 			})
-		return data
 	}
 
-	fetchOneOnArray() {
-		this.firestore
-			.collection(this.collection, (ref) => this.where(ref))
+	fetchOneInArray() {
+		const builder = this.firestore.collection(this.collection).ref
+		return this.firestore
+			.collection(this.collection, () => this.wheres(builder))
 			.valueChanges()
 			.subscribe((values: any) => {
 				values.forEach((doc: any) => {
@@ -67,7 +75,7 @@ export class BaseService {
 		return this.firestore.collection(this.collection).doc(doc).update(data)
 	}
 
-	delete(doc: string) {
+	remove(doc: string) {
 		return this.firestore.collection(this.collection).doc(doc).delete()
 	}
 }

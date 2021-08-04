@@ -19,19 +19,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of [1, 2, 3, 4, 5]">
+                <tr *ngFor="let admin of admins">
                     <td class="text-center">
                         <i class="bi bi-person h1 text-info"></i>
                     </td>
                     <td>
-                        <div>Michael Scoffield</div>
+                        <div>{{ admin.name }}</div>
                     </td>
                     <td>
-                        <span class="badge badge-danger">President</span>
+                        <span class="badge badge-danger">{{
+							admin.position
+						}}</span>
                     </td>
                     <td>July 20 2021 4PM</td>
                     <td class="text-right">
-                        <button class="btn btn-danger btn-sm">
+                        <button (click)="remove(admin.id)" class="btn btn-danger btn-sm">
 							Remove Administrator
 						</button>
                     </td>

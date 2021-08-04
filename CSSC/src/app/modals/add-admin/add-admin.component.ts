@@ -49,7 +49,8 @@ export class AddAdminComponent implements OnInit {
 				new BaseService(
 					this.service.firestore,
 					Collections.Admin,
-					[]
+					[],
+					this.store
 				).add(this.data)
 				Alert(
 					'Admin Creation Successfull',

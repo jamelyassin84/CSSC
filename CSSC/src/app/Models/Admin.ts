@@ -1,5 +1,6 @@
 export type Admin = {
 	email?: string
+	id?: string
 	password?: string
 	name: string
 	position: string
