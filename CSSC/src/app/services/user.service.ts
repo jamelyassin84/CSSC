@@ -1,7 +1,7 @@
 import { UserType } from './../Models/User'
 import { AdminType } from './../Models/Admin'
 import { Injectable } from '@angular/core'
-import { Subject } from 'rxjs'
+import { Subject, throwError } from 'rxjs'
 
 @Injectable({
 	providedIn: 'root',
@@ -44,5 +44,14 @@ export class UserService {
 		}
 		user = JSON.parse(user)
 		return user.name || user.fullname
+	}
+
+	id() {
+		let user: any = localStorage.getItem('user')
+		if (user === null) {
+			return throwError('No user id found')
+		}
+		user = JSON.parse(user)
+		return user.id
 	}
 }

@@ -1,1 +1,56 @@
-<p>platforms works!</p>
+<btn-modal size="lg" title="Customize platform" btnTitle="Customize my platform" btnClass=" btn btn-danger btn-sm mb-5 " [template]="addPlatform"></btn-modal>
+<div class="row">
+    <div class="d-flex jcc aic card card-body col-md-6" style="flex-direction: column">
+        <div class="d-flex aic jcc">
+            <img [src]="candidate.photo" alt="" />
+            <div class="p-3 ml-auto">
+                <h2 class="m-0" style="font-size: 2rem; font-weight: 900">
+                    {{ candidate.voter.name }}
+                </h2>
+                <h2 class="m-0 text-danger">
+                    {{ candidate.position }}
+                </h2>
+            </div>
+        </div>
+        <p class="text-center d-flex w-100 mt-3">
+            Partylist:
+            <span class="ml-auto text-danger" style="font-weight: 500">{{ candidate.partylist }} <br
+			/></span>
+        </p>
+        <p class="text-center d-flex w-100">
+            Department:
+            <span class="ml-auto text-info">{{ candidate.voter.department }} <br
+			/></span>
+        </p>
+        <p class="text-center d-flex w-100">
+            Course:
+            <span class="ml-auto text-info">{{ candidate.voter.course }} <br
+			/></span>
+        </p>
+        <p class="text-center d-flex w-100">
+            Year:
+            <span class="ml-auto text-info">{{ candidate.voter.year }} <br
+			/></span>
+        </p>
+        <p class="text-center d-flex w-100">
+            Section:
+            <span class="ml-auto text-info">{{ candidate.voter.section }} <br
+			/></span>
+        </p>
+    </div>
+
+    <div class="d-flex jcc aic card card-body col-md-6 p-5" style="flex-direction: column">
+        <h1 style="font-size: 2rem; font-weight: bold" class="text-center mb-5">
+            {{ platform.title }}
+        </h1>
+        <p class="text-center description text-muted">
+            {{ platform.description }}
+        </p>
+
+        <a target="_blank" class="text-center w-100" *ngIf="platform.video_link !== undefined" [href]="platform.video_link">View video in this link</a
+		>
+	</div>
+</div>
+<ng-template #addPlatform>
+	<app-add-platform [data]="platform"></app-add-platform>
+</ng-template>
