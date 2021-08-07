@@ -10,6 +10,7 @@ export class CandidateCardComponent implements OnInit {
 	@Input() candidate!: Candidate
 	@Input() color: string = ''
 	@Input() value: number = 0
+	@Input() active: boolean = false
 
 	constructor() {}
 

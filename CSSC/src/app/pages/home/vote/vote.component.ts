@@ -5,6 +5,7 @@ import { Candidate } from 'src/app/Models/Candidtate'
 
 import { BaseService } from 'src/app/services/base.service'
 import { ReloadService } from 'src/app/services/reload.service'
+import { groupBy } from 'src/app/constants/helpers'
 
 @Component({
 	selector: 'app-vote',
@@ -25,7 +26,10 @@ export class VoteComponent implements OnInit {
 
 	presidents: Candidate[] = []
 	vps: Candidate[] = []
-	senators: Candidate[] = []
+	senators: any = []
+	govs: any = []
+	reps: any = []
+	mayors: any = []
 
 	getCandidates() {
 		this.service.firestore
@@ -43,7 +47,17 @@ export class VoteComponent implements OnInit {
 					if (candidate.position === LineUpType.Senator) {
 						this.senators.push(candidate)
 					}
+					if (candidate.position === LineUpType.Governor) {
+						this.govs.push(candidate)
+					}
+					if (candidate.position === LineUpType.Representative) {
+						this.reps.push(candidate)
+					}
 				})
+				this.senators = groupBy(this.senators, 'partylist')
+				this.govs = groupBy(this.govs, 'partylist')
+				this.reps = groupBy(this.reps, 'partylist')
+				this.mayors = groupBy(this.reps, 'partylist')
 			})
 	}
 

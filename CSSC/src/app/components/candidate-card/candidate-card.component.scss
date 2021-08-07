@@ -13,3 +13,21 @@ img {
 .relative {
     position: relative;
 }
+
+.others {
+    font-size: 0.8rem;
+}
+
+.card {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.active {
+    background-clip: padding-box;
+    border: 1px solid #3ac48c;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    box-shadow: 0px 0px 5px 11px rgba($color: #3ac48c, $alpha: 0.1);
+    opacity: 1;
+}

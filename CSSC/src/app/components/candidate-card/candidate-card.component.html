@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [class.active]="active">
     <div class="relative">
         <div class="absolute" style="float: right">
             <span class="badge badge-success">{{ value }}</span>
@@ -11,17 +11,30 @@
                 {{ candidate.voter.name }}
             </h4>
             <span class="badge" [class]="color">{{ candidate.position }}</span>
-            <br />
+            <div class="others mt-2 text-muted">
+                <div>Department: {{ candidate.voter.department }}</div>
+                <div>Course: {{ candidate.voter.course }}</div>
+                <div>Year: {{ candidate.voter.year }}</div>
+                <div>Section: {{ candidate.voter.section }}</div>
+            </div>
         </div>
     </div>
     <div class="card-header d-flex aic">
-        {{ candidate.partylist }}
-        <div class="ml-auto">
-            <btn-modal size="xl" [title]="'Platform of ' + candidate.voter.name" btnTitle="Platform" btnClass="btn ml-2 btn-outline-dark btn-sm" [template]="viewPlatform"></btn-modal>
-        </div>
-    </div>
+        <span style="font-weight: 600; font-size: 1.3rem">
+			{{ candidate.partylist }}</span
+		>
+		<div class="ml-auto">
+			<btn-modal
+				size="xl"
+				[title]="'Platform of ' + candidate.voter.name"
+				btnTitle="Platform"
+				btnClass="btn ml-2 btn-outline-dark btn-sm"
+				[template]="viewPlatform"
+			></btn-modal>
+		</div>
+	</div>
 </div>
 
 <ng-template #viewPlatform>
-    <app-view-platform> </app-view-platform>
+	<app-view-platform> </app-view-platform>
 </ng-template>
