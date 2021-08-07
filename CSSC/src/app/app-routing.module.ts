@@ -13,6 +13,8 @@ import { RouterModule, Routes } from '@angular/router'
 import { LandingUiComponent } from './pages/landing/landing-ui/landing-ui.component'
 import { VotesComponent } from './pages/home/votes/votes.component'
 import { SuperAdminGuard } from './guards/super-admin.guard'
+import { PlatformsComponent } from './pages/home/platforms/platforms.component'
+import { CandidateGuard } from './guards/candidate.guard'
 
 const routes: Routes = [
 	{
@@ -46,6 +48,11 @@ const routes: Routes = [
 				path: 'vote',
 				component: VoteComponent,
 				canActivate: [VoterGuardGuard],
+			},
+			{
+				path: 'my-platform',
+				component: PlatformsComponent,
+				canActivate: [CandidateGuard],
 			},
 		],
 	},

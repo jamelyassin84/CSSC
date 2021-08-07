@@ -50,7 +50,7 @@ export const CANDIDATE = [
 	},
 	{
 		name: 'Customize Platform',
-		route: 'vote',
+		route: 'my-platform',
 		icon: 'bi-pencil-square',
 	},
 	{

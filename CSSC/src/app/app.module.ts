@@ -1,3 +1,4 @@
+import { CandidateGuard } from './guards/candidate.guard'
 import { VoterGuardGuard } from './guards/voter-guard.guard'
 import { AdminGuard } from './guards/admin.guard'
 import { environment } from './../environments/environment.prod'
@@ -54,7 +55,8 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize'
 import { NoInternetComponent } from './pages/no-internet/no-internet.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.component'
-import { SuperAdminGuard } from './guards/super-admin.guard'
+import { SuperAdminGuard } from './guards/super-admin.guard';
+import { AddPlatformComponent } from './modals/add-platform/add-platform.component'
 
 @NgModule({
 	declarations: [
@@ -88,6 +90,7 @@ import { SuperAdminGuard } from './guards/super-admin.guard'
 		NoInternetComponent,
 		NotFoundComponent,
 		NotAuthorizedComponent,
+  AddPlatformComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -114,7 +117,7 @@ import { SuperAdminGuard } from './guards/super-admin.guard'
 		TextareaAutosizeModule,
 		StoreModule.forRoot({ campus: CampusReducer }),
 	],
-	providers: [AdminGuard, SuperAdminGuard, VoterGuardGuard],
+	providers: [AdminGuard, SuperAdminGuard, VoterGuardGuard, CandidateGuard],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}
