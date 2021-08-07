@@ -56,7 +56,9 @@ import { NoInternetComponent } from './pages/no-internet/no-internet.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.component'
 import { SuperAdminGuard } from './guards/super-admin.guard';
-import { AddPlatformComponent } from './modals/add-platform/add-platform.component'
+import { AddPlatformComponent } from './modals/add-platform/add-platform.component';
+import { ViewPlatformComponent } from './modals/view-platform/view-platform.component';
+import { CandidateCardComponent } from './components/candidate-card/candidate-card.component'
 
 @NgModule({
 	declarations: [
@@ -91,6 +93,8 @@ import { AddPlatformComponent } from './modals/add-platform/add-platform.compone
 		NotFoundComponent,
 		NotAuthorizedComponent,
   AddPlatformComponent,
+  ViewPlatformComponent,
+  CandidateCardComponent,
 	],
 	imports: [
 		BrowserModule,

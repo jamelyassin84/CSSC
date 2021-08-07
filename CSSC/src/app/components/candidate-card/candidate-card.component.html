@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="relative">
+        <div class="absolute" style="float: right">
+            <span class="badge badge-success">{{ value }}</span>
+        </div>
+    </div>
+    <div class="card-body d-flex aic">
+        <img [src]="candidate.photo || '/assets/avatar/face-7.jpg'" alt="" />
+        <div class="p-4">
+            <h4 class="m-0" style="font-weight: 500">
+                {{ candidate.voter.name }}
+            </h4>
+            <span class="badge" [class]="color">{{ candidate.position }}</span>
+            <br />
+        </div>
+    </div>
+    <div class="card-header d-flex aic">
+        {{ candidate.partylist }}
+        <div class="ml-auto">
+            <btn-modal size="xl" [title]="'Platform of ' + candidate.voter.name" btnTitle="Platform" btnClass="btn ml-2 btn-outline-dark btn-sm" [template]="viewPlatform"></btn-modal>
+        </div>
+    </div>
+</div>
+
+<ng-template #viewPlatform>
+    <app-view-platform> </app-view-platform>
+</ng-template>

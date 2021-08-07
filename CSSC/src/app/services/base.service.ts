@@ -38,7 +38,7 @@ export class BaseService {
 		const builder = this.firestore.collection(this.collection).ref
 		return this.firestore
 			.collection(this.collection, () => this.wheres(builder))
-			.valueChanges({ idField: 'id' })
+			.valueChanges<any>({ idField: 'id' })
 	}
 
 	fetchOne(doc: string) {

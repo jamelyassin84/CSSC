@@ -1,1 +1,24 @@
-<p>vote works!</p>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <h1>Presidential Candidates</h1>
+    </div>
+    <div class="col-md-4 mb-3" *ngFor="let candidate of presidents">
+        <app-candidate-card color="badge-danger" [candidate]="candidate"></app-candidate-card>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <h1>Vice Presidential Candidates</h1>
+    </div>
+    <div class="col-md-4 mb-3" *ngFor="let candidate of vps">
+        <app-candidate-card color="badge-dark" [candidate]="candidate"></app-candidate-card>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-md-12">
+        <h1>Senatorial Candidates</h1>
+    </div>
+    <div class="col-md-3 mb-3" *ngFor="let candidate of senators">
+        <app-candidate-card color="badge-info" [candidate]="candidate"></app-candidate-card>
+    </div>
+</div>

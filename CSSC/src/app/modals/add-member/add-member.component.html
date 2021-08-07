@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-12 mb-3">
         <label for="">Name</label>
-        <select (change)="handleSelectOnChange($event)" type="email" class="form-control">
+        <select (change)="handleSelectOnChange($event)" class="form-control">
 			<option selected disabled>--Choose--</option>
 			<option *ngFor="let voter of voters; let i = index" [value]="i">
 				{{ voter.name }}
@@ -18,10 +18,15 @@
 
     <div class="col-md-12 mb-3">
         <label for="">Postition</label>
-        <input [(ngModel)]="data.position" type="email" class="form-control" />
+        <select [(ngModel)]="data.position" class="form-control">
+			<option selected disabled>--Choose--</option>
+			<option *ngFor="let position of positions">
+				{{ position }}
+			</option>
+		</select>
     </div>
 </div>
-<div class="row">
+<div class="row mt-5">
     <div class="col-md-12">
         <div (click)="save()" class="btn btn-dark w-100">
             <i class="bi bi-save mr-2"></i> Save

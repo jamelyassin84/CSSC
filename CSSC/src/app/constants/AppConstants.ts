@@ -1,3 +1,4 @@
+import { LineUpType } from './../Models/LineUp'
 export const campuses = [
 	'Barotac Nuevo',
 	'Dumangas',
@@ -5,3 +6,14 @@ export const campuses = [
 	'San Enrique',
 	'Tiwi',
 ]
+
+export const positions = [
+	LineUpType.President,
+	LineUpType.VP,
+	LineUpType.Senator,
+	LineUpType.Governor,
+	LineUpType.Representative,
+	LineUpType.Mayor,
+]
+
+export const yearLevels = ['1st', '2nd', '3rd', '4th', '5th']

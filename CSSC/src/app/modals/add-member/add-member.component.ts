@@ -8,8 +8,8 @@ import { Candidate } from 'src/app/Models/Candidtate'
 import { Alert, Fire } from 'src/app/components/Alert'
 import { Collections } from 'src/app/Models/Admin'
 import { AngularFireStorage } from '@angular/fire/storage'
-
 import { Observable } from 'rxjs'
+import { positions } from 'src/app/constants/AppConstants'
 
 @Component({
 	selector: 'app-add-member',
@@ -25,7 +25,7 @@ export class AddMemberComponent implements OnInit {
 	) {}
 
 	@Input() partylist = ''
-
+	positions = positions
 	voters: Voter[] | any = []
 	data: Candidate | any = {
 		partylist: '',
@@ -80,18 +80,17 @@ export class AddMemberComponent implements OnInit {
 				)
 			}
 		}
-		if (this.file === undefined) {
-			return Alert('Error', `Candidate Photo is required.`, 'error')
-		}
 		Fire(
 			`Register ${this.data.name}?`,
 			`Are you sure you want to add   ${this.data.voter.name} in ${this.partylist} Partylist?`,
 			'info',
 			async () => {
-				let file = await this.storage
-					.ref('avatars/' + this.file.name)
-					.put(this.file)
-				this.data.photo = await file.ref.getDownloadURL()
+				if (this.file !== undefined) {
+					let file = await this.storage
+						.ref('avatars/' + this.file.name)
+						.put(this.file)
+					this.data.photo = await file.ref.getDownloadURL()
+				}
 				new BaseService(
 					this.service.firestore,
 					Collections.Candidate,
