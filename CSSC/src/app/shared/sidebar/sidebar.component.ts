@@ -1,5 +1,5 @@
 import { UserService } from './../../services/user.service'
-import { ADMIN, SUPERADMIN, VOTER } from './SideNav'
+import { ADMIN, CANDIDATE, SUPERADMIN, VOTER } from './SideNav'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
@@ -27,6 +27,9 @@ export class SidebarComponent implements OnInit {
 		}
 		if (this.user.isVoter()) {
 			this.sidebar = VOTER
+		}
+		if (this.user.isCandidate()) {
+			this.sidebar = CANDIDATE
 		}
 	}
 

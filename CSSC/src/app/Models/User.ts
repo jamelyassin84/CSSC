@@ -8,3 +8,8 @@ export type Voter = {
 	campus: string
 	section: string
 }
+
+export enum UserType {
+	Voter = 'voter',
+	Candidate = 'candidate',
+}

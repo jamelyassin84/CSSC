@@ -41,3 +41,21 @@ export const VOTER = [
 		icon: 'bi-vector-pen',
 	},
 ]
+
+export const CANDIDATE = [
+	{
+		name: 'Election Results',
+		route: 'dashboard',
+		icon: 'bi-bar-chart-line',
+	},
+	{
+		name: 'Customize Platform',
+		route: 'vote',
+		icon: 'bi-pencil-square',
+	},
+	{
+		name: 'Cast a vote',
+		route: 'vote',
+		icon: 'bi-vector-pen',
+	},
+]

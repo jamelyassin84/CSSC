@@ -1,3 +1,4 @@
+import { UserType } from './../Models/User'
 import { AdminType } from './../Models/Admin'
 import { Injectable } from '@angular/core'
 import { Subject } from 'rxjs'
@@ -19,7 +20,13 @@ export class UserService {
 	}
 
 	isVoter() {
-		return localStorage.getItem('role') === 'voter' ? true : false
+		return localStorage.getItem('role') === UserType.Voter ? true : false
+	}
+
+	isCandidate() {
+		return localStorage.getItem('role') === UserType.Candidate
+			? true
+			: false
 	}
 
 	hasLogin() {

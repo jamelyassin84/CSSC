@@ -5,4 +5,5 @@ export type Candidate = {
 	photo: string
 	partylist: any
 	voter: Voter
+	id?: any
 }

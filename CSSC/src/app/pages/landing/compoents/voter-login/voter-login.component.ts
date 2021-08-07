@@ -1,5 +1,7 @@
-import { Voter } from './../../../../Models/User'
-import { Collections } from './../../../../Models/Admin'
+import { Candidate } from 'src/app/Models/Candidtate'
+import { Collections } from 'src/app/Models/Admin'
+import { BaseService } from 'src/app/services/base.service'
+import { UserType, Voter } from './../../../../Models/User'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
@@ -17,7 +19,8 @@ export class VoterLoginComponent implements OnInit {
 		private router: Router,
 		private firestore: AngularFirestore,
 		private modal: ModalService,
-		private user: UserService
+		private user: UserService,
+		private service: BaseService
 	) {}
 
 	ngOnInit(): void {}
@@ -46,15 +49,33 @@ export class VoterLoginComponent implements OnInit {
 				data.forEach((doc: any) => {
 					data = Object.assign({ id: doc.id }, doc.data())
 				})
-				let user: Voter = data
-				localStorage.setItem('role', 'voter')
+				let user: Voter | any = data
 				localStorage.setItem('user', JSON.stringify(user))
-				Welcome(
-					`${user.name} ${user.course} ${user.section} of ${user.department} Department`
-				)
-				this.router.navigate(['home/vote'])
-				this.modal.close()
-				this.user.hasLogin()
+				localStorage.setItem('role', UserType.Voter)
+				this.firestore
+					.collection(Collections.Candidate, (ref) =>
+						ref.where('voter.id', '==', user.id)
+					)
+					.get()
+					.subscribe((data: any) => {
+						if (data.length === 0) {
+							this.signIn(user)
+							return
+						}
+						data.forEach(() => {
+							localStorage.setItem('role', UserType.Candidate)
+							this.signIn(user)
+						})
+					})
 			})
+	}
+
+	signIn(user: any) {
+		Welcome(
+			`${user.name} ${user.course} ${user.section} of ${user.department} Department`
+		)
+		this.router.navigate(['home/vote'])
+		this.modal.close()
+		this.user.hasLogin()
 	}
 }

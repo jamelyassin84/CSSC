@@ -8,10 +8,10 @@ import { CanActivate, Router } from '@angular/router'
 export class VoterGuardGuard implements CanActivate {
 	constructor(private router: Router, private user: UserService) {}
 	canActivate() {
-		if (!this.user.isVoter()) {
-			this.router.navigate(['not-authorized'])
-			return false
+		if (this.user.isVoter() || this.user.isCandidate()) {
+			return true
 		}
-		return true
+		this.router.navigate(['not-authorized'])
+		return false
 	}
 }
