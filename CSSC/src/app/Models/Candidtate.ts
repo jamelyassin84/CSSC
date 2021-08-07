@@ -4,5 +4,5 @@ export type Candidate = {
 	position: string
 	photo: string
 	partylist: any
-	name: string
+	voter: Voter
 }

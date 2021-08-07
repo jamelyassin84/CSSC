@@ -4,6 +4,10 @@
             <th><i class="bi bi-person"></i></th>
             <th>Name</th>
             <th>Position</th>
+            <th>Department</th>
+            <th>Course</th>
+            <th>Year</th>
+            <th>Section</th>
             <th></th>
         </tr>
     </thead>
@@ -12,15 +16,20 @@
             <td>
                 <img [src]="candidate.photo" alt="" />
             </td>
-            <td>{{ candidate.name }}</td>
+            <td>{{ candidate.voter.name }}</td>
+            <td>{{ candidate.voter.department }}</td>
+            <td>{{ candidate.voter.course }}</td>
+            <td>{{ candidate.voter.year }}</td>
+            <td>{{ candidate.voter.section }}</td>
             <td>{{ candidate.position }}</td>
             <td>
-                <button class="btn btn-outline-dark btn-sm mr-1">
-					View Platform
-				</button>
-                <button (click)="remove(candidate.id)" class="btn btn-outline-danger btn-sm mr-1">
-					Remove Candidate
-				</button>
+                <app-dropdown [buttons]="dropdown"></app-dropdown>
+                <ng-template #dropdown>
+                    <button class="dropdown-item">View Platform</button>
+                    <button (click)="remove(candidate.id)" class="dropdown-item">
+						Remove Candidate
+					</button>
+                </ng-template>
             </td>
         </tr>
     </tbody>
