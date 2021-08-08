@@ -31,7 +31,7 @@ export class AddAdminComponent implements OnInit {
 		confirm_password: '',
 		type: AdminType.Admin,
 	}
-
+	isLoading = false
 	save() {
 		for (let key in this.data) {
 			if (this.data[key] === '') {
@@ -47,6 +47,7 @@ export class AddAdminComponent implements OnInit {
 			'Are you sure you want to add this administrator?',
 			'info',
 			() => {
+				this.isLoading = true
 				this.auth
 					.createUserWithEmailAndPassword(
 						this.data.email || '',
@@ -64,6 +65,7 @@ export class AddAdminComponent implements OnInit {
 							[],
 							this.store
 						).add(this.data)
+						this.isLoading = false
 						Alert(
 							'Admin Creation Successfull',
 							`New administrator on ${this.data.campus} campus  has been created`,
@@ -72,6 +74,7 @@ export class AddAdminComponent implements OnInit {
 					})
 					.catch((error) => {
 						AuthError(error)
+						this.isLoading = false
 					})
 			}
 		)

@@ -25,6 +25,7 @@ export class AddPartyListComponent implements OnInit {
 		campus: '',
 	}
 
+	isLoading = false
 	save() {
 		for (let key in this.data) {
 			if (this.data[key] === '') {
@@ -40,6 +41,7 @@ export class AddPartyListComponent implements OnInit {
 			'Are you sure you want to add this patylist?',
 			'info',
 			() => {
+				this.isLoading = true
 				new BaseService(
 					this.service.firestore,
 					Collections.Partylist,
@@ -51,6 +53,7 @@ export class AddPartyListComponent implements OnInit {
 					`New Partylist has been added on ${this.data.campus} campus`,
 					'success'
 				)
+				this.isLoading = false
 			}
 		)
 	}

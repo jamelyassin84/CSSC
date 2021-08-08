@@ -36,6 +36,7 @@ export class AddPlatformComponent implements OnInit {
 			'Are you sure you want to save your edited platform?',
 			'info',
 			() => {
+				this.isLoading = true
 				if (this.data.id !== undefined) {
 					this.update()
 					return
@@ -45,6 +46,7 @@ export class AddPlatformComponent implements OnInit {
 		)
 	}
 
+	isLoading = false
 	create() {
 		new BaseService(
 			this.service.firestore,
@@ -57,6 +59,7 @@ export class AddPlatformComponent implements OnInit {
 			`Voters could see your updated platform`,
 			'success'
 		)
+		this.isLoading = false
 	}
 
 	update() {
@@ -71,6 +74,7 @@ export class AddPlatformComponent implements OnInit {
 			`Voters could see your updated platform`,
 			'success'
 		)
+		this.isLoading = false
 	}
 
 	ngOnInit(): void {}

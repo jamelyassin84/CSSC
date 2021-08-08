@@ -58,7 +58,8 @@ import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.co
 import { SuperAdminGuard } from './guards/super-admin.guard'
 import { AddPlatformComponent } from './modals/add-platform/add-platform.component'
 import { ViewPlatformComponent } from './modals/view-platform/view-platform.component'
-import { CandidateCardComponent } from './components/candidate-card/candidate-card.component'
+import { CandidateCardComponent } from './components/candidate-card/candidate-card.component';
+import { ButtonLoadersComponent } from './components/button-loaders/button-loaders.component'
 
 @NgModule({
 	declarations: [
@@ -95,6 +96,7 @@ import { CandidateCardComponent } from './components/candidate-card/candidate-ca
 		AddPlatformComponent,
 		ViewPlatformComponent,
 		CandidateCardComponent,
+  ButtonLoadersComponent,
 	],
 	imports: [
 		BrowserModule,

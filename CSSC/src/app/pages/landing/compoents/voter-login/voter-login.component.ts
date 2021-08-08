@@ -26,24 +26,30 @@ export class VoterLoginComponent implements OnInit {
 	ngOnInit(): void {}
 
 	id_number: string = ''
+	section: string = ''
 
+	isLoading = false
 	login() {
-		if (this.id_number === '') {
+		if (this.id_number === '' || this.section === '') {
 			Alert('Error', 'One or more fields should not be empty', 'error')
 			return
 		}
+		this.isLoading = true
 		this.firestore
 			.collection(Collections.Voters, (ref) =>
-				ref.where('id_number', '==', this.id_number)
+				ref
+					.where('id_number', '==', this.id_number)
+					.where('section', '==', this.section)
 			)
 			.get()
 			.subscribe((data: any) => {
-				if (data.length === 0) {
+				if (data.empty) {
 					Alert(
 						'Sorry',
-						'We could not find a student associated with this ID Number',
+						'We could not find a student associated with this ID Number and Section',
 						'error'
 					)
+					this.isLoading = false
 					return
 				}
 				data.forEach((doc: any) => {
@@ -58,14 +64,10 @@ export class VoterLoginComponent implements OnInit {
 					)
 					.get()
 					.subscribe((data: any) => {
-						if (data.length === 0) {
-							this.signIn(user)
-							return
-						}
 						data.forEach(() => {
 							localStorage.setItem('role', UserType.Candidate)
-							this.signIn(user)
 						})
+						this.signIn(user)
 					})
 			})
 	}
@@ -77,5 +79,6 @@ export class VoterLoginComponent implements OnInit {
 		this.router.navigate(['home/vote'])
 		this.modal.close()
 		this.user.hasLogin()
+		this.isLoading = false
 	}
 }

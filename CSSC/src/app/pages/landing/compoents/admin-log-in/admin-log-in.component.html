@@ -12,8 +12,12 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <div (click)="login()" class="btn btn-dark w-100">
-            <i class="bi bi-box-arrow-in-right mr-2"></i> Log-In
-        </div>
+        <button [disabled]="isLoading" (click)="login()" class="btn btn-dark w-100">
+			<span *ngIf="!isLoading">
+				<i class="bi bi-box-arrow-in-right mr-2"></i>
+				Log-In
+			</span>
+			<app-button-loaders *ngIf="isLoading"></app-button-loaders>
+		</button>
     </div>
 </div>

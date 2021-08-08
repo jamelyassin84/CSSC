@@ -29,11 +29,13 @@ export class AdminLogInComponent implements OnInit {
 		password: '',
 	}
 
+	isLoading = false
 	login() {
 		if (this.data.email === '' || this.data.password === '') {
 			Alert('Error', 'One or more fields should not be empty', 'error')
 			return
 		}
+		this.isLoading = true
 		this.auth
 			.signInWithEmailAndPassword(this.data.email, this.data.password)
 			.then(() => {
@@ -61,12 +63,14 @@ export class AdminLogInComponent implements OnInit {
 							)
 							this.user.hasLogin()
 						}
+						this.isLoading = false
 					})
 				this.router.navigate(['home/dashboard'])
 				this.modal.close()
 			})
 			.catch((error) => {
 				AuthError(error)
+				this.isLoading = false
 			})
 	}
 }

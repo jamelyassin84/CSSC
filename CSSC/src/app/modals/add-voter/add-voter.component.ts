@@ -72,6 +72,7 @@ export class AddVoterComponent implements OnInit {
 		this.sections = temp.sort()
 	}
 
+	isLoading = false
 	save() {
 		for (let key in this.data) {
 			if (this.data[key] === '') {
@@ -87,6 +88,7 @@ export class AddVoterComponent implements OnInit {
 			'Are you sure you want to add this voter?',
 			'info',
 			() => {
+				this.isLoading = true
 				new BaseService(
 					this.service.firestore,
 					Collections.Voters,
@@ -98,6 +100,7 @@ export class AddVoterComponent implements OnInit {
 					`New student has been registered on ${this.data.campus} campus`,
 					'success'
 				)
+				this.isLoading = false
 			}
 		)
 	}

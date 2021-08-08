@@ -68,6 +68,8 @@ export class AddMemberComponent implements OnInit {
 
 	uploadPercent: number | any = 0
 	downloadURL: Observable<string> | any
+	isLoading = false
+
 	save() {
 		this.data.partylist = this.partylist
 		console.log(this.data)
@@ -85,6 +87,7 @@ export class AddMemberComponent implements OnInit {
 			`Are you sure you want to add   ${this.data.voter.name} in ${this.partylist} Partylist?`,
 			'info',
 			async () => {
+				this.isLoading = true
 				if (this.file !== undefined) {
 					let file = await this.storage
 						.ref('avatars/' + this.file.name)
@@ -102,6 +105,7 @@ export class AddMemberComponent implements OnInit {
 					`New Member has been add to ${this.partylist} Partylist`,
 					'success'
 				)
+				this.isLoading = false
 			}
 		)
 	}
