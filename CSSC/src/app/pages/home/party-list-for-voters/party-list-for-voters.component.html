@@ -1,0 +1,21 @@
+<div class="row">
+    <div *ngFor="let item of partylists" class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h1 class="m-0">{{ item.acronym }}</h1>
+            </div>
+            <div class="card-body">
+                <h4>
+                    Filipino Title
+                    <span class="text-danger">{{ item.filipino_title }}</span>
+                </h4>
+                <h4>
+                    English Title
+                    <span class="text-danger">{{ item.english_title }}</span>
+                </h4>
+                <h4>Plaftofrm:</h4>
+                <p class="text-muted">{{ item.platform }}</p>
+            </div>
+        </div>
+    </div>
+</div>

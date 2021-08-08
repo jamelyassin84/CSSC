@@ -40,6 +40,11 @@ export const VOTER = [
 		route: 'vote',
 		icon: 'bi-vector-pen',
 	},
+	{
+		name: 'Parties',
+		route: 'parties',
+		icon: 'bi-list-stars',
+	},
 ]
 
 export const CANDIDATE = [
@@ -57,5 +62,10 @@ export const CANDIDATE = [
 		name: 'Cast a vote',
 		route: 'vote',
 		icon: 'bi-vector-pen',
+	},
+	{
+		name: 'Parties',
+		route: 'parties',
+		icon: 'bi-list-stars',
 	},
 ]

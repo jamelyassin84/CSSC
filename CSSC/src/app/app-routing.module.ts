@@ -15,6 +15,7 @@ import { VotesComponent } from './pages/home/voters/votes.component'
 import { SuperAdminGuard } from './guards/super-admin.guard'
 import { PlatformsComponent } from './pages/home/platforms/platforms.component'
 import { CandidateGuard } from './guards/candidate.guard'
+import { PartyListForVotersComponent } from './pages/home/party-list-for-voters/party-list-for-voters.component'
 
 const routes: Routes = [
 	{
@@ -53,6 +54,11 @@ const routes: Routes = [
 				path: 'my-platform',
 				component: PlatformsComponent,
 				canActivate: [CandidateGuard],
+			},
+			{
+				path: 'parties',
+				component: PartyListForVotersComponent,
+				canActivate: [VoterGuardGuard],
 			},
 		],
 	},
