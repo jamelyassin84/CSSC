@@ -59,3 +59,9 @@ label {
     width: 100% !important;
     text-align: left !important;
 }
+
+.popover {
+    z-index: 9999;
+    opacity: 1;
+    /* A value higher than 1010 that solves the problem */
+}

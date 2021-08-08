@@ -20,7 +20,10 @@
         </div>
     </div>
     <div class="card-header d-flex aic">
-        <span style="font-weight: 600; font-size: 1.3rem">
+        <span (mouseenter)="fetchPartyList(candidate.partylist)" style="font-weight: 600; font-size: 1.3rem" [ngbPopover]="
+				partylist.english_title + ', ' + partylist.filipino_title ||
+				'Loading..'
+			" triggers="mouseenter:mouseleave" [popoverTitle]="partylist.acronym || 'Loading..'">
 			{{ candidate.partylist }}</span
 		>
 		<div class="ml-auto">
