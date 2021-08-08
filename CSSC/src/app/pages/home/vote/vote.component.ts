@@ -66,4 +66,19 @@ export class VoteComponent implements OnInit {
 		this.vps = []
 		this.senators = []
 	}
+
+	votes: string[] | any = []
+
+	vote(id: string | any, position: string, name: string) {
+		this.votes.push({ candidate_id: id, position: position })
+		this.voteIds[name.toString()] =
+			this.voteIds[name.toString()] === false ||
+			this.voteIds[name.toString()] === undefined
+				? true
+				: false
+	}
+
+	voteIds: any = {}
+
+	submitVote() {}
 }

@@ -7,7 +7,13 @@
             <h1 class="text-danger">Presidential Candidates</h1>
         </div>
         <div class="col-md-4 mb-3" *ngFor="let candidate of presidents; let i = index">
-            <app-candidate-card color="badge-danger" [active]="i == 0" [candidate]="candidate"></app-candidate-card>
+            <app-candidate-card [active]="voteIds[candidate.voter.name]" (click)="
+					vote(
+						candidate.voter.id,
+						candidate.position,
+						candidate.voter.name
+					)
+				" color="badge-danger" [candidate]="candidate"></app-candidate-card>
         </div>
     </div>
     <div class="row mb-5">
@@ -15,7 +21,13 @@
             <h1 class="text-danger">Vice Presidential Candidates</h1>
         </div>
         <div class="col-md-4 mb-3" *ngFor="let candidate of vps; let i = index">
-            <app-candidate-card color="badge-dark" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+            <app-candidate-card [active]="voteIds[candidate.voter.name]" (click)="
+					vote(
+						candidate.voter.id,
+						candidate.position,
+						candidate.voter.name
+					)
+				" color="badge-danger" [candidate]="candidate"></app-candidate-card>
         </div>
     </div>
     <div class="row mb-5">
@@ -24,7 +36,13 @@
         </div>
         <div class="col-md-12 row" *ngFor="let items of senators; let i = index">
             <div class="col-md-3 mb-3" *ngFor="let candidate of items">
-                <app-candidate-card color="badge-info" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+                <app-candidate-card [active]="voteIds[candidate.voter.name]" (click)="
+						vote(
+							candidate.voter.id,
+							candidate.position,
+							candidate.voter.name
+						)
+					" color="badge-danger" [candidate]="candidate"></app-candidate-card>
             </div>
         </div>
     </div>
@@ -35,7 +53,13 @@
         </div>
         <div class="col-md-12 row" *ngFor="let items of govs; let i = index">
             <div class="col-md-3 mb-3" *ngFor="let candidate of items">
-                <app-candidate-card color="badge-primary" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+                <app-candidate-card [active]="voteIds[candidate.voter.name]" (click)="
+						vote(
+							candidate.voter.id,
+							candidate.position,
+							candidate.voter.name
+						)
+					" color="badge-danger" [candidate]="candidate"></app-candidate-card>
             </div>
         </div>
     </div>
@@ -46,7 +70,13 @@
         </div>
         <div class="col-md-12 row" *ngFor="let items of reps; let i = index">
             <div class="col-md-3 mb-3" *ngFor="let candidate of items">
-                <app-candidate-card color="badge-primary" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+                <app-candidate-card [active]="voteIds[candidate.voter.name]" (click)="
+						vote(
+							candidate.voter.id,
+							candidate.position,
+							candidate.voter.name
+						)
+					" color="badge-danger" [candidate]="candidate"></app-candidate-card>
             </div>
         </div>
     </div>
@@ -57,8 +87,20 @@
         </div>
         <div class="col-md-12 row" *ngFor="let items of mayors; let i = index">
             <div class="col-md-3 mb-3" *ngFor="let candidate of items">
-                <app-candidate-card color="badge-primary" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+                <app-candidate-card [active]="voteIds[candidate.voter.name]" (click)="
+						vote(
+							candidate.voter.id,
+							candidate.position,
+							candidate.voter.name
+						)
+					" color="badge-danger" [candidate]="candidate"></app-candidate-card>
             </div>
         </div>
+    </div>
+
+    <div class="row d-flex aic jcc">
+        <button (click)="submitVote()" class="btn btn-lg btn-danger">
+			Submit Vote
+		</button>
     </div>
 </div>

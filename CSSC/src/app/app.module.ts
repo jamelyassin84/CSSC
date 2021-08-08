@@ -60,7 +60,7 @@ import { AddPlatformComponent } from './modals/adds/add-platform/add-platform.co
 import { ViewPlatformComponent } from './modals/views/view-platform/view-platform.component'
 import { CandidateCardComponent } from './components/candidate-card/candidate-card.component'
 import { ButtonLoadersComponent } from './components/button-loaders/button-loaders.component'
-import { EditPartyListComponent } from './modals/edits/edit-party-list/edit-party-list.component';
+import { EditPartyListComponent } from './modals/edits/edit-party-list/edit-party-list.component'
 import { PartyListForVotersComponent } from './pages/home/party-list-for-voters/party-list-for-voters.component'
 
 @NgModule({
@@ -100,7 +100,7 @@ import { PartyListForVotersComponent } from './pages/home/party-list-for-voters/
 		CandidateCardComponent,
 		ButtonLoadersComponent,
 		EditPartyListComponent,
-  PartyListForVotersComponent,
+		PartyListForVotersComponent,
 	],
 	imports: [
 		BrowserModule,
