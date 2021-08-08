@@ -1,3 +1,4 @@
+import { sections } from './../../../constants/AppConstants'
 import { Voter } from './../../../Models/User'
 import { Component, OnInit } from '@angular/core'
 import { BaseService } from 'src/app/services/base.service'
@@ -5,6 +6,7 @@ import { Collections } from 'src/app/Models/Admin'
 import { Fire } from 'src/app/components/Alert'
 import { ReloadService } from 'src/app/services/reload.service'
 import { Subscription } from 'rxjs'
+import { yearLevels } from 'src/app/constants/AppConstants'
 
 @Component({
 	selector: 'app-votes',
@@ -30,13 +32,14 @@ export class VotesComponent implements OnInit {
 	}
 	ngOnInit(): void {
 		this.getVoters()
+		this.flattenSections()
 	}
 
 	voters: Voter[] = []
 
 	departments: string[] = []
 	courses: string[] = []
-	years: string[] = []
+	years: string[] = yearLevels
 	sections: string[] = []
 
 	filters: any = {
@@ -46,11 +49,19 @@ export class VotesComponent implements OnInit {
 		section: '',
 	}
 
+	flattenSections() {
+		const temp: string[] = []
+		sections.forEach((section: string) => {
+			for (let index in this.years) {
+				temp.push(`${parseFloat(index) + 1}-${section}`)
+			}
+		})
+		this.sections = temp.sort()
+	}
+
 	getVoters() {
 		this.departments = []
 		this.courses = []
-		this.years = []
-		this.sections = []
 		new BaseService(
 			this.service.firestore,
 			Collections.Voters,
@@ -66,12 +77,6 @@ export class VotesComponent implements OnInit {
 					}
 					if (!this.courses.includes(data.course)) {
 						this.courses.push(data.course)
-					}
-					if (!this.years.includes(data.year)) {
-						this.years.push(data.year)
-					}
-					if (!this.sections.includes(data.section)) {
-						this.sections.push(data.section)
 					}
 				}
 			})

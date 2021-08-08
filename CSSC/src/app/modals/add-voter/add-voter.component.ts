@@ -6,6 +6,7 @@ import { Voter } from './../../Models/User'
 import { Component, OnInit } from '@angular/core'
 import { Alert, Fire } from 'src/app/components/Alert'
 import { Collections } from 'src/app/Models/Admin'
+import { sections, yearLevels } from 'src/app/constants/AppConstants'
 
 @Component({
 	selector: 'app-add-voter',
@@ -29,7 +30,47 @@ export class AddVoterComponent implements OnInit {
 		year: '',
 	}
 
-	ngOnInit(): void {}
+	departments: string[] = []
+	courses: string[] = []
+	years: string[] = yearLevels
+	sections: string[] = []
+
+	ngOnInit(): void {
+		this.flattenSections()
+		this.getVoters()
+	}
+
+	getVoters() {
+		this.departments = []
+		this.courses = []
+		new BaseService(
+			this.service.firestore,
+			Collections.Voters,
+			[],
+			this.service.store
+		)
+			.fetchAll()
+			.subscribe((voters: any) => {
+				for (let data of voters) {
+					if (!this.departments.includes(data.department)) {
+						this.departments.push(data.department)
+					}
+					if (!this.courses.includes(data.course)) {
+						this.courses.push(data.course)
+					}
+				}
+			})
+	}
+
+	flattenSections() {
+		const temp: string[] = []
+		sections.forEach((section: string) => {
+			for (let index in this.years) {
+				temp.push(`${parseFloat(index) + 1}-${section}`)
+			}
+		})
+		this.sections = temp.sort()
+	}
 
 	save() {
 		for (let key in this.data) {

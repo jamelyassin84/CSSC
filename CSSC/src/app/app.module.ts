@@ -20,7 +20,7 @@ import { HomeIndexComponent } from './pages/home/home-index/home-index.component
 import { CandidateComponent } from './pages/home/candidate/candidate.component'
 import { PartylistsComponent } from './pages/home/partylists/partylists.component'
 import { PlatformsComponent } from './pages/home/platforms/platforms.component'
-import { VotesComponent } from './pages/home/votes/votes.component'
+import { VotesComponent } from './pages/home/voters/votes.component'
 import { VoteComponent } from './pages/home/vote/vote.component'
 import { NavbarComponent } from './shared/navbar/navbar.component'
 import { SidebarComponent } from './shared/sidebar/sidebar.component'
@@ -55,9 +55,9 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize'
 import { NoInternetComponent } from './pages/no-internet/no-internet.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.component'
-import { SuperAdminGuard } from './guards/super-admin.guard';
-import { AddPlatformComponent } from './modals/add-platform/add-platform.component';
-import { ViewPlatformComponent } from './modals/view-platform/view-platform.component';
+import { SuperAdminGuard } from './guards/super-admin.guard'
+import { AddPlatformComponent } from './modals/add-platform/add-platform.component'
+import { ViewPlatformComponent } from './modals/view-platform/view-platform.component'
 import { CandidateCardComponent } from './components/candidate-card/candidate-card.component'
 
 @NgModule({
@@ -92,9 +92,9 @@ import { CandidateCardComponent } from './components/candidate-card/candidate-ca
 		NoInternetComponent,
 		NotFoundComponent,
 		NotAuthorizedComponent,
-  AddPlatformComponent,
-  ViewPlatformComponent,
-  CandidateCardComponent,
+		AddPlatformComponent,
+		ViewPlatformComponent,
+		CandidateCardComponent,
 	],
 	imports: [
 		BrowserModule,

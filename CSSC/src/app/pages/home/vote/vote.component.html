@@ -1,62 +1,64 @@
-<h1 style="font-size: 3rem; font-weight: bold" class="text-center m-5">
-    Select Your Line-up!
-</h1>
-<div class="row mb-5">
-    <div class="col-md-12">
-        <h1 class="text-danger">Presidential Candidates</h1>
-    </div>
-    <div class="col-md-4 mb-3" *ngFor="let candidate of presidents; let i = index">
-        <app-candidate-card color="badge-danger" [active]="i == 0" [candidate]="candidate"></app-candidate-card>
-    </div>
-</div>
-<div class="row mb-5">
-    <div class="col-md-12">
-        <h1 class="text-danger">Vice Presidential Candidates</h1>
-    </div>
-    <div class="col-md-4 mb-3" *ngFor="let candidate of vps; let i = index">
-        <app-candidate-card color="badge-dark" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
-    </div>
-</div>
-<div class="row mb-5">
-    <div class="col-md-12">
-        <h1 class="text-danger">Senatorial Candidates</h1>
-    </div>
-    <div class="col-md-12 row" *ngFor="let items of senators; let i = index">
-        <div class="col-md-3 mb-3" *ngFor="let candidate of items">
-            <app-candidate-card color="badge-info" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+<div class="p-5">
+    <h1 style="font-size: 3rem; font-weight: bold" class="text-center m-5">
+        Select Your Line-up!
+    </h1>
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h1 class="text-danger">Presidential Candidates</h1>
+        </div>
+        <div class="col-md-4 mb-3" *ngFor="let candidate of presidents; let i = index">
+            <app-candidate-card color="badge-danger" [active]="i == 0" [candidate]="candidate"></app-candidate-card>
         </div>
     </div>
-</div>
-
-<div class="row mb-5">
-    <div class="col-md-12">
-        <h1 class="text-danger">Candidates for Governor</h1>
-    </div>
-    <div class="col-md-12 row" *ngFor="let items of govs; let i = index">
-        <div class="col-md-3 mb-3" *ngFor="let candidate of items">
-            <app-candidate-card color="badge-primary" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h1 class="text-danger">Vice Presidential Candidates</h1>
+        </div>
+        <div class="col-md-4 mb-3" *ngFor="let candidate of vps; let i = index">
+            <app-candidate-card color="badge-dark" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
         </div>
     </div>
-</div>
-
-<div class="row mb-5">
-    <div class="col-md-12">
-        <h1 class="text-danger">Candidates for Representatives</h1>
-    </div>
-    <div class="col-md-12 row" *ngFor="let items of reps; let i = index">
-        <div class="col-md-3 mb-3" *ngFor="let candidate of items">
-            <app-candidate-card color="badge-primary" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h1 class="text-danger">Senatorial Candidates</h1>
+        </div>
+        <div class="col-md-12 row" *ngFor="let items of senators; let i = index">
+            <div class="col-md-3 mb-3" *ngFor="let candidate of items">
+                <app-candidate-card color="badge-info" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="row mb-5">
-    <div class="col-md-12">
-        <h1 class="text-danger">Candidates for Mayors</h1>
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h1 class="text-danger">Candidates for Governor</h1>
+        </div>
+        <div class="col-md-12 row" *ngFor="let items of govs; let i = index">
+            <div class="col-md-3 mb-3" *ngFor="let candidate of items">
+                <app-candidate-card color="badge-primary" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+            </div>
+        </div>
     </div>
-    <div class="col-md-12 row" *ngFor="let items of mayors; let i = index">
-        <div class="col-md-3 mb-3" *ngFor="let candidate of items">
-            <app-candidate-card color="badge-primary" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h1 class="text-danger">Candidates for Representatives</h1>
+        </div>
+        <div class="col-md-12 row" *ngFor="let items of reps; let i = index">
+            <div class="col-md-3 mb-3" *ngFor="let candidate of items">
+                <app-candidate-card color="badge-primary" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h1 class="text-danger">Candidates for Mayors</h1>
+        </div>
+        <div class="col-md-12 row" *ngFor="let items of mayors; let i = index">
+            <div class="col-md-3 mb-3" *ngFor="let candidate of items">
+                <app-candidate-card color="badge-primary" [active]="i == 1" [candidate]="candidate"></app-candidate-card>
+            </div>
         </div>
     </div>
 </div>

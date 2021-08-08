@@ -1,28 +1,42 @@
 <div class="row">
-    <div class="col-md-12 mb-3">
+    <div class="col-md-6 mb-3">
         <label for="">ID Number</label>
         <input [(ngModel)]="data.id_number" type="text" class="form-control" />
     </div>
-    <div class="col-md-12 mb-3">
+    <div class="col-md-6 mb-3">
         <label for="">Name</label>
         <input [(ngModel)]="data.name" type="text" class="form-control" />
     </div>
-    <div class="col-md-12 mb-3">
+    <div class="col-md-3 mb-3">
         <label for="">Department</label>
-        <input [(ngModel)]="data.department" type="text" class="form-control" />
+        <input list="departments" [(ngModel)]="data.department" type="text" class="form-control" />
+        <datalist id="departments">
+			<option *ngFor="let item of departments">{{ item }}</option>
+		</datalist>
     </div>
-    <div class="col-md-12 mb-3">
+    <div class="col-md-3 mb-3">
         <label for="">Course</label>
-        <input [(ngModel)]="data.course" type="text" class="form-control" />
+        <input list="courses" [(ngModel)]="data.course" type="text" class="form-control" />
+        <datalist id="courses">
+			<option *ngFor="let item of courses">{{ item }}</option>
+		</datalist>
     </div>
 
-    <div class="col-md-12 mb-3">
+    <div class="col-md-3 mb-3">
         <label for="">Year</label>
-        <input [(ngModel)]="data.year" type="text" class="form-control" />
+        <select [(ngModel)]="data.year" type="text" class="form-control">
+			<option *ngFor="let item of years" [value]="item">
+				{{ item }}
+			</option>
+		</select>
     </div>
-    <div class="col-md-12 mb-3">
+    <div class="col-md-3 mb-3">
         <label for="">Section</label>
-        <input [(ngModel)]="data.section" type="text" class="form-control" />
+        <select [(ngModel)]="data.section" type="text" class="form-control">
+			<option *ngFor="let item of sections" [value]="item">
+				{{ item }}
+			</option>
+		</select>
     </div>
 </div>
 
