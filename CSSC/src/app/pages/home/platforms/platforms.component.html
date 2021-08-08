@@ -2,7 +2,7 @@
 <div class="row">
     <div class="d-flex jcc aic card card-body col-md-6" style="flex-direction: column">
         <div class="d-flex aic jcc">
-            <img [src]="candidate.photo" alt="" />
+            <img [src]="candidate.photo || '/assets/avatar/face-7.jpg'" alt="" />
             <div class="p-3 ml-auto">
                 <h2 class="m-0" style="font-size: 2rem; font-weight: 900">
                     {{ candidate.voter.name }}
