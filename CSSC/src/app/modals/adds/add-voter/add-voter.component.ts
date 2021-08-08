@@ -59,6 +59,7 @@ export class AddVoterComponent implements OnInit {
 						this.courses.push(data.course)
 					}
 				}
+				this.populateIdNumbers(voters)
 			})
 	}
 
@@ -72,6 +73,27 @@ export class AddVoterComponent implements OnInit {
 		this.sections = temp.sort()
 	}
 
+	idNumbers: string[] = []
+
+	populateIdNumbers(voters: Voter[]) {
+		this.idNumbers = []
+		voters.forEach((voter: Voter) => {
+			if (!this.idNumbers.includes(voter.id_number)) {
+				this.idNumbers.push(voter.id_number)
+			}
+		})
+	}
+
+	error: boolean = false
+	isExisting(event: any) {
+		if (this.idNumbers.includes(event.target.value)) {
+			this.error = true
+			return true
+		}
+		this.error = false
+		return false
+	}
+
 	isLoading = false
 	save() {
 		for (let key in this.data) {
@@ -82,6 +104,13 @@ export class AddVoterComponent implements OnInit {
 					'error'
 				)
 			}
+		}
+		if (this.error) {
+			return Alert(
+				'Error',
+				`ID Number has already been registered`,
+				'error'
+			)
 		}
 		Fire(
 			'Add an Administrator',
