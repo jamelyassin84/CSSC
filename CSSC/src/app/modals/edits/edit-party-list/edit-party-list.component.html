@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <label for="">Acronym</label>
+        <input [(ngModel)]="data.acronym" type="text" class="form-control" />
+    </div>
+    <div class="col-md-6 mb-3">
+        <label for="">Filipino Title</label>
+        <input [(ngModel)]="data.filipino_title" type="text" class="form-control" />
+    </div>
+    <div class="col-md-6 mb-3">
+        <label for="">English Title</label>
+        <input [(ngModel)]="data.english_title" type="text" class="form-control" />
+    </div>
+    <div class="col-md-12 mb-3">
+        <label for="">Platform</label>
+        <textarea autosize [(ngModel)]="data.platform" class="form-control"></textarea>
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <button [disabled]="isLoading" (click)="save()" class="btn btn-dark w-100">
+			<span *ngIf="!isLoading">
+				<i class="bi bi-save"></i>
+				Save
+			</span>
+			<app-button-loaders *ngIf="isLoading"></app-button-loaders>
+		</button>
+    </div>
+</div>

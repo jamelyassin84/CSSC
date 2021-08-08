@@ -46,20 +46,21 @@ import { AdminComponent } from './pages/home/admin/admin.component'
 import { DropdownComponent } from './components/dropdown/dropdown.component'
 import { StoreModule } from '@ngrx/store'
 import { CampusReducer } from './store/reducers/campus.reducers'
-import { AddAdminComponent } from './modals/add-admin/add-admin.component'
-import { AddVoterComponent } from './modals/add-voter/add-voter.component'
-import { AddPartyListComponent } from './modals/add-party-list/add-party-list.component'
-import { AddMemberComponent } from './modals/add-member/add-member.component'
-import { ViewMemberComponent } from './modals/view-member/view-member.component'
+import { AddAdminComponent } from './modals/adds/add-admin/add-admin.component'
+import { AddVoterComponent } from './modals/adds/add-voter/add-voter.component'
+import { AddPartyListComponent } from './modals/adds/add-party-list/add-party-list.component'
+import { AddMemberComponent } from './modals/adds/add-member/add-member.component'
+import { ViewMemberComponent } from './modals/views/view-member/view-member.component'
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize'
 import { NoInternetComponent } from './pages/no-internet/no-internet.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.component'
 import { SuperAdminGuard } from './guards/super-admin.guard'
-import { AddPlatformComponent } from './modals/add-platform/add-platform.component'
-import { ViewPlatformComponent } from './modals/view-platform/view-platform.component'
-import { CandidateCardComponent } from './components/candidate-card/candidate-card.component';
+import { AddPlatformComponent } from './modals/adds/add-platform/add-platform.component'
+import { ViewPlatformComponent } from './modals/views/view-platform/view-platform.component'
+import { CandidateCardComponent } from './components/candidate-card/candidate-card.component'
 import { ButtonLoadersComponent } from './components/button-loaders/button-loaders.component'
+import { EditPartyListComponent } from './modals/edits/edit-party-list/edit-party-list.component'
 
 @NgModule({
 	declarations: [
@@ -96,7 +97,8 @@ import { ButtonLoadersComponent } from './components/button-loaders/button-loade
 		AddPlatformComponent,
 		ViewPlatformComponent,
 		CandidateCardComponent,
-  ButtonLoadersComponent,
+		ButtonLoadersComponent,
+		EditPartyListComponent,
 	],
 	imports: [
 		BrowserModule,

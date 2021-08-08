@@ -1,6 +1,6 @@
 import { Collections } from 'src/app/Models/Admin'
 import { BaseService } from 'src/app/services/base.service'
-import { Platform } from './../../Models/Platform'
+import { Platform } from '../../../Models/Platform'
 import { Component, Input, OnInit } from '@angular/core'
 import { UserService } from 'src/app/services/user.service'
 import { Alert, Fire } from 'src/app/components/Alert'

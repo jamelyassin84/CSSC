@@ -1,4 +1,4 @@
-import { Collections } from './../../Models/Admin'
+import { Collections } from '../../../Models/Admin'
 import { Component, Input, OnInit } from '@angular/core'
 import { Fire } from 'src/app/components/Alert'
 import { Candidate } from 'src/app/Models/Candidtate'

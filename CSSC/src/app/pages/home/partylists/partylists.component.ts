@@ -36,8 +36,10 @@ export class PartylistsComponent implements OnInit {
 	partylists: PartyList[] = []
 	partylist: string = ''
 
-	setPartylist(partylist: string) {
-		this.partylist = partylist
+	currentPartylist: any = {}
+	setPartylist(partylist: PartyList) {
+		this.partylist = partylist.acronym
+		this.currentPartylist = partylist
 	}
 
 	getPartylists() {

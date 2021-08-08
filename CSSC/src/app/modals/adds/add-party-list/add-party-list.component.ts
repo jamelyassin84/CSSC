@@ -19,11 +19,7 @@ export class AddPartyListComponent implements OnInit {
 		})
 	}
 
-	data: PartyList | any = {
-		title: '',
-		description: '',
-		campus: '',
-	}
+	data: PartyList | any = {}
 
 	isLoading = false
 	save() {
@@ -37,8 +33,8 @@ export class AddPartyListComponent implements OnInit {
 			}
 		}
 		Fire(
-			'Add an Administrator',
-			'Are you sure you want to add this patylist?',
+			'Add this Party?',
+			'Are you sure you want to add this party?',
 			'info',
 			() => {
 				this.isLoading = true

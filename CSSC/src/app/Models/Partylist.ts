@@ -1,6 +1,7 @@
 export type PartyList = {
-	title: string
-	description: any
-	campus: string
+	acronym: string
+	filipino_title: string
+	english_title: string
+	platform: string
 	id?: string
 }

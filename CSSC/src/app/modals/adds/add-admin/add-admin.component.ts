@@ -1,8 +1,8 @@
-import { Admin, AdminType, Collections } from './../../Models/Admin'
+import { Admin, AdminType, Collections } from '../../../Models/Admin'
 import { Component, OnInit } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Alert, AuthError, Fire } from 'src/app/components/Alert'
-import { AppState } from '../../store/app.state'
+import { AppState } from '../../../store/app.state'
 import { Store } from '@ngrx/store'
 import { BaseService } from 'src/app/services/base.service'
 

@@ -1,4 +1,4 @@
-import { Voter } from './../../Models/User'
+import { Voter } from '../../../Models/User'
 import { Store } from '@ngrx/store'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Component, Input, OnInit } from '@angular/core'

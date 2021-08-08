@@ -1,13 +1,16 @@
 <div class="row">
-    <div class="col-md-4 mb-3" style="position: relative">
+    <div class="col-md-12 mb-3" style="position: relative">
         <img [src]="image" alt="" style="max-width: 20vh" />
         <input (change)="readURL($event)" accept="image/*" type="file" class="hidden" id="profile-picture" />
+        <div class="alert alert-warning mt-1 w-100">
+            Note: Candidate Photo cannot be changed after saving
+        </div>
     </div>
 </div>
 <br /><br />
 <div class="row">
     <div class="col-md-12 mb-3">
-        <label for="">Name</label>
+        <label for="">Voter Name</label>
         <select (change)="handleSelectOnChange($event)" class="form-control">
 			<option selected disabled>--Choose--</option>
 			<option *ngFor="let voter of voters; let i = index" [value]="i">
