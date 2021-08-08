@@ -17,15 +17,16 @@
                 <img [src]="candidate.photo || '/assets/avatar/face-7.jpg'" alt="" />
             </td>
             <td>{{ candidate.voter.name }}</td>
+            <td class="text-danger">{{ candidate.position }}</td>
             <td>{{ candidate.voter.department }}</td>
             <td>{{ candidate.voter.course }}</td>
             <td>{{ candidate.voter.year }}</td>
             <td>{{ candidate.voter.section }}</td>
-            <td>{{ candidate.position }}</td>
             <td>
                 <app-dropdown [buttons]="dropdown"></app-dropdown>
                 <ng-template #dropdown>
-                    <button class="dropdown-item">View Platform</button>
+                    <btn-modal (click)="setVoterId(candidate.voter.id)" size="xl" [title]="'Platform of ' + candidate.voter.name" btnTitle="View Platform" btnClass="dropdown-item" [template]="viewPlatform"></btn-modal>
+
                     <button (click)="remove(candidate.id)" class="dropdown-item">
 						Remove Candidate
 					</button>
@@ -34,3 +35,7 @@
         </tr>
     </tbody>
 </table>
+
+<ng-template #viewPlatform>
+    <app-view-platform [voter_id]="voter_id"> </app-view-platform>
+</ng-template>

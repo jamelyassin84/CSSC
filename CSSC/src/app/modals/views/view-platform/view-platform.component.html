@@ -1,1 +1,20 @@
-<p>view-platform works!</p>
+<div class="row p-2">
+    <div class="col-md-12" *ngIf="platform.title === '' && !isLoading">
+        <div class="alert alert-info w-100">
+            Candidate hasn't added its platform yet..
+        </div>
+    </div>
+    <div class="col-md-12" *ngIf="isLoading">Hold your horses..</div>
+
+    <div *ngIf="platform.title !== '' && !isLoading" class="d-flex jcc aic card card-body col-md-12 p-5" style="flex-direction: column">
+        <h1 style="font-size: 2rem; font-weight: bold" class="text-center mb-5">
+            {{ platform.title }}
+        </h1>
+        <p class="text-center description text-muted">
+            {{ platform.description }}
+        </p>
+
+        <a target="_blank" class="text-center w-100" *ngIf="platform.video_link !== ''" [href]="platform.video_link">View video in this link</a
+		>
+	</div>
+</div>

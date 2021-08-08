@@ -46,4 +46,9 @@ export class ViewMemberComponent implements OnInit {
 			}
 		)
 	}
+
+	voter_id: string | any = ''
+	setVoterId(id: string | any) {
+		this.voter_id = id
+	}
 }

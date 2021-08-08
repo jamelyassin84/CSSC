@@ -25,6 +25,7 @@
 		>
 		<div class="ml-auto">
 			<btn-modal
+				(click)="setVoterId(candidate.voter.id)"
 				size="xl"
 				[title]="'Platform of ' + candidate.voter.name"
 				btnTitle="Platform"
@@ -36,5 +37,5 @@
 </div>
 
 <ng-template #viewPlatform>
-	<app-view-platform> </app-view-platform>
+	<app-view-platform [voter_id]="voter_id"> </app-view-platform>
 </ng-template>

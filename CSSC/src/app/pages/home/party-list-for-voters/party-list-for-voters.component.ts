@@ -28,4 +28,11 @@ export class PartyListForVotersComponent implements OnInit {
 				this.partylists = partylists
 			})
 	}
+
+	partylist: string = ''
+	currentPartylist: any = {}
+	setPartylist(partylist: PartyList) {
+		this.partylist = partylist.acronym
+		this.currentPartylist = partylist
+	}
 }

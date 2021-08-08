@@ -1,21 +1,27 @@
 <div class="row">
     <div *ngFor="let item of partylists" class="col-md-6">
         <div class="card">
-            <div class="card-header bg-dark text-white">
+            <div class="card-header bg-dark text-white d-flex">
                 <h1 class="m-0">{{ item.acronym }}</h1>
+                <div class="ml-auto">
+                    <btn-modal (click)="setPartylist(item)" size="lg" [title]="item.acronym || '' + ' Members'" btnTitle="Members" btnClass="btn btn-sm btn-dark" [template]="viewMembers"></btn-modal>
+                </div>
             </div>
             <div class="card-body">
                 <h4>
-                    Filipino Title
+                    Filipino Title:
                     <span class="text-danger">{{ item.filipino_title }}</span>
                 </h4>
                 <h4>
-                    English Title
+                    English Title:
                     <span class="text-danger">{{ item.english_title }}</span>
                 </h4>
-                <h4>Plaftofrm:</h4>
+                <div class="text-center mt-5">Platform</div>
                 <p class="text-muted">{{ item.platform }}</p>
             </div>
         </div>
     </div>
 </div>
+<ng-template #viewMembers>
+    <app-view-member [partylist]="partylist"></app-view-member>
+</ng-template>
