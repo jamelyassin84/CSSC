@@ -25,9 +25,9 @@ img {
 
 .active {
     background-clip: padding-box;
-    border: 1px solid #3ac48c;
+    border: 1px solid #14539a;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    box-shadow: 0px 0px 5px 11px rgba($color: #3ac48c, $alpha: 0.1);
+    box-shadow: 0px 0px 5px 5px rgba($color: #14539a, $alpha: 0.1);
     opacity: 1;
 }

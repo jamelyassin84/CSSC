@@ -25,12 +25,13 @@ export class VoteComponent implements OnInit {
 			}
 		}, 500)
 	}
-
+	isLoading = true
 	checkIfHasVoted() {
 		this.service.firestore
 			.collection(Collections.Votes, (ref) => ref.where('voter', '==', this.user.id()))
 			.valueChanges()
 			.subscribe((voted: any) => {
+				this.isLoading = false
 				this.hasVoted = voted.length !== 0 ? true : false
 			})
 	}
