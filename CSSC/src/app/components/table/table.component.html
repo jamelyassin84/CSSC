@@ -1,24 +1,20 @@
 <div class="card">
-    <div class="card-header">MAKAMASA</div>
+    <div class="card-header text-white bg-dark">{{ header }}</div>
     <div class="card-body">
-        <table class="
-				table table-responsive-sm table-hover table-outline
-				mb-0
-				bg-white
-			">
-            <thead>
+        <table class="table table-responsive-sm table-hover table-outline mb-0 bg-white">
+            <thead class="bg-white">
                 <tr>
-                    <th class="text-center bg-dark text-white">
+                    <th>
                         <i class="icon-people"></i>
                     </th>
-                    <th class="bg-dark text-white">Candidate</th>
-                    <th class="text-center bg-dark text-white">Department</th>
-                    <th class="text-center bg-dark text-white">Votes</th>
-                    <th class="bg-dark text-white">Percentage</th>
+                    <th>Candidate</th>
+                    <th class="text-center">Department</th>
+                    <th class="text-center">Votes</th>
+                    <th>Percentage</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of [1, 2, 3, 4, 5]">
+                <tr *ngFor="let candidate of candidates">
                     <td class="text-center">
                         <div class="avatar">
                             <img src="../../../../assets/avatar/face-7.jpg" class="img-avatar" />
@@ -26,17 +22,17 @@
                         </div>
                     </td>
                     <td>
-                        <div>Michael Scoffield</div>
-                        <span class="badge badge-danger">President</span>
+                        <div>{{ candidate.voter.name }}</div>
+                        <span class="badge badge-danger">{{ candidate.position }}</span>
                     </td>
-                    <td class="text-center">CICT</td>
-                    <td class="text-center text-info">55</td>
+                    <td class="text-center">{{ candidate.voter.department }}</td>
+                    <td class="text-center text-info">{{ candidate.votes }}</td>
                     <td>
                         <div class="clearfix">
-                            <div class="float-left">30%</div>
+                            <div class="float-left">{{ percentOf(candidate.votes, voters) }}%</div>
                         </div>
                         <div class="progress progress-xs">
-                            <div class="progress-bar bg-success" role="progressbar " style="width: 30%" aria-valuenow="30 " aria-valuemin="0 " aria-valuemax="100 "></div>
+                            <div class="progress-bar bg-success" role="progressbar " [style.width]="percentOf(candidate.votes, voters) + '%'" aria-valuenow="30 " aria-valuemin="0 " aria-valuemax="100 "></div>
                         </div>
                     </td>
                 </tr>
