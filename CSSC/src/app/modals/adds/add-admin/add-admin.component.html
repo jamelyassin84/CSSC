@@ -3,19 +3,19 @@
         <label for="">Email</label>
         <input [(ngModel)]="data.email" type="email" class="form-control" />
     </div>
-    <div class="col-md-12 mb-3">
+    <div class="col-md-6 mb-3">
         <label for="">Password</label>
         <input [(ngModel)]="data.password" type="password" class="form-control" />
     </div>
-    <div class="col-md-12 mb-3">
+    <div class="col-md-6 mb-3">
         <label for="">Confrim Password</label>
         <input [(ngModel)]="data.confirm_password" type="password" class="form-control" />
     </div>
-    <div class="col-md-12 mb-3">
+    <div class="col-md-6 mb-3">
         <label for="">Fullname</label>
         <input [(ngModel)]="data.name" type="text" class="form-control" />
     </div>
-    <div class="col-md-12 mb-3">
+    <div class="col-md-6 mb-3">
         <label for="">Position</label>
         <input [(ngModel)]="data.position" type="text" class="form-control" />
     </div>
@@ -24,10 +24,10 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <button [disabled]="isLoading" (click)="save()" class="btn btn-dark w-100">
+        <button [disabled]="isLoading" (click)="save()" class="btn btn-success w-100">
 			<span *ngIf="!isLoading">
-				<i class="bi bi-save"></i>
-				Save
+				<i class="bi bi-save mr-2"></i>
+				Add
 			</span>
 			<app-button-loaders *ngIf="isLoading"></app-button-loaders>
 		</button>

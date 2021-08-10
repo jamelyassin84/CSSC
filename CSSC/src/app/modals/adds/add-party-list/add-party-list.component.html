@@ -20,9 +20,9 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <button [disabled]="isLoading" (click)="save()" class="btn btn-dark w-100">
+        <button [disabled]="isLoading" (click)="save()" class="btn btn-success w-100">
 			<span *ngIf="!isLoading">
-				<i class="bi bi-save"></i>
+				<i class="bi bi-save mr-2"></i>
 				Save
 			</span>
 			<app-button-loaders *ngIf="isLoading"></app-button-loaders>
