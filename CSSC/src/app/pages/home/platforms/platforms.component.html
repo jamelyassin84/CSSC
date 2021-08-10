@@ -1,4 +1,4 @@
-<btn-modal size="lg" title="Customize platform" btnTitle="Customize my platform" btnClass=" btn btn-danger btn-sm mb-5 " [template]="addPlatform"></btn-modal>
+<btn-modal size="lg" title="Customize platform" btnTitle="Customize my platform" btnClass=" btn btn-warning btn-sm mb-5 " [template]="addPlatform"></btn-modal>
 <div class="row">
     <div class="d-flex jcc aic card card-body col-md-6" style="flex-direction: column">
         <div class="d-flex aic jcc">
@@ -7,14 +7,14 @@
                 <h2 class="m-0" style="font-size: 2rem; font-weight: 900">
                     {{ candidate.voter.name }}
                 </h2>
-                <h2 class="m-0 text-danger">
+                <h2 class="m-0 text-success">
                     {{ candidate.position }}
                 </h2>
             </div>
         </div>
         <p class="text-center d-flex w-100 mt-3">
             Partylist:
-            <span class="ml-auto text-danger" style="font-weight: 500">{{ candidate.partylist }} <br
+            <span class="ml-auto text-primary" style="font-weight: 500">{{ candidate.partylist }} <br
 			/></span>
         </p>
         <p class="text-center d-flex w-100">

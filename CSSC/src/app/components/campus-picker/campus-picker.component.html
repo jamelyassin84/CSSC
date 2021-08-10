@@ -1,6 +1,6 @@
 <div class="p-2">
     <div class="d-flex jcc">
-        <h1 class="m-0 pt-2 text-danger">{{ campus | async }} Campus</h1>
+        <h1 class="m-0 pt-2 text-primary">{{ campus | async }} Campus</h1>
         <mat-form-field *ngIf="isSuperAdmin" class="ml-auto m-0">
             <mat-label> Campus</mat-label>
             <mat-select (selectionChange)="setCampus($event)">

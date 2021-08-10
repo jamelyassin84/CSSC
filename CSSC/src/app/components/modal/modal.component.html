@@ -1,7 +1,9 @@
 <ng-template #content let-modal>
-    <div class="modal-header">
-        <h1 class="text-danger text-center">{{ title }}</h1>
-        <button type="button" id="close-btn" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <div class="modal-header d-flex aic">
+        <h1 class="text-primary text-center m-0" style="font-weight: 500">
+            {{ title }}
+        </h1>
+        <button id="close-btn" class="close mr-2" aria-label="Close" (click)="modal.dismiss('Cross click')">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="16"

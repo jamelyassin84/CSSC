@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <mat-drawer-container class="main">
-    <mat-drawer mode="side" opened class="side">
+    <mat-drawer *ngIf="innerWidth > 1139 && sidebarIsOpen" mode="side" opened class="side">
         <app-sidebar></app-sidebar>
     </mat-drawer>
     <mat-drawer-content>

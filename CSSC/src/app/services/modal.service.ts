@@ -8,6 +8,15 @@ export class ModalService {
 	constructor() {}
 
 	private modal = new Subject()
+	private sidebar = new Subject<boolean>()
+
+	openSidebar(mode: boolean) {
+		this.sidebar.next(mode)
+	}
+
+	sideBarOpenListener() {
+		return this.sidebar.asObservable()
+	}
 
 	close() {
 		this.modal.next()

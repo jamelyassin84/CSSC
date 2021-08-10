@@ -1,3 +1,4 @@
+import { ModalService } from 'src/app/services/modal.service'
 import { Router } from '@angular/router'
 import { Component, OnInit } from '@angular/core'
 import { Alert, Fire } from 'src/app/components/Alert'
@@ -9,7 +10,11 @@ import { UserService } from 'src/app/services/user.service'
 	styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-	constructor(private router: Router, private user: UserService) {
+	constructor(
+		private router: Router,
+		private user: UserService,
+		private service: ModalService
+	) {
 		this.user.listenToLogin().subscribe(() => {
 			this.ngOnInit()
 		})
@@ -31,5 +36,9 @@ export class NavbarComponent implements OnInit {
 				'success'
 			)
 		})
+	}
+
+	toggleSidebar() {
+		this.service.openSidebar(true)
 	}
 }

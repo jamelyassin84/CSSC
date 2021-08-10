@@ -31,7 +31,7 @@ export class CampusPickerComponent implements OnInit {
 		if (!this.isSuperAdmin) {
 			let data: any = localStorage.getItem('user')
 			data = JSON.parse(data)
-			this.store.dispatch({ type: data.campus || 'Barotac Nuevo' })
+			this.store.dispatch({ type: data.campus })
 			return
 		}
 		this.store.dispatch({ type: 'Barotac Nuevo' })
