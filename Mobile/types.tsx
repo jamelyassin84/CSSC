@@ -1,4 +1,5 @@
 export type RootStackParamList = {
+    SignIn: undefined
     ElectionResults: undefined;
     Step1: undefined;
     Step2: undefined;

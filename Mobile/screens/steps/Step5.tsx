@@ -14,7 +14,7 @@ const Step5: FC<Props> = ( props ) => {
     const navigation = useNavigation();
     return (
         <StepContainer callback={() => {
-            navigation.navigate( 'ElectionResults' )
+            navigation.navigate( 'SignIn' )
         }}>
             <MaterialCommunityIcons name="vote-outline"
                 style={style.icon}
