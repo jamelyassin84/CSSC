@@ -10,7 +10,7 @@ export default StyleSheet.create( {
     },
     image: {
         height: 40,
-        width: 40,
+        width: 60,
         marginRight: 10,
         resizeMode: 'contain',
     }

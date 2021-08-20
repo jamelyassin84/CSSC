@@ -5,6 +5,7 @@ import style from '../../styles/header/header.style'
 import ProgressBar from '../utils/ProgressBar';
 
 type Props = {
+    text: String
 };
 
 const HomeHeader: FC<Props> = ( props ) => {
@@ -12,7 +13,7 @@ const HomeHeader: FC<Props> = ( props ) => {
         <View>
             <View style={[ style.header, { backgroundColor: 'white' } ]}>
                 <Image style={style.image} source={require( '../../assets/logo/trans-logo.png' )} />
-                <Text style={{ fontWeight: 'bold', fontSize: 17 }}>College Supreme Student Council</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 17, marginLeft: -16 }}>{props.text}</Text>
             </View>
             <ProgressBar />
         </View>

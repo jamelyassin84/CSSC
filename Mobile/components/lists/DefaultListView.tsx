@@ -13,14 +13,12 @@ type Props = {
 
 const DefaultListView: FC<Props> = ( props ) => {
     return (
-        <TouchableOpacity onPress={() => {
+        <TouchableOpacity style={style.container} onPress={() => {
             props.callback === undefined ? void 0 : props.callback()
         }}>
-            <View style={style.container}>
-                {props.icon}
-                <Text style={style.text}>{props.title}</Text>
-                <Entypo name="chevron-thin-right" size={14} color="black" />
-            </View>
+            {props.icon}
+            <Text style={style.text}>{props.title}</Text>
+            <Entypo name="chevron-thin-right" size={14} color="black" />
         </TouchableOpacity>
     );
 };

@@ -1,6 +1,7 @@
 
 import { AntDesign, Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import React, { FC } from 'react';
 import { Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -17,6 +18,8 @@ type Props = {};
 
 const ElectionResults: FC<Props> = ( props ) => {
 
+    const navigation = useNavigation()
+
     const [ isLoading, setLoading ] = React.useState( false )
     const [ campus, setCampus ] = React.useState( '' )
     const [ partylists_data, setpartylists_data ] = React.useState( [] )
@@ -28,13 +31,14 @@ const ElectionResults: FC<Props> = ( props ) => {
 
     React.useEffect( () => {
         const fetch = async () => {
-            await AsyncStorage.getItem( 'user' ).then( ( user: any ) => {
-                setCampus( JSON.parse( user ).campus )
-                getPartylists()
-                getCandidates()
-                getVoters()
-                getVoted()
-            } )
+            await AsyncStorage.getItem( 'user' )
+                .then( ( user: any ) => {
+                    setCampus( JSON.parse( user ).campus )
+                    getPartylists()
+                    getCandidates()
+                    getVoters()
+                    getVoted()
+                } )
         }
         fetch()
     }, [] )
@@ -98,7 +102,7 @@ const ElectionResults: FC<Props> = ( props ) => {
 
     return (
         <Container>
-            <HomeHeader />
+            <HomeHeader text="Election Results" />
             <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <Summaries
@@ -133,7 +137,7 @@ const ElectionResults: FC<Props> = ( props ) => {
                 <Text style={{ padding: 16 }}>Parties</Text>
                 {
                     partylists_data.map( ( partylist: PartyList, index: number ) => (
-                        <DashboardPartylist key={index} partylist={partylist} />
+                        <DashboardPartylist callback={() => navigation.navigate( 'PartyListMembersAndVotes', { partylist: partylist } )} key={index} partylist={partylist} />
                     ) )
                 }
             </WithRefreshComponent>

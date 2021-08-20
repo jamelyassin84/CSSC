@@ -6,12 +6,14 @@ import DefaultListView from '../lists/DefaultListView';
 
 type Props = {
     partylist: PartyList
+    callback: Function
 };
 
 const DashboardPartylist: FC<Props> = ( props ) => {
 
     return (
         <DefaultListView
+            callback={() => props.callback}
             title={props.partylist.acronym}
             icon={<Feather name="users"
                 size={24}
