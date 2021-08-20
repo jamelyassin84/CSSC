@@ -41,7 +41,7 @@ export const VOTER = [
 		icon: 'bi-vector-pen',
 	},
 	{
-		name: 'Parties',
+		name: 'Political Parties',
 		route: 'parties',
 		icon: 'bi-list-stars',
 	},
@@ -64,7 +64,7 @@ export const CANDIDATE = [
 		icon: 'bi-vector-pen',
 	},
 	{
-		name: 'Parties',
+		name: 'Political Parties',
 		route: 'parties',
 		icon: 'bi-list-stars',
 	},
