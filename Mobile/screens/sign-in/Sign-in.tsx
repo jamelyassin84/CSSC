@@ -25,7 +25,8 @@ const SignIn: FC<Props> = ( props ) => {
             setLoading( false )
             return
         }
-        collection( Collections.Voters ).where( 'id_number', '==', IDnumber )
+        collection( Collections.Voters )
+            .where( 'id_number', '==', IDnumber )
             .where( 'section', '==', Section ).get()
             .then( async ( data: any ) => {
                 if ( data.empty ) {
@@ -41,6 +42,7 @@ const SignIn: FC<Props> = ( props ) => {
                 let user: Voter | any = data
                 await AsyncStorage.setItem( 'user', JSON.stringify( user ) )
                 navigation.navigate( 'ElectionResults' )
+                setLoading( false )
             } )
     }
 

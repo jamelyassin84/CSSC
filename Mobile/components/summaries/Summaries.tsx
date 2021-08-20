@@ -9,7 +9,7 @@ type Props = {
     icon?: any,
     backgroundColor: string
     title: string
-    value: string
+    value: number
 };
 
 const Summaries: FC<Props> = ( props ) => {
@@ -33,14 +33,13 @@ const style = StyleSheet.create( {
     container: {
         margin: 5,
         marginHorizontal: 20,
-        borderRadius: 30,
         padding: 10,
-        shadowColor: "rgba(150,150,150,.9)",
+        shadowColor: "rgba(5, 36, 86,.9)",
         shadowOffset: {
             width: 0,
             height: 4,
         },
-        shadowOpacity: 0.30,
+        shadowOpacity: 0.10,
         shadowRadius: 4.65,
         elevation: 8,
         flexDirection: 'row',
@@ -58,7 +57,6 @@ const style = StyleSheet.create( {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 30
     },
 
 } )
