@@ -83,7 +83,7 @@ const PartyListMembersAndVotes: FC<Props> = ( { route }: any ) => {
                             }
                             body={
                                 <>
-                                    <Text style={{ fontSize: 20 }}>{candidate.voter.name}</Text>
+                                    <Text style={{ fontSize: 16 }}>{candidate.voter.name}</Text>
                                     <Text style={{ color: '#28A745' }}>{candidate.position}</Text>
                                 </>
                             }

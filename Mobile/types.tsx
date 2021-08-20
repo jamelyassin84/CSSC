@@ -11,6 +11,7 @@ export type RootStackParamList = {
     PartyListMembersAndVotes: undefined
 
     Members: undefined
+    ViewPlatform: undefined
 };
 
 export type BottomTabParamList = {

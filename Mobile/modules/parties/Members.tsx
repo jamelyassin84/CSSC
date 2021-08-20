@@ -1,8 +1,10 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import React, { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import CommonHeader from '../../components/headers/CommonHeader';
+import MemberList from '../../components/lists/MemberList';
 import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
 import Container from '../../constants/Layout';
 import { collection } from '../../firebase/firebase';
@@ -13,6 +15,9 @@ import { PartyList } from '../../Models/Partylist';
 type Props = {};
 
 const Members: FC<Props> = ( { route }: any ) => {
+
+    const navigation = useNavigation()
+
     const data = route.params
     const [ isLoading, setLoading ] = React.useState( false )
     const [ party, setParty ] = React.useState<PartyList | any>( {} )
@@ -70,10 +75,36 @@ const Members: FC<Props> = ( { route }: any ) => {
                     <Text style={style.title}>Members</Text>
                     {
 
+                        candidates.map( ( candidate: Candidate, index: any ) => (
+                            <MemberList
+                                left={
+                                    <Image style={style.image} source={
+                                        candidate.photo === undefined || null ? require( '../../assets/avatar/face-7.jpg' ) :
+                                            { uri: candidate.photo }
+                                    } />
+                                }
+                                center={
+                                    <>
+                                        <Text style={{ fontSize: 16 }}>{candidate.voter.name}</Text>
+                                        <Text style={{ color: '#28A745' }}>{candidate.position}</Text>
+                                        <Text style={{ fontSize: 14 }}>{candidate.voter.department}</Text>
+                                        <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.voter.course}</Text>
+                                    </>
+                                }
+                                right={
+                                    <>
+                                        <Text style={{ fontSize: 16 }}>{candidate.voter.year} Year</Text>
+                                        <Text style={{ color: '#28A745' }}>{candidate.voter.section}</Text>
+                                    </>
+                                }
+                                callback={() => navigation.navigate( 'ViewPlatform', {
+                                    voter_id: candidate.voter.id,
+                                    name: candidate.voter.name
+                                } )}
+                            />
+                        ) )
                     }
-
                 </View>
-
             </WithRefreshComponent>
         </Container>
     );
@@ -89,6 +120,13 @@ const style = StyleSheet.create( {
         fontSize: 20,
         fontWeight: 'bold'
     },
+    image: {
+        height: 50,
+        width: 50,
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: 'orange'
+    }
 } )
 
 export default Members;

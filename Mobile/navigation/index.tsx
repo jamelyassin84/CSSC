@@ -14,6 +14,7 @@ import Step5 from '../screens/steps/Step5';
 import SignIn from '../screens/sign-in/Sign-in';
 import PartyListMembersAndVotes from '../modules/election-results/PartyListMembersAndVotes';
 import Members from '../modules/parties/Members';
+import ViewPlatform from '../modules/parties/ViewPlatform';
 
 export default function Navigation( { colorScheme }: { colorScheme: ColorSchemeName } ) {
     return (
@@ -40,6 +41,7 @@ function RootNavigator() {
             <Stack.Screen name="PartyListMembersAndVotes" component={PartyListMembersAndVotes} />
 
             <Stack.Screen name="Members" component={Members} />
+            <Stack.Screen name="ViewPlatform" component={ViewPlatform} />
 
         </Stack.Navigator>
     );
