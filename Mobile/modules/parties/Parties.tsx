@@ -63,6 +63,7 @@ const Parties: FC<Props> = ( props ) => {
                             navigation.navigate( 'Members',
                                 {
                                     title: partylist.acronym,
+                                    campus: campus
                                 } )
                         }} key={index} partylist={partylist} />
                     ) )
