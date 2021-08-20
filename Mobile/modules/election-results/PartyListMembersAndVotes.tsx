@@ -1,16 +1,13 @@
 
 import React, { FC } from 'react';
-import CommonHeader from '../../components/headers/CommonHeader';
-import Column from '../../components/utils/table/Column';
-import Row from '../../components/utils/table/Row';
-import Tbody from '../../components/utils/table/Tbody';
-import Thead from '../../components/utils/table/Thead';
-import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
+import { Image, StyleSheet, Text } from 'react-native';
 import { getPercent } from '../../constants/helpers';
-import Container from '../../constants/Layout';
 import { collection } from '../../firebase/firebase';
 import { Collections } from '../../Models/Admin';
-import { Candidate } from '../../Models/Candidtate';
+import CommonHeader from '../../components/headers/CommonHeader';
+import MemberAndVotesList from '../../components/lists/MemberAndVotesList';
+import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
+import Container from '../../constants/Layout';
 
 type Props = {};
 
@@ -22,6 +19,12 @@ const PartyListMembersAndVotes: FC<Props> = ( { route }: any ) => {
 
     React.useEffect( () => {
         getCandidates()
+        collection( Collections.Votes ).onSnapshot( () => {
+            getCandidates()
+        } )
+        collection( Collections.Candidate ).onSnapshot( () => {
+            getCandidates()
+        } )
     }, [] )
 
     const onRefresh = () => {
@@ -32,72 +35,83 @@ const PartyListMembersAndVotes: FC<Props> = ( { route }: any ) => {
         setLoading( true )
         collection( Collections.Candidate )
             .where( 'partylist', '==', data.title )
-            .onSnapshot( ( snapshot ) => {
+            .get().then( ( snapshot ) => {
                 let temp: any = []
                 snapshot.forEach( ( doc: any ) => {
-                    temp.push( doc.data() )
+                    temp.push( Object.assign( doc.data(), { id: doc.id } ) )
                 } )
-                setcandidates( temp )
-                processVotes()
+                processVotes( temp )
             } )
     }
 
-    const processVotes = () => {
+    const processVotes = ( candidatesData: any[] ) => {
         collection( Collections.Votes )
-            .onSnapshot( ( snapshot: any ) => {
+            .get().then( ( snapshot: any ) => {
                 let temp: any = []
                 snapshot.forEach( ( doc: any ) => {
-                    temp.push( Object.assign( doc.data(), doc.id ) )
+                    temp.push( Object.assign( doc.data(), { id: doc.id } ) )
                 } )
                 const votes: VoteType[] = temp
-                for ( let index in candidates ) {
-                    let object = candidates
-                    object[ index ].votes = 0
+                for ( let index in candidatesData ) {
+                    candidatesData[ index ].votes = 0
                     votes.forEach( ( vote: VoteType ) => {
                         vote.bets.forEach( ( candidate_id: string ) => {
-                            if ( candidate_id === candidates[ index ].id ) {
-                                object[ index ].votes += 1
+                            if ( candidate_id === candidatesData[ index ].id ) {
+                                candidatesData[ index ].votes += 1
                             }
                         } )
                     } )
-                    setcandidates( object )
-                    setLoading( false )
                 }
+                setcandidates( candidatesData )
+                setLoading( false )
             } )
     }
 
     return (
         <Container>
             <CommonHeader title={data.title} />
-            <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
-                <Thead
-                    headers={[
-                        'Candidate',
-                        'Votes',
-                        'Percentage',
-                    ]}
-                />
-                <Tbody >
-                    {
-                        candidates.map( ( candidate: any, index: number ) => (
-                            <>
-                                <Row key={index}>
-                                    <Column>{candidate.voter.name}</Column>
-                                    <Column>{candidate.votes}</Column>
-                                    <Column>{getPercent( candidate.voter.name, data.voters )}</Column>
-                                </Row>
-
-                            </>
-
-                        ) )
-                    }
-                </Tbody>
+            <WithRefreshComponent onRefresh={() => onRefresh} loading={isLoading}>
+                {
+                    candidates.map( ( candidate: any, index: number ) => (
+                        <MemberAndVotesList
+                            key={index}
+                            image={
+                                <Image style={style.image} source={
+                                    candidate.photo === undefined || null ? require( '../../assets/avatar/face-7.jpg' ) :
+                                        { uri: candidate.photo }
+                                } />
+                            }
+                            body={
+                                <>
+                                    <Text style={{ fontSize: 20 }}>{candidate.voter.name}</Text>
+                                    <Text style={{ color: '#28A745' }}>{candidate.position}</Text>
+                                </>
+                            }
+                            values={
+                                <>
+                                    <Text>{candidate.votes || 0}</Text>
+                                    <Text style={{ color: '#28A745', fontWeight: 'bold' }}>
+                                        {getPercent( parseInt( candidate.votes || 0 ), parseInt( data.voters || 0 ) )}
+                                        %</Text>
+                                </>
+                            }
+                        />
+                    ) )
+                }
             </WithRefreshComponent>
         </Container>
     );
 };
 
-
+const style = StyleSheet.create( {
+    image: {
+        height: 50,
+        width: 50,
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: 'orange'
+    }
+} )
 
 type VoteType = {
     bets: any[]
