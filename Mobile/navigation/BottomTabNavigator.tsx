@@ -10,39 +10,39 @@ import CastAVote from '../modules/cast-a-vote/CastAVote';
 import ElectionResults from '../modules/election-results/ElectionResults';
 import { BottomTabParamList } from '../types';
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 export default function BottomTabNavigator() {
     const colorScheme = useColorScheme();
 
     return (
-        <BottomTab.Navigator
+        <Tab.Navigator
             initialRouteName="Election Results"
             tabBarOptions={{
                 activeTintColor: Colors[ colorScheme ].tint,
 
             }}>
-            <BottomTab.Screen
+            <Tab.Screen
                 name="Election Results"
                 component={ElectionResultsNavigator}
                 options={{
                     tabBarIcon: ( { color } ) => <AntDesign name="barchart" size={24} color={color} />,
                 }}
             />
-            <BottomTab.Screen
+            <Tab.Screen
                 name="Cast a Vote"
                 component={CastAVoteNavigator}
                 options={{
                     tabBarIcon: ( { color } ) => <MaterialCommunityIcons name="vote-outline" size={34} color={color} />,
                 }}
             />
-            <BottomTab.Screen
+            <Tab.Screen
                 name="Parties"
                 component={PartiesNavigator}
                 options={{
                     tabBarIcon: ( { color } ) => <Feather name="users" size={24} color={color} />,
                 }}
             />
-        </BottomTab.Navigator>
+        </Tab.Navigator>
     );
 }
 
