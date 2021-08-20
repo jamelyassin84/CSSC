@@ -17,5 +17,5 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
     'Election Results': undefined;
     'Cast a Vote': undefined;
-    'Parties': undefined;
+    'Political Parties': undefined;
 };

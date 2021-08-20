@@ -37,6 +37,9 @@ const ElectionResults: FC<Props> = ( props ) => {
                 } )
         }
         fetch()
+        setTimeout( () => {
+            onRefresh()
+        }, 2000 );
         collection( Collections.Partylist ).onSnapshot( () => {
             onRefresh()
         } )
@@ -113,7 +116,7 @@ const ElectionResults: FC<Props> = ( props ) => {
             <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <Summaries
-                        title="Partylists"
+                        title="Political Parties"
                         value={partylists}
                         backgroundColor="rgba(255, 193, 7,.2)"
                         icon={<FontAwesome name="list-ol" size={24} color="rgba(255, 193, 7,1)" />}

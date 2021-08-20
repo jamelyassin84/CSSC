@@ -77,6 +77,7 @@ const Members: FC<Props> = ( { route }: any ) => {
 
                         candidates.map( ( candidate: Candidate, index: any ) => (
                             <MemberList
+                                key={index}
                                 left={
                                     <Image style={style.image} source={
                                         candidate.photo === undefined || null ? require( '../../assets/avatar/face-7.jpg' ) :
@@ -99,7 +100,8 @@ const Members: FC<Props> = ( { route }: any ) => {
                                 }
                                 callback={() => navigation.navigate( 'ViewPlatform', {
                                     voter_id: candidate.voter.id,
-                                    name: candidate.voter.name
+                                    name: candidate.voter.name,
+                                    style: style,
                                 } )}
                             />
                         ) )

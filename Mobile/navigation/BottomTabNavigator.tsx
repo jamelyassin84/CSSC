@@ -17,7 +17,7 @@ export default function BottomTabNavigator() {
 
     return (
         <Tab.Navigator
-            initialRouteName="Election Results"
+            initialRouteName="Cast a Vote"
             tabBarOptions={{
                 activeTintColor: Colors[ colorScheme ].tint,
 
@@ -37,7 +37,7 @@ export default function BottomTabNavigator() {
                 }}
             />
             <Tab.Screen
-                name="Parties"
+                name="Political Parties"
                 component={PartiesNavigator}
                 options={{
                     tabBarIcon: ( { color } ) => <Feather name="users" size={24} color={color} />,
@@ -78,7 +78,7 @@ function PartiesNavigator() {
     return (
         <PartiesStack.Navigator>
             <PartiesStack.Screen
-                name="Parties"
+                name="Political Parties"
                 component={Parties}
                 options={{ headerShown: false }}
             />

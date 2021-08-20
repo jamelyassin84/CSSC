@@ -67,8 +67,10 @@ const SignIn: FC<Props> = ( props ) => {
                 style={{ flex: 1 }}
             >
                 <Image style={style.image} source={require( '../../assets/landing/bg1.png' )} />
-                <Text style={style.title}>Cast your vote on your favorite electoral candidate!</Text>
-                <Text style={{ textAlign: 'center' }}>Vote Wisely! <Text style={{ color: 'orange' }}>College Supreme Student Council</Text></Text>
+                <Text style={style.title}><Text style={{ color: '#FFC107' }} >Answer</Text> the call of time! {'\n'}
+                    <Text style={{ color: '#FFC107' }} >Exercise</Text> your right to <Text style={{ color: 'white', backgroundColor: '#FFC107' }}> vote! </Text>
+                </Text>
+                <Text style={{ textAlign: 'center' }}>Your vote matters! {'\n'} <Text style={{ color: '#FFC107' }}>College Supreme Student Council</Text></Text>
                 <View style={{ padding: 35 }}>
                     <TextInput
                         clearButtonMode="always"
@@ -102,7 +104,7 @@ const SignIn: FC<Props> = ( props ) => {
                 </View>
 
             </KeyboardAvoidingView>
-            <Text style={{ position: 'absolute', bottom: 20, textAlign: 'center', width: '100%' }}>All Rights Reserved: Powered By: <Text style={{ color: 'orange' }}>Jamel Eid Yassin</Text></Text>
+            <Text style={{ position: 'absolute', bottom: 20, textAlign: 'center', width: '100%' }}>All Rights Reserved: Powered By: <Text style={{ color: '#FFC107' }}>Jamel Eid Yassin</Text></Text>
         </Container>
     );
 };
@@ -131,7 +133,7 @@ const style = StyleSheet.create( {
         textAlign: 'center'
     },
     button: {
-        backgroundColor: 'orange',
+        backgroundColor: '#FFC107',
         marginTop: 16
     }
 } )
