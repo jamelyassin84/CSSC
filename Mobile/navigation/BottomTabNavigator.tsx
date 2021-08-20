@@ -8,6 +8,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import CastAVote from '../modules/cast-a-vote/CastAVote';
 import ElectionResults from '../modules/election-results/ElectionResults';
+import Parties from '../modules/parties/Parties';
 import { BottomTabParamList } from '../types';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -78,7 +79,7 @@ function PartiesNavigator() {
         <PartiesStack.Navigator>
             <PartiesStack.Screen
                 name="Parties"
-                component={CastAVote}
+                component={Parties}
                 options={{ headerShown: false }}
             />
         </PartiesStack.Navigator>

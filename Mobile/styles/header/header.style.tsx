@@ -6,12 +6,11 @@ export default StyleSheet.create( {
         borderBottomWidth: 1,
         borderBottomColor: 'rgba(150,150,150,.2)',
         alignItems: 'center',
-        padding: 10,
+        paddingBottom: 10
     },
     image: {
         height: 40,
         width: 60,
-        marginRight: 10,
         resizeMode: 'contain',
     }
 } )

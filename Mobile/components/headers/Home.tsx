@@ -13,7 +13,7 @@ const HomeHeader: FC<Props> = ( props ) => {
         <View>
             <View style={[ style.header, { backgroundColor: 'white' } ]}>
                 <Image style={style.image} source={require( '../../assets/logo/trans-logo.png' )} />
-                <Text style={{ fontWeight: 'bold', fontSize: 17, marginLeft: -16 }}>{props.text}</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 17 }}>{props.text}</Text>
             </View>
             <ProgressBar />
         </View>

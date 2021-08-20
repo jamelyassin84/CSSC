@@ -31,6 +31,7 @@ const SignIn: FC<Props> = ( props ) => {
     const navigation = useNavigation()
 
     const voteNow = () => {
+        Keyboard.dismiss()
         setLoading( true )
         if ( IDnumber === '' || Section === '' ) {
             sethasError( true )
