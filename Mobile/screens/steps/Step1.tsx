@@ -1,12 +1,12 @@
 
 import React, { FC } from 'react';
 import StepContainer from '../../components/steps/StepContainer';
-import useColorScheme from '../../hooks/useColorScheme';
 import { useNavigation } from '@react-navigation/native';
 import style from '../../styles/steps/step.style'
-import { Image, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import ActiveDot from '../../components/steps/ActiveDot';
 import Dot from '../../components/steps/Dot';
+import * as Animatable from 'react-native-animatable';
 
 type Props = {};
 
@@ -16,7 +16,8 @@ const Step1: FC<Props> = ( props ) => {
         <StepContainer callback={() => {
             navigation.navigate( 'Step2' )
         }}>
-            <Text
+            <Animatable.Text
+                animation="fadeIn"
                 style={{
                     zIndex: 9,
                     alignSelf: 'center', position: 'absolute',
@@ -25,8 +26,9 @@ const Step1: FC<Props> = ( props ) => {
                     textAlign: 'center',
                 }}>
                 Welcome to
-            </Text>
-            <Text
+            </Animatable.Text>
+            <Animatable.Text
+                animation="slideInUp"
                 style={{
                     zIndex: 9,
                     alignSelf: 'center', position: 'absolute',
@@ -38,16 +40,17 @@ const Step1: FC<Props> = ( props ) => {
 
                 }}>
                 CSSC's Cloud Based Election System
-            </Text>
-            <Image
+            </Animatable.Text>
+            <Animatable.Image
+                animation="zoomIn"
                 style={{
                     resizeMode: 'contain',
                     position: 'absolute',
-                    top: '25%',
+                    top: '17%',
                     zIndex: 9,
                     alignSelf: 'center',
-                    height: 150,
-                    width: 150,
+                    height: 200,
+                    width: 200,
                 }}
                 source={require( '../../assets/logo/trans-logo.png' )}
             />
