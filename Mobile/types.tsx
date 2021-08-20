@@ -6,6 +6,7 @@ export type RootStackParamList = {
     Step3: undefined;
     Step4: undefined;
     Step5: undefined;
+    PartyListMembersAndVotes: undefined
 };
 
 export type BottomTabParamList = {

@@ -17,6 +17,7 @@ import Step3 from '../screens/steps/Step3';
 import Step4 from '../screens/steps/Step4';
 import Step5 from '../screens/steps/Step5';
 import SignIn from '../screens/sign-in/Sign-in';
+import PartyListMembersAndVotes from '../modules/election-results/PartyListMembersAndVotes';
 
 export default function Navigation( { colorScheme }: { colorScheme: ColorSchemeName } ) {
     return (
@@ -39,6 +40,9 @@ function RootNavigator() {
             <Stack.Screen name="Step5" component={Step5} />
             <Stack.Screen name="SignIn" component={SignIn} />
             <Stack.Screen name="ElectionResults" component={BottomTabNavigator} />
+
+            <Stack.Screen name="PartyListMembersAndVotes" component={PartyListMembersAndVotes} />
+
         </Stack.Navigator>
     );
 }

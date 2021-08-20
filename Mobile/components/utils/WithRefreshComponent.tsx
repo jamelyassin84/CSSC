@@ -21,7 +21,7 @@ const WithRefreshComponent: FC<Props> = ( props ) => {
             showsVerticalScrollIndicator={false}
             refreshControl={
                 <RefreshControl
-                    tintColor='#07B1E8'
+                    tintColor='red'
                     refreshing={props.loading}
                     onRefresh={props.onRefresh()}
                 />

@@ -13,7 +13,7 @@ const DashboardPartylist: FC<Props> = ( props ) => {
 
     return (
         <DefaultListView
-            callback={() => props.callback}
+            callback={() => props.callback()}
             title={props.partylist.acronym}
             icon={<Feather name="users"
                 size={24}

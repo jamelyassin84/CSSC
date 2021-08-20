@@ -137,7 +137,7 @@ const ElectionResults: FC<Props> = ( props ) => {
                 <Text style={{ padding: 16 }}>Parties</Text>
                 {
                     partylists_data.map( ( partylist: PartyList, index: number ) => (
-                        <DashboardPartylist callback={() => navigation.navigate( 'PartyListMembersAndVotes', { partylist: partylist } )} key={index} partylist={partylist} />
+                        <DashboardPartylist callback={() => navigation.navigate( 'PartyListMembersAndVotes', { title: partylist.acronym } )} key={index} partylist={partylist} />
                     ) )
                 }
             </WithRefreshComponent>

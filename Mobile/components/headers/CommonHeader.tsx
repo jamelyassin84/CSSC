@@ -8,7 +8,6 @@ import Colors from '../../constants/Colors';
 import { useNavigation } from '@react-navigation/native';
 
 type Props = {
-    backgroundColor: string
     title: string | any
 };
 
@@ -16,7 +15,7 @@ const CommonHeader: FC<Props> = ( props ) => {
     const colorScheme = useColorScheme();
     const navigation = useNavigation();
     return (
-        <View style={[ style.header, { backgroundColor: props.backgroundColor } ]}>
+        <View style={[ style.header, { backgroundColor: 'white' } ]}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Ionicons style={style.icon} name="chevron-back" size={24} color={Colors[ colorScheme ].text} />
             </TouchableOpacity>

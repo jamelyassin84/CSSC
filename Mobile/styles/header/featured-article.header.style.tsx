@@ -1,4 +1,3 @@
-import { Platform } from 'react-native';
 import { StyleSheet } from 'react-native';
 export default StyleSheet.create( {
     header: {
@@ -8,8 +7,6 @@ export default StyleSheet.create( {
         alignItems: 'center',
         padding: 10,
         paddingTop: 20,
-        marginTop: Platform.OS === 'ios' ? 11 : 5
-
     },
     icon: {
         fontSize: 30,
@@ -17,6 +14,5 @@ export default StyleSheet.create( {
     },
     text: {
         fontSize: 20,
-        fontWeight: 'bold'
     },
 } )
