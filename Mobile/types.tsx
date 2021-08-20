@@ -1,12 +1,16 @@
 export type RootStackParamList = {
     SignIn: undefined
-    ElectionResults: undefined;
+
     Step1: undefined;
     Step2: undefined;
     Step3: undefined;
     Step4: undefined;
     Step5: undefined;
+
+    ElectionResults: undefined;
     PartyListMembersAndVotes: undefined
+
+    Members: undefined
 };
 
 export type BottomTabParamList = {

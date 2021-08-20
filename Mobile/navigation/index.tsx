@@ -1,8 +1,3 @@
-/**
- * If you are not familiar with React Navigation, check out the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -18,6 +13,7 @@ import Step4 from '../screens/steps/Step4';
 import Step5 from '../screens/steps/Step5';
 import SignIn from '../screens/sign-in/Sign-in';
 import PartyListMembersAndVotes from '../modules/election-results/PartyListMembersAndVotes';
+import Members from '../modules/parties/Members';
 
 export default function Navigation( { colorScheme }: { colorScheme: ColorSchemeName } ) {
     return (
@@ -42,6 +38,8 @@ function RootNavigator() {
             <Stack.Screen name="ElectionResults" component={BottomTabNavigator} />
 
             <Stack.Screen name="PartyListMembersAndVotes" component={PartyListMembersAndVotes} />
+
+            <Stack.Screen name="Members" component={Members} />
 
         </Stack.Navigator>
     );
