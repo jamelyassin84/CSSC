@@ -2,7 +2,9 @@
 import { AntDesign, Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { FC } from 'react';
+import { Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import HomeHeader from '../../components/headers/Home';
 import DashboardPartylist from '../../components/party-list/DashboardPartylist';
 import Summaries from '../../components/summaries/Summaries';
 import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
@@ -96,6 +98,7 @@ const ElectionResults: FC<Props> = ( props ) => {
 
     return (
         <Container>
+            <HomeHeader />
             <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <Summaries
@@ -127,9 +130,10 @@ const ElectionResults: FC<Props> = ( props ) => {
                     />
                 </ScrollView>
 
+                <Text style={{ padding: 16 }}>Parties</Text>
                 {
                     partylists_data.map( ( partylist: PartyList, index: number ) => (
-                        <DashboardPartylist partylist={partylist} />
+                        <DashboardPartylist key={index} partylist={partylist} />
                     ) )
                 }
             </WithRefreshComponent>

@@ -1,7 +1,8 @@
 
+import { Feather } from '@expo/vector-icons';
 import React, { FC } from 'react';
-import { Text, View } from 'react-native';
 import { PartyList } from '../../Models/Partylist';
+import DefaultListView from '../lists/DefaultListView';
 
 type Props = {
     partylist: PartyList
@@ -10,10 +11,14 @@ type Props = {
 const DashboardPartylist: FC<Props> = ( props ) => {
 
     return (
-        <View>
-            <Text>{props.partylist.acronym}</Text>
-        </View>
-    );
+        <DefaultListView
+            title={props.partylist.acronym}
+            icon={<Feather name="users"
+                size={24}
+                color="orange"
+            />}
+        />
+    )
 };
 
 export default DashboardPartylist;
