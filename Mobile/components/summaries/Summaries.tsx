@@ -45,7 +45,8 @@ const style = StyleSheet.create( {
         flexDirection: 'row',
         borderWidth: 1,
         borderColor: 'rgba(150,150,150,.2)',
-        alignItems: 'center'
+        alignItems: 'center',
+        minWidth: 250
     },
     iconContainer: {
         width: 70,

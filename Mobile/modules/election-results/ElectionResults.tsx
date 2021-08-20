@@ -2,6 +2,7 @@
 import { AntDesign, Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { FC } from 'react';
+import { ScrollView } from 'react-native-gesture-handler';
 import DashboardPartylist from '../../components/party-list/DashboardPartylist';
 import Summaries from '../../components/summaries/Summaries';
 import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
@@ -96,33 +97,35 @@ const ElectionResults: FC<Props> = ( props ) => {
     return (
         <Container>
             <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
-                <Summaries
-                    title="Partylists"
-                    value={partylists}
-                    backgroundColor="rgba(255, 193, 7,.2)"
-                    icon={<FontAwesome name="list-ol" size={24} color="rgba(255, 193, 7,1)" />}
-                />
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    <Summaries
+                        title="Partylists"
+                        value={partylists}
+                        backgroundColor="rgba(255, 193, 7,.2)"
+                        icon={<FontAwesome name="list-ol" size={24} color="rgba(255, 193, 7,1)" />}
+                    />
 
-                <Summaries
-                    title="Total Candidates"
-                    value={candidates}
-                    backgroundColor="rgba(40, 167, 69,.2)"
-                    icon={<Feather name="users" size={24} color="rgba(40, 167, 69,1)" />}
-                />
+                    <Summaries
+                        title="Total Candidates"
+                        value={candidates}
+                        backgroundColor="rgba(40, 167, 69,.2)"
+                        icon={<Feather name="users" size={24} color="rgba(40, 167, 69,1)" />}
+                    />
 
-                <Summaries
-                    title="Registered Voters"
-                    value={voters}
-                    backgroundColor="rgba(0, 123, 255,.2)"
-                    icon={<AntDesign name="user" size={24} color="rgba(0, 123, 255,1)" />}
-                />
+                    <Summaries
+                        title="Registered Voters"
+                        value={voters}
+                        backgroundColor="rgba(0, 123, 255,.2)"
+                        icon={<AntDesign name="user" size={24} color="rgba(0, 123, 255,1)" />}
+                    />
 
-                <Summaries
-                    title="Voted"
-                    value={voted}
-                    backgroundColor="rgba(220, 53, 69,.2)"
-                    icon={<FontAwesome5 name="vote-yea" size={24} color="rgba(220, 53, 69,1)" />}
-                />
+                    <Summaries
+                        title="Voted"
+                        value={voted}
+                        backgroundColor="rgba(220, 53, 69,.2)"
+                        icon={<FontAwesome5 name="vote-yea" size={24} color="rgba(220, 53, 69,1)" />}
+                    />
+                </ScrollView>
 
                 {
                     partylists_data.map( ( partylist: PartyList, index: number ) => (
