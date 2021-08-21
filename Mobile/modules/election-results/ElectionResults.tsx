@@ -102,7 +102,7 @@ const ElectionResults: FC<Props> = ( { route }: any ) => {
 
     return (
         <Container>
-            <HomeHeader text="Election Results" />
+            <HomeHeader text={`CSSC ${ data.campus } Campus`} />
             <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <Summaries

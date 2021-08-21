@@ -48,7 +48,7 @@ const Parties: FC<Props> = ( { route }: any ) => {
 
     return (
         <Container>
-            <HomeHeader text="Political Parties" />
+            <HomeHeader text={`CSSC ${ data.campus } Campus`} />
             <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
                 {
                     parties.map( ( partylist: PartyList, index: number ) => (
