@@ -12,14 +12,23 @@ export default StyleSheet.create( {
         borderRadius: 50,
         margin: 5,
         opacity: .5,
-        backgroundColor: '#FFC107'
+        backgroundColor: '#ccc'
     },
     active: {
-        width: 10,
+        width: 30,
         height: 10,
         borderRadius: 50,
         margin: 5,
-        backgroundColor: '#FFC107'
+        backgroundColor: '#FFC107',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
     },
     tab: {
         width: '100%',

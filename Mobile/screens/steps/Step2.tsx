@@ -21,7 +21,7 @@ const Step2: FC<Props> = ( props ) => {
                 style={style.icon}
                 size={170}
             />
-            <StepDescription text="View Diffenrent Parties and Distinct Candidates"></StepDescription>
+            <StepDescription text="View different political parties and distinct candidates"></StepDescription>
             <View style={style.tab}>
                 <Dot></Dot>
                 <ActiveDot></ActiveDot>

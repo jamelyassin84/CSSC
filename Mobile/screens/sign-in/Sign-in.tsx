@@ -54,7 +54,7 @@ const SignIn: FC<Props> = ( props ) => {
                 } )
                 let user: Voter | any = data
                 await AsyncStorage.setItem( 'user', JSON.stringify( user ) )
-                navigation.navigate( 'ElectionResults' )
+                navigation.navigate( 'ElectionResults', { campus: user.campus } )
                 setLoading( false )
             } )
     }
@@ -66,22 +66,23 @@ const SignIn: FC<Props> = ( props ) => {
                 behavior={Platform.OS == 'ios' ? 'position' : 'height'}
                 style={{ flex: 1 }}
             >
-                <Image style={style.image} source={require( '../../assets/landing/bg1.png' )} />
                 <Text style={style.title}><Text style={{ color: '#FFC107' }} >Answer</Text> the call of time! {'\n'}
                     <Text style={{ color: '#FFC107' }} >Exercise</Text> your right to <Text style={{ color: 'white', backgroundColor: '#FFC107' }}> vote! </Text>
                 </Text>
                 <Text style={{ textAlign: 'center' }}>Your vote matters! {'\n'} <Text style={{ color: '#FFC107' }}>College Supreme Student Council</Text></Text>
+                <Image style={style.image} source={require( '../../assets/landing/bg1.png' )} />
+
                 <View style={{ padding: 35 }}>
                     <TextInput
                         clearButtonMode="always"
-                        placeholderTextColor="orange"
+                        placeholderTextColor="#ccc"
                         value={IDnumber}
                         onChangeText={( text: string ) => setIDnumber( text.toUpperCase() )}
                         style={style.input} placeholder="ID Number" />
 
                     <TextInput
                         clearButtonMode="always"
-                        placeholderTextColor="orange"
+                        placeholderTextColor="#ccc"
                         secureTextEntry={true}
                         value={Section}
                         onChangeText={( text: string ) => setSection( text.toUpperCase() )}
@@ -104,16 +105,17 @@ const SignIn: FC<Props> = ( props ) => {
                 </View>
 
             </KeyboardAvoidingView>
-            <Text style={{ position: 'absolute', bottom: 20, textAlign: 'center', width: '100%' }}>All Rights Reserved: Powered By: <Text style={{ color: '#FFC107' }}>Jamel Eid Yassin</Text></Text>
+            <Text style={{ position: 'absolute', bottom: 20, textAlign: 'center', width: '100%' }}>All Rights Reserved. Powered By: <Text style={{ color: 'orange' }}>Jamel Eid Yassin</Text></Text>
         </Container>
     );
 };
 
 const style = StyleSheet.create( {
     image: {
-        height: Dimensions.get( 'screen' ).height / 3.5,
+        height: Dimensions.get( 'screen' ).height / 4.5,
         resizeMode: 'contain',
         width: Dimensions.get( 'screen' ).width,
+        marginTop: 40,
     },
     title: {
         fontWeight: 'bold',

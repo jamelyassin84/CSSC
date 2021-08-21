@@ -21,7 +21,7 @@ const Step3: FC<Props> = ( props ) => {
                 style={style.icon}
                 size={170}
             />
-            <StepDescription text="Look over on excellent platforms of each candidate"></StepDescription>
+            <StepDescription text="Look over on excellent platforms and reforms of each candidate"></StepDescription>
             <View style={style.tab}>
                 <Dot></Dot>
                 <Dot></Dot>

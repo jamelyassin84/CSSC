@@ -21,7 +21,7 @@ const Step4: FC<Props> = ( props ) => {
                 style={style.icon}
                 size={170}
             />
-            <StepDescription text="Be Updated on real-time Election Results"></StepDescription>
+            <StepDescription text="be updated on real-time Election Results"></StepDescription>
             <View style={style.tab}>
                 <Dot></Dot>
                 <Dot></Dot>

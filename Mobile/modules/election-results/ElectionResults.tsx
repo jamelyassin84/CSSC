@@ -16,12 +16,13 @@ import Container from '../../constants/Layout';
 
 type Props = {};
 
-const ElectionResults: FC<Props> = ( props ) => {
+const ElectionResults: FC<Props> = ( { route }: any ) => {
+
+    const data = route.params
 
     const navigation = useNavigation()
 
     const [ isLoading, setLoading ] = React.useState( false )
-    const [ campus, setCampus ] = React.useState( '' )
     const [ partylists_data, setpartylists_data ] = React.useState( [] )
     const [ partylists, setpartylists ] = React.useState( 0 )
     const [ candidates, setcandidates ] = React.useState( 0 )
@@ -29,17 +30,6 @@ const ElectionResults: FC<Props> = ( props ) => {
     const [ voted, setvoted ] = React.useState( 0 )
 
     React.useEffect( () => {
-        const fetch = async () => {
-            await AsyncStorage.getItem( 'user' )
-                .then( ( user: any ) => {
-                    setCampus( JSON.parse( user ).campus )
-                    onRefresh()
-                } )
-        }
-        fetch()
-        setTimeout( () => {
-            onRefresh()
-        }, 2000 );
         collection( Collections.Partylist ).onSnapshot( () => {
             onRefresh()
         } )
@@ -64,7 +54,7 @@ const ElectionResults: FC<Props> = ( props ) => {
     const getPartylists = () => {
         setLoading( true )
         collection( Collections.Partylist )
-            .where( 'campus', '==', campus )
+            .where( 'campus', '==', data.campus )
             .get().then( ( snapshot ) => {
                 let temp: any = []
                 snapshot.forEach( ( doc: any ) => {
@@ -88,7 +78,7 @@ const ElectionResults: FC<Props> = ( props ) => {
 
     const getVoters = () => {
         collection( Collections.Voters )
-            .where( 'campus', '==', campus )
+            .where( 'campus', '==', data.campus )
             .get().then( ( snapshot ) => {
                 let temp: any = []
                 snapshot.forEach( ( doc: any ) => {

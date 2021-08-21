@@ -13,23 +13,16 @@ import { PartyList } from '../../Models/Partylist';
 
 type Props = {};
 
-const Parties: FC<Props> = ( props ) => {
+const Parties: FC<Props> = ( { route }: any ) => {
+
+    const data = route.params
 
     const navigation = useNavigation()
 
     const [ isLoading, setLoading ] = React.useState( false )
-    const [ campus, setCampus ] = React.useState( '' )
     const [ parties, setparties ] = React.useState( [] )
 
     React.useEffect( () => {
-        const fetch = async () => {
-            await AsyncStorage.getItem( 'user' )
-                .then( ( user: any ) => {
-                    setCampus( JSON.parse( user ).campus )
-                    onRefresh()
-                } )
-        }
-        fetch()
         collection( Collections.Partylist ).onSnapshot( () => {
             onRefresh()
         } )
@@ -42,7 +35,7 @@ const Parties: FC<Props> = ( props ) => {
     const getPartylists = () => {
         setLoading( true )
         collection( Collections.Partylist )
-            .where( 'campus', '==', campus )
+            .where( 'campus', '==', data.campus )
             .get().then( ( snapshot ) => {
                 let temp: any = []
                 snapshot.forEach( ( doc: any ) => {
@@ -55,7 +48,7 @@ const Parties: FC<Props> = ( props ) => {
 
     return (
         <Container>
-            <HomeHeader text="Parties" />
+            <HomeHeader text="Political Parties" />
             <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
                 {
                     parties.map( ( partylist: PartyList, index: number ) => (
@@ -63,7 +56,7 @@ const Parties: FC<Props> = ( props ) => {
                             navigation.navigate( 'Members',
                                 {
                                     title: partylist.acronym,
-                                    campus: campus
+                                    campus: data.campus
                                 } )
                         }} key={index} partylist={partylist} />
                     ) )

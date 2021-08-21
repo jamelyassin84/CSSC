@@ -32,7 +32,7 @@ const Step1: FC<Props> = ( props ) => {
                 style={{
                     zIndex: 9,
                     alignSelf: 'center', position: 'absolute',
-                    top: '48%',
+                    top: '58%',
                     fontSize: 25,
                     fontWeight: 'bold',
                     textAlign: 'center',

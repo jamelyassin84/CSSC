@@ -20,7 +20,7 @@ const Step5: FC<Props> = ( props ) => {
                 style={style.icon}
                 size={170}
             />
-            <StepDescription text="and Cast a Vote on your Favorite Electoral Candidate"></StepDescription>
+            <StepDescription text="Anwser the call of time and Exercise your right to vote!"></StepDescription>
             <View style={style.tab}>
                 <Dot></Dot>
                 <Dot></Dot>

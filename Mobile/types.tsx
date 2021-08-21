@@ -15,7 +15,8 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-    'Election Results': undefined;
-    'Cast a Vote': undefined;
-    'Political Parties': undefined;
+    'Election Results': any;
+    'Cast a Vote': any;
+    'Political Parties': any;
+    campus: any
 };
