@@ -16,6 +16,9 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
             <Text style={style.title}>Select Your Line-up!</Text>
 
             <Text style={style.subtitle}>Presidential Candidates</Text>
+
+
+
             <Text style={style.subtitle}>Vice Presidential  Candidates</Text>
             <Text style={style.subtitle}>Senatorial  Candidates</Text>
             <Text style={style.subtitle}>Candidates for Governor</Text>
