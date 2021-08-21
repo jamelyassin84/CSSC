@@ -5,7 +5,7 @@ import { Candidate } from "../../Models/Candidtate"
 import { LineUpType } from "../../Models/LineUp"
 
 
-export function getCandidates() {
+export async function getCandidates() {
     collection( Collections.Candidate ).get().then( ( data: Candidate[] | any ) => {
         let presidents: Candidate[] = []
         let vps: Candidate[] = []
@@ -34,6 +34,7 @@ export function getCandidates() {
                 reps.push( candidate )
             }
         } )
+        return data
         return [
             { senators: groupBy( senators, 'partylist' ) },
             { govs: groupBy( govs, 'partylist' ) },

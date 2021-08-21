@@ -37,13 +37,20 @@ export const style = StyleSheet.create( {
         fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center',
-        margin: 20,
+        marginTop: 20,
         color: 'red'
     },
     subtitle: {
-        color: '#007BFF',
-        margin: 20,
-
+        marginTop: 40,
+        marginLeft: 20,
+        color: 'orange'
+    },
+    image: {
+        height: 50,
+        width: 50,
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: 'orange'
     }
 } )
 

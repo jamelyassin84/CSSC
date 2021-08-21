@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
 import { Text, View } from 'react-native';
+import { Candidate } from '../../../Models/Candidtate';
 import { style } from '../CastAVote';
 
 type Props = {};
 
 const Governor: FC<Props> = ( props ) => {
+
+
     return (
         <View>
             <Text style={style.subtitle}>Candidates for Governor</Text>
