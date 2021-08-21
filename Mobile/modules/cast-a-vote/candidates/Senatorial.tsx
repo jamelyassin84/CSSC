@@ -1,15 +1,14 @@
-
 import React, { FC } from 'react';
-import { Text } from 'react-native';
-import Container from '../../../constants/Layout';
+import { Text, View } from 'react-native';
+import { style } from '../CastAVote';
 
 type Props = {};
 
 const Senatorial: FC<Props> = ( props ) => {
     return (
-        <Container>
-            <Text>Senatorial</Text>
-        </Container>
+        <View>
+            <Text style={style.subtitle}>Senatorial Candidates</Text>
+        </View>
     );
 };
 
