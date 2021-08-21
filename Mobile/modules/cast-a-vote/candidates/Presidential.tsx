@@ -8,7 +8,6 @@ import { Collections } from '../../../Models/Admin';
 import { Candidate } from '../../../Models/Candidtate';
 import { LineUpType } from '../../../Models/LineUp';
 import { style } from '../CastAVote';
-import { getCandidates } from '../VoteActions';
 
 type Props = {
     ids?: string[]
@@ -36,7 +35,6 @@ const Presidential: FC<Props> = ( props ) => {
             } )
             setCandidates( presidents )
         } )
-
     }
 
     const renderItem = ( { item }: any ) => (

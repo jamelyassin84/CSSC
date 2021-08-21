@@ -1,6 +1,7 @@
 
 import React, { FC } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import HomeHeader from '../../components/headers/Home';
 import Container from '../../constants/Layout';
 import Governor from './candidates/Governor';
@@ -19,31 +20,25 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
     return (
         <Container>
             <HomeHeader text={`CSSC ${ data.campus } Campus`} />
-            <Text style={style.title}>Select Your Line-up!</Text>
-
-            <Presidential />
-            <VPs />
-            <Senatorial />
-            <Governor />
-            <Reps />
-            <Mayors />
-
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <Presidential />
+                <VPs />
+                <Senatorial />
+                <Governor />
+                <Reps />
+                <Mayors />
+                <View style={{ height: 450 }} />
+            </ScrollView>
         </Container>
     );
 };
 
 export const style = StyleSheet.create( {
-    title: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginTop: 20,
-        color: 'red'
-    },
     subtitle: {
-        marginTop: 40,
-        marginLeft: 20,
-        color: 'orange'
+        backgroundColor: '#FFC107',
+        padding: 5,
+        paddingLeft: 15,
+        color: 'white'
     },
     image: {
         height: 50,
