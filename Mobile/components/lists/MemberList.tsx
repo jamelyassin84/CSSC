@@ -1,14 +1,13 @@
 
-import React, { FC } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import React, { FC } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 type Props = {
     left?: any
     center?: any
     right?: any
     callback?: Function | any
-};
-
+}
 const MemberList: FC<Props> = ( props ) => {
     return (
         <TouchableOpacity
@@ -22,8 +21,8 @@ const MemberList: FC<Props> = ( props ) => {
                 {props.right}
             </View>
         </TouchableOpacity>
-    );
-};
+    )
+}
 
 const style = StyleSheet.create( {
     container: {
@@ -39,4 +38,4 @@ const style = StyleSheet.create( {
     }
 } )
 
-export default MemberList;
+export default MemberList

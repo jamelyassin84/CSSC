@@ -1,20 +1,20 @@
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
-import { ColorSchemeName } from 'react-native';
-import { RootStackParamList } from '../types';
-import BottomTabNavigator from './BottomTabNavigator';
-import LinkingConfiguration from './LinkingConfiguration';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import * as React from 'react'
+import { ColorSchemeName } from 'react-native'
+import { RootStackParamList } from '../types'
+import BottomTabNavigator from './BottomTabNavigator'
+import LinkingConfiguration from './LinkingConfiguration'
 
-import Step1 from '../screens/steps/Step1';
-import Step2 from '../screens/steps/Step2';
-import Step3 from '../screens/steps/Step3';
-import Step4 from '../screens/steps/Step4';
-import Step5 from '../screens/steps/Step5';
-import SignIn from '../screens/sign-in/Sign-in';
-import PartyListMembersAndVotes from '../modules/election-results/PartyListMembersAndVotes';
-import Members from '../modules/parties/Members';
-import ViewPlatform from '../modules/parties/ViewPlatform';
+import Step1 from '../screens/steps/Step1'
+import Step2 from '../screens/steps/Step2'
+import Step3 from '../screens/steps/Step3'
+import Step4 from '../screens/steps/Step4'
+import Step5 from '../screens/steps/Step5'
+import SignIn from '../screens/sign-in/Sign-in'
+import PartyListMembersAndVotes from '../modules/election-results/PartyListMembersAndVotes'
+import Members from '../modules/parties/Members'
+import ViewPlatform from '../modules/parties/ViewPlatform'
 
 export default function Navigation( { colorScheme }: { colorScheme: ColorSchemeName } ) {
     return (
@@ -23,9 +23,9 @@ export default function Navigation( { colorScheme }: { colorScheme: ColorSchemeN
             theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
             <RootNavigator />
         </NavigationContainer>
-    );
+    )
 }
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>()
 
 function RootNavigator() {
     return (
@@ -44,5 +44,5 @@ function RootNavigator() {
             <Stack.Screen name="ViewPlatform" component={ViewPlatform} />
 
         </Stack.Navigator>
-    );
+    )
 }

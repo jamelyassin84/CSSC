@@ -1,18 +1,15 @@
-
-import { useNavigation } from '@react-navigation/native';
-import React, { FC } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import CommonHeader from '../../components/headers/CommonHeader';
-import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
-import Container from '../../constants/Layout';
-import { collection } from '../../firebase/firebase';
-import { Collections } from '../../Models/Admin';
-import { Platform } from '../../Models/Platform';
-import * as Linking from 'expo-linking';
+import React, { FC } from 'react'
+import { Text, TouchableOpacity, View } from 'react-native'
+import CommonHeader from '../../components/headers/CommonHeader'
+import WithRefreshComponent from '../../components/utils/WithRefreshComponent'
+import Container from '../../constants/Layout'
+import { collection } from '../../firebase/firebase'
+import { Collections } from '../../Models/Admin'
+import { Platform } from '../../Models/Platform'
+import * as Linking from 'expo-linking'
 
 
-type Props = {};
-
+type Props = {}
 const ViewPlatform: FC<Props> = ( { route }: any ) => {
 
     const data = route.params
@@ -71,8 +68,8 @@ const ViewPlatform: FC<Props> = ( { route }: any ) => {
                 </View>
             </WithRefreshComponent>
         </Container>
-    );
-};
+    )
+}
 
 
-export default ViewPlatform;
+export default ViewPlatform

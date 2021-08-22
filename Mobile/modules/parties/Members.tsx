@@ -1,19 +1,16 @@
+import { useNavigation } from '@react-navigation/native'
+import React, { FC } from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import CommonHeader from '../../components/headers/CommonHeader'
+import MemberList from '../../components/lists/MemberList'
+import WithRefreshComponent from '../../components/utils/WithRefreshComponent'
+import Container from '../../constants/Layout'
+import { collection } from '../../firebase/firebase'
+import { Collections } from '../../Models/Admin'
+import { Candidate } from '../../Models/Candidtate'
+import { PartyList } from '../../Models/Partylist'
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
-import React, { FC } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import CommonHeader from '../../components/headers/CommonHeader';
-import MemberList from '../../components/lists/MemberList';
-import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
-import Container from '../../constants/Layout';
-import { collection } from '../../firebase/firebase';
-import { Collections } from '../../Models/Admin';
-import { Candidate } from '../../Models/Candidtate';
-import { PartyList } from '../../Models/Partylist';
-
-type Props = {};
-
+type Props = {}
 const Members: FC<Props> = ( { route }: any ) => {
 
     const navigation = useNavigation()
@@ -109,8 +106,8 @@ const Members: FC<Props> = ( { route }: any ) => {
                 </View>
             </WithRefreshComponent>
         </Container>
-    );
-};
+    )
+}
 
 const style = StyleSheet.create( {
     title: {
@@ -131,4 +128,4 @@ const style = StyleSheet.create( {
     }
 } )
 
-export default Members;
+export default Members

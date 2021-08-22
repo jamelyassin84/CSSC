@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import { Image, Text, View } from 'react-native';
-import CandidateList from '../../../components/lists/CandidateList';
-import { collection } from '../../../firebase/firebase';
-import { Collections } from '../../../Models/Admin';
-import { Candidate } from '../../../Models/Candidtate';
-import { LineUpType } from '../../../Models/LineUp';
+import React, { FC } from 'react'
+import { Image, Text, View } from 'react-native'
+import CandidateList from '../../../components/lists/CandidateList'
+import { collection } from '../../../firebase/firebase'
+import { Collections } from '../../../Models/Admin'
+import { Candidate } from '../../../Models/Candidtate'
+import { LineUpType } from '../../../Models/LineUp'
 import style from '../../../styles/Vote.style'
-import { courseExist, departmentExist, existInVotes, position_is_in_votes, removeVote, sectionExist, toggleCard, warningAlert, yearExist } from '../VoteProcesses';
+import { courseExist, departmentExist, existInVotes, position_is_in_votes, removeVote, sectionExist, toggleCard, warningAlert, yearExist } from '../VoteProcesses'
 
 type Props = {
     onVote: Function
@@ -27,7 +27,7 @@ const Mayors: FC<Props> = ( props ) => {
             let candidates: Candidate[] = []
             data.forEach( ( canndidate: any ) => {
                 candidates.push( Object.assign( canndidate.data(), { id: canndidate.id } ) )
-            } );
+            } )
             candidates.forEach( ( candidate: Candidate ) => {
                 if ( candidate.position === LineUpType.Mayor ) {
                     presidents.push( candidate )
@@ -95,7 +95,7 @@ const Mayors: FC<Props> = ( props ) => {
                 ) )
             }
         </View>
-    );
-};
+    )
+}
 
-export default Mayors;
+export default Mayors

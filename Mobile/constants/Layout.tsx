@@ -1,12 +1,11 @@
-import React, { FC } from 'react';
-import { Dimensions, Platform, View } from 'react-native';
-import useColorScheme from '../hooks/useColorScheme';
-import Colors from './Colors';
+import React, { FC } from 'react'
+import { Dimensions, Platform, View } from 'react-native'
+import useColorScheme from '../hooks/useColorScheme'
+import Colors from './Colors'
 
-type Props = {};
-
+type Props = {}
 const Container: FC<Props> = ( props ) => {
-    const colorScheme = useColorScheme();
+    const colorScheme = useColorScheme()
     return (
         <View style={{
             height: Dimensions.get( 'screen' ).height,
@@ -16,9 +15,9 @@ const Container: FC<Props> = ( props ) => {
         }}>
             {props.children}
         </View>
-    );
-};
+    )
+}
 
-export default Container;
+export default Container
 
 

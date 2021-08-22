@@ -1,14 +1,13 @@
 
-import { Feather } from '@expo/vector-icons';
-import React, { FC } from 'react';
-import { PartyList } from '../../Models/Partylist';
-import DefaultListView from '../lists/DefaultListView';
+import { Feather } from '@expo/vector-icons'
+import React, { FC } from 'react'
+import { PartyList } from '../../Models/Partylist'
+import DefaultListView from '../lists/DefaultListView'
 
 type Props = {
     partylist: PartyList
     callback: Function
-};
-
+}
 const DashboardPartylist: FC<Props> = ( props ) => {
 
     return (
@@ -21,6 +20,6 @@ const DashboardPartylist: FC<Props> = ( props ) => {
             />}
         />
     )
-};
+}
 
-export default DashboardPartylist;
+export default DashboardPartylist

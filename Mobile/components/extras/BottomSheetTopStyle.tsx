@@ -1,9 +1,8 @@
 
-import React, { FC } from 'react';
-import { Text, View } from 'react-native';
+import React, { FC } from 'react'
+import { Text, View } from 'react-native'
 
-type Props = {};
-
+type Props = {}
 const BottomSheetTopStyle: FC<Props> = ( props ) => {
     return (
         <View style={
@@ -19,7 +18,7 @@ const BottomSheetTopStyle: FC<Props> = ( props ) => {
             }
         } />
 
-    );
-};
+    )
+}
 
-export default BottomSheetTopStyle;
+export default BottomSheetTopStyle

@@ -1,20 +1,20 @@
 
-import { AntDesign, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
+import { AntDesign, Feather, MaterialCommunityIcons } from '@expo/vector-icons'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createStackNavigator } from '@react-navigation/stack'
+import * as React from 'react'
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import CastAVote from '../modules/cast-a-vote/CastAVote';
-import ElectionResults from '../modules/election-results/ElectionResults';
-import Parties from '../modules/parties/Parties';
-import { BottomTabParamList } from '../types';
+import Colors from '../constants/Colors'
+import useColorScheme from '../hooks/useColorScheme'
+import CastAVote from '../modules/cast-a-vote/CastAVote'
+import ElectionResults from '../modules/election-results/ElectionResults'
+import Parties from '../modules/parties/Parties'
+import { BottomTabParamList } from '../types'
 
-const Tab = createBottomTabNavigator<BottomTabParamList>();
+const Tab = createBottomTabNavigator<BottomTabParamList>()
 export default function BottomTabNavigator( { route }: any ) {
     const data = route.params
-    const colorScheme = useColorScheme();
+    const colorScheme = useColorScheme()
     return (
         <Tab.Navigator
             initialRouteName="Cast a Vote"
@@ -27,7 +27,7 @@ export default function BottomTabNavigator( { route }: any ) {
                 options={{
                     tabBarIcon: ( { color } ) => <MaterialCommunityIcons name="vote-outline" size={24} color={color} />,
                 }}
-                initialParams={{ campus: data.campus }}
+                initialParams={{ campus: data.campus, user_id: data.user_id }}
             />
             <Tab.Screen
                 name="Political Parties"
@@ -35,7 +35,7 @@ export default function BottomTabNavigator( { route }: any ) {
                 options={{
                     tabBarIcon: ( { color } ) => <Feather name="users" size={24} color={color} />,
                 }}
-                initialParams={{ campus: data.campus }}
+                initialParams={{ campus: data.campus, user_id: data.user_id }}
             />
             <Tab.Screen
                 name="Election Results"
@@ -43,13 +43,13 @@ export default function BottomTabNavigator( { route }: any ) {
                 options={{
                     tabBarIcon: ( { color } ) => <AntDesign name="barchart" size={24} color={color} />,
                 }}
-                initialParams={{ campus: data.campus }}
+                initialParams={{ campus: data.campus, user_id: data.user_id }}
             />
         </Tab.Navigator>
-    );
+    )
 }
 
-const ElectionResultsStack = createStackNavigator<any>();
+const ElectionResultsStack = createStackNavigator<any>()
 function ElectionResultsNavigator( { route }: any ) {
     const data = route.params
     return (
@@ -58,13 +58,13 @@ function ElectionResultsNavigator( { route }: any ) {
                 name="Election Results"
                 component={ElectionResults}
                 options={{ headerShown: false }}
-                initialParams={{ campus: data.campus }}
+                initialParams={{ campus: data.campus, user_id: data.user_id }}
             />
         </ElectionResultsStack.Navigator>
-    );
+    )
 }
 
-const CastAVoteStack = createStackNavigator<any>();
+const CastAVoteStack = createStackNavigator<any>()
 function CastAVoteNavigator( { route }: any ) {
     const data = route.params
     return (
@@ -73,13 +73,13 @@ function CastAVoteNavigator( { route }: any ) {
                 name="Cast a Vote"
                 component={CastAVote}
                 options={{ headerShown: false }}
-                initialParams={{ campus: data.campus }}
+                initialParams={{ campus: data.campus, user_id: data.user_id }}
             />
         </CastAVoteStack.Navigator>
-    );
+    )
 }
 
-const PartiesStack = createStackNavigator<any>();
+const PartiesStack = createStackNavigator<any>()
 function PartiesNavigator( { route }: any ) {
     const data = route.params
     return (
@@ -88,8 +88,8 @@ function PartiesNavigator( { route }: any ) {
                 name="Political Parties"
                 component={Parties}
                 options={{ headerShown: false }}
-                initialParams={{ campus: data.campus }}
+                initialParams={{ campus: data.campus, user_id: data.user_id }}
             />
         </PartiesStack.Navigator>
-    );
+    )
 }

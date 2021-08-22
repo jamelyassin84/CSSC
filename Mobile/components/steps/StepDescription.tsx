@@ -1,11 +1,10 @@
 
-import React, { FC } from 'react';
-import { Platform, Text } from 'react-native';
+import React, { FC } from 'react'
+import { Platform, Text } from 'react-native'
 
 type Props = {
     text: string
-};
-
+}
 const StepDescription: FC<Props> = ( props ) => {
     return <Text
         style={{
@@ -20,6 +19,6 @@ const StepDescription: FC<Props> = ( props ) => {
         {props.text}
     </Text>
 
-};
+}
 
-export default StepDescription;
+export default StepDescription

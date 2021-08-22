@@ -1,18 +1,15 @@
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
-import React, { FC } from 'react';
-import { Text } from 'react-native';
-import HomeHeader from '../../components/headers/Home';
-import DashboardPartylist from '../../components/party-list/DashboardPartylist';
-import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
-import Container from '../../constants/Layout';
-import { collection } from '../../firebase/firebase';
-import { Collections } from '../../Models/Admin';
-import { PartyList } from '../../Models/Partylist';
+import { useNavigation } from '@react-navigation/native'
+import React, { FC } from 'react'
+import HomeHeader from '../../components/headers/Home'
+import DashboardPartylist from '../../components/party-list/DashboardPartylist'
+import WithRefreshComponent from '../../components/utils/WithRefreshComponent'
+import Container from '../../constants/Layout'
+import { collection } from '../../firebase/firebase'
+import { Collections } from '../../Models/Admin'
+import { PartyList } from '../../Models/Partylist'
 
-type Props = {};
-
+type Props = {}
 const Parties: FC<Props> = ( { route }: any ) => {
 
     const data = route.params
@@ -63,7 +60,7 @@ const Parties: FC<Props> = ( { route }: any ) => {
                 }
             </WithRefreshComponent>
         </Container>
-    ); ``
-};
+    )
+}
 
 export default Parties;

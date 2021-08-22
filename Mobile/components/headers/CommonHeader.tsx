@@ -1,19 +1,18 @@
 
-import React, { FC } from 'react';
-import { Dimensions, Text, TouchableOpacity, View } from 'react-native';
+import React, { FC } from 'react'
+import { Dimensions, Text, TouchableOpacity, View } from 'react-native'
 import style from '../../styles/header/featured-article.header.style'
-import { Ionicons } from '@expo/vector-icons';
-import useColorScheme from '../../hooks/useColorScheme';
-import Colors from '../../constants/Colors';
-import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons'
+import useColorScheme from '../../hooks/useColorScheme'
+import Colors from '../../constants/Colors'
+import { useNavigation } from '@react-navigation/native'
 
 type Props = {
     title: string | any
-};
-
+}
 const CommonHeader: FC<Props> = ( props ) => {
-    const colorScheme = useColorScheme();
-    const navigation = useNavigation();
+    const colorScheme = useColorScheme()
+    const navigation = useNavigation()
     return (
         <View style={[ style.header, { backgroundColor: 'white' } ]}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -21,7 +20,7 @@ const CommonHeader: FC<Props> = ( props ) => {
             </TouchableOpacity>
             <Text style={[ style.text, { color: Colors[ colorScheme ].text, width: Dimensions.get( 'screen' ).width - 100 } ]}>{props.title}</Text>
         </View>
-    );
-};
+    )
+}
 
-export default CommonHeader;
+export default CommonHeader

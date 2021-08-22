@@ -1,13 +1,13 @@
 
-import React, { FC } from 'react';
-import { Image, Text, View } from 'react-native';
-import { collection } from '../../../firebase/firebase';
-import { Collections } from '../../../Models/Admin';
-import { Candidate } from '../../../Models/Candidtate';
-import { LineUpType } from '../../../Models/LineUp';
+import React, { FC } from 'react'
+import { Image, Text, View } from 'react-native'
+import { collection } from '../../../firebase/firebase'
+import { Collections } from '../../../Models/Admin'
+import { Candidate } from '../../../Models/Candidtate'
+import { LineUpType } from '../../../Models/LineUp'
 import style from '../../../styles/Vote.style'
-import CandidateList from '../../../components/lists/CandidateList';
-import { existInVotes, position_is_in_votes, removeVote, toggleCard, warningAlert } from '../VoteProcesses';
+import CandidateList from '../../../components/lists/CandidateList'
+import { existInVotes, position_is_in_votes, removeVote, toggleCard, warningAlert } from '../VoteProcesses'
 
 type Props = {
     onVote: Function
@@ -28,7 +28,7 @@ const VPs: FC<Props> = ( props ) => {
             let candidates: Candidate[] = []
             data.forEach( ( canndidate: any ) => {
                 candidates.push( Object.assign( canndidate.data(), { id: canndidate.id } ) )
-            } );
+            } )
             candidates.forEach( ( candidate: Candidate ) => {
                 if ( candidate.position === LineUpType.VP ) {
                     vps.push( candidate )
@@ -89,6 +89,6 @@ const VPs: FC<Props> = ( props ) => {
                 ) )
             }
         </View>
-    );
-};
-export default VPs;
+    )
+}
+export default VPs

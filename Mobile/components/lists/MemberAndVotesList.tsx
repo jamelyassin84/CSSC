@@ -1,13 +1,12 @@
 
-import React, { FC } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { FC } from 'react'
+import { StyleSheet, View } from 'react-native'
 
 type Props = {
     image?: any,
     body?: any,
     values?: any,
-};
-
+}
 const MemberAndVotesList: FC<Props> = ( props ) => {
     return (
         <View style={style.container}>
@@ -19,8 +18,8 @@ const MemberAndVotesList: FC<Props> = ( props ) => {
                 {props.values}
             </View>
         </View>
-    );
-};
+    )
+}
 
 const style = StyleSheet.create( {
     container: {
@@ -36,4 +35,4 @@ const style = StyleSheet.create( {
     }
 } )
 
-export default MemberAndVotesList;
+export default MemberAndVotesList

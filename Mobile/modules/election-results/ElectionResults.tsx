@@ -1,21 +1,19 @@
+import React, { FC } from 'react'
+import { AntDesign, Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
+import { Text } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import { collection } from '../../firebase/firebase'
+import { Collections } from '../../Models/Admin'
+import { PartyList } from '../../Models/Partylist'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import HomeHeader from '../../components/headers/Home'
+import DashboardPartylist from '../../components/party-list/DashboardPartylist'
+import Summaries from '../../components/summaries/Summaries'
+import WithRefreshComponent from '../../components/utils/WithRefreshComponent'
+import Container from '../../constants/Layout'
 
-import React, { FC } from 'react';
-import { AntDesign, Feather, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { Text } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { collection } from '../../firebase/firebase';
-import { Collections } from '../../Models/Admin';
-import { PartyList } from '../../Models/Partylist';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import HomeHeader from '../../components/headers/Home';
-import DashboardPartylist from '../../components/party-list/DashboardPartylist';
-import Summaries from '../../components/summaries/Summaries';
-import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
-import Container from '../../constants/Layout';
-
-type Props = {};
-
+type Props = {}
 const ElectionResults: FC<Props> = ( { route }: any ) => {
 
     const data = route.params
@@ -144,7 +142,7 @@ const ElectionResults: FC<Props> = ( { route }: any ) => {
                 }
             </WithRefreshComponent>
         </Container>
-    );
-};
+    )
+}
 
-export default ElectionResults;
+export default ElectionResults

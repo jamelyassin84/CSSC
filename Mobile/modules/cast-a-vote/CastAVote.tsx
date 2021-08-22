@@ -36,7 +36,16 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
                 {
                     text: "OK", onPress: () => {
 
-                        console.log( voteIds )
+                        let temp: string[] = []
+                        for ( let id of voteIds ) {
+                            if ( !temp.includes( id ) ) {
+                                temp.push( id )
+                            }
+                        }
+                        let vote: any = {}
+                        vote[ 'bets' ] = temp
+                        vote[ 'voter' ] = ''
+
                     }
                 }
             ]

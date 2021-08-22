@@ -1,14 +1,14 @@
 
 
-import { AntDesign } from '@expo/vector-icons';
-import React, { FC } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Dimensions } from 'react-native';
-import { Text } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import Colors from '../../constants/Colors';
-import useColorScheme from '../../hooks/useColorScheme';
-import BottomSheetTopStyle from '../extras/BottomSheetTopStyle';
+import React, { FC } from 'react'
+import { AntDesign } from '@expo/vector-icons'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Dimensions } from 'react-native'
+import { Text } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import Colors from '../../constants/Colors'
+import useColorScheme from '../../hooks/useColorScheme'
+import BottomSheetTopStyle from '../extras/BottomSheetTopStyle'
 
 type Props = {
     choices: any
@@ -16,10 +16,9 @@ type Props = {
     blur: Function
     icon?: any
     title?: string
-};
-
+}
 const ScrollableMenu: FC<Props> = ( props ) => {
-    const colorScheme = useColorScheme();
+    const colorScheme = useColorScheme()
     return (
         <View style={style.bottomSheetContainer}>
             <BottomSheetTopStyle />
@@ -51,8 +50,8 @@ const ScrollableMenu: FC<Props> = ( props ) => {
                 </ScrollView>
             </View>
         </View>
-    );
-};
+    )
+}
 
 const style = StyleSheet.create( {
     bottomSheetContainer: {
@@ -85,4 +84,4 @@ const style = StyleSheet.create( {
     }
 } )
 
-export default ScrollableMenu;
+export default ScrollableMenu

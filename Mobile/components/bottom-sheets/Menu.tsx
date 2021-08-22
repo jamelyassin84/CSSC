@@ -1,19 +1,18 @@
 
-import React, { FC } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Dimensions } from 'react-native';
-import { Text } from 'react-native';
-import Colors from '../../constants/Colors';
-import useColorScheme from '../../hooks/useColorScheme';
+import React, { FC } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Dimensions } from 'react-native'
+import { Text } from 'react-native'
+import Colors from '../../constants/Colors'
+import useColorScheme from '../../hooks/useColorScheme'
 
 type Props = {
-    choices: any[],
-    calback: Function,
-    blur: Function,
-};
-
+    choices: any[]
+    calback: Function
+    blur: Function
+}
 const Menu: FC<Props> = ( props ) => {
-    const colorScheme = useColorScheme();
+    const colorScheme = useColorScheme()
 
     return (
         <View style={style.bottomSheetContainer}>
@@ -43,8 +42,8 @@ const Menu: FC<Props> = ( props ) => {
                 }
             </View>
         </View>
-    );
-};
+    )
+}
 
 const style = StyleSheet.create( {
     bottomSheetContainer: {
@@ -81,4 +80,4 @@ const style = StyleSheet.create( {
     }
 } )
 
-export default Menu;
+export default Menu

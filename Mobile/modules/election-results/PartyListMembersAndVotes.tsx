@@ -1,16 +1,14 @@
+import React, { FC } from 'react'
+import { Image, StyleSheet, Text } from 'react-native'
+import { getPercent } from '../../constants/helpers'
+import { collection } from '../../firebase/firebase'
+import { Collections } from '../../Models/Admin'
+import CommonHeader from '../../components/headers/CommonHeader'
+import MemberAndVotesList from '../../components/lists/MemberAndVotesList'
+import WithRefreshComponent from '../../components/utils/WithRefreshComponent'
+import Container from '../../constants/Layout'
 
-import React, { FC } from 'react';
-import { Image, StyleSheet, Text } from 'react-native';
-import { getPercent } from '../../constants/helpers';
-import { collection } from '../../firebase/firebase';
-import { Collections } from '../../Models/Admin';
-import CommonHeader from '../../components/headers/CommonHeader';
-import MemberAndVotesList from '../../components/lists/MemberAndVotesList';
-import WithRefreshComponent from '../../components/utils/WithRefreshComponent';
-import Container from '../../constants/Layout';
-
-type Props = {};
-
+type Props = {}
 const PartyListMembersAndVotes: FC<Props> = ( { route }: any ) => {
     const data = route.params
 
@@ -100,8 +98,8 @@ const PartyListMembersAndVotes: FC<Props> = ( { route }: any ) => {
                 }
             </WithRefreshComponent>
         </Container>
-    );
-};
+    )
+}
 
 const style = StyleSheet.create( {
     image: {
@@ -119,4 +117,4 @@ type VoteType = {
 }
 
 
-export default PartyListMembersAndVotes;
+export default PartyListMembersAndVotes

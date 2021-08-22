@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
-import { View } from 'react-native';
+import React, { FC } from 'react'
+import { View } from 'react-native'
 import style from '../../styles/steps/step.style'
 
-type Props = {};
-
+type Props = {}
 const ActiveDot: FC<Props> = ( props ) => {
     return <View style={style.active}></View>
-};
+}
 
-export default ActiveDot;
+export default ActiveDot

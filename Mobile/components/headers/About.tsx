@@ -1,14 +1,13 @@
 
-import React, { FC } from 'react';
-import { Image, Text, View } from 'react-native';
-import Colors from '../../constants/Colors';
-import useColorScheme from '../../hooks/useColorScheme';
+import React, { FC } from 'react'
+import { Image, Text, View } from 'react-native'
+import Colors from '../../constants/Colors'
+import useColorScheme from '../../hooks/useColorScheme'
 import style from '../../styles/header/about.style'
 
-type Props = {};
-
+type Props = {}
 const AboutHeader: FC<Props> = ( props ) => {
-    const colorScheme = useColorScheme();
+    const colorScheme = useColorScheme()
     return (
         <View style={style.header}>
             <Image
@@ -25,7 +24,7 @@ const AboutHeader: FC<Props> = ( props ) => {
                 <Text style={style.title}>Provincial Population Office</Text>
             </View>
         </View>
-    );
-};
+    )
+}
 
-export default AboutHeader;
+export default AboutHeader

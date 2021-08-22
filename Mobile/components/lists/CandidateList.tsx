@@ -1,17 +1,16 @@
 
-import React, { FC } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Candidate } from '../../Models/Candidtate';
+import React, { FC } from 'react'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Candidate } from '../../Models/Candidtate'
 
 type Props = {
     candidate: Candidate,
-    callback?: Function | any,
+    callback?: Function | any
     left?: any
     center?: any
     right?: any
     active?: boolean | any
-};
-
+}
 const CandidateList: FC<Props> = ( props ) => {
     return (
         <TouchableOpacity
@@ -25,8 +24,8 @@ const CandidateList: FC<Props> = ( props ) => {
                 {props.right}
             </View>
         </TouchableOpacity>
-    );
-};
+    )
+}
 
 const style = StyleSheet.create( {
     container: {
@@ -57,5 +56,4 @@ const style = StyleSheet.create( {
     }
 } )
 
-
-export default CandidateList;
+export default CandidateList

@@ -1,18 +1,17 @@
 
-import { Feather, MaterialIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import React, { FC } from 'react';
-import { View } from 'react-native';
-import ActiveDot from '../../components/steps/ActiveDot';
-import Dot from '../../components/steps/Dot';
-import StepContainer from '../../components/steps/StepContainer';
-import StepDescription from '../../components/steps/StepDescription';
+import React, { FC } from 'react'
+import { Feather } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
+import { View } from 'react-native'
+import ActiveDot from '../../components/steps/ActiveDot'
+import Dot from '../../components/steps/Dot'
+import StepContainer from '../../components/steps/StepContainer'
+import StepDescription from '../../components/steps/StepDescription'
 import style from '../../styles/steps/step.style'
 
-type Props = {};
-
+type Props = {}
 const Step2: FC<Props> = ( props ) => {
-    const navigation = useNavigation();
+    const navigation = useNavigation()
     return (
         <StepContainer callback={() => {
             navigation.navigate( 'Step3' )
@@ -30,7 +29,7 @@ const Step2: FC<Props> = ( props ) => {
                 <Dot></Dot>
             </View>
         </StepContainer>
-    );
-};
+    )
+}
 
-export default Step2;
+export default Step2

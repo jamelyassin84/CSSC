@@ -52,9 +52,9 @@ const SignIn: FC<Props> = ( props ) => {
                 data.forEach( ( doc: any ) => {
                     data = Object.assign( { id: doc.id }, doc.data() )
                 } )
-                let user: Voter | any = data
+                let user: Voter = data
                 await AsyncStorage.setItem( 'user', JSON.stringify( user ) )
-                navigation.navigate( 'ElectionResults', { campus: user.campus } )
+                navigation.navigate( 'ElectionResults', { campus: user.campus, user_id: user.id } )
                 setLoading( false )
             } )
     }

@@ -1,13 +1,12 @@
 
-import React, { FC } from 'react';
-import { Text, View, Image } from 'react-native';
+import React, { FC } from 'react'
+import { Text, View, Image } from 'react-native'
 import style from '../../styles/header/header.style'
-import ProgressBar from '../utils/ProgressBar';
+import ProgressBar from '../utils/ProgressBar'
 
 type Props = {
     text: String
-};
-
+}
 const HomeHeader: FC<Props> = ( props ) => {
     return (
         <View>
@@ -17,7 +16,7 @@ const HomeHeader: FC<Props> = ( props ) => {
             </View>
             <ProgressBar />
         </View>
-    );
-};
+    )
+}
 
-export default HomeHeader;
+export default HomeHeader
