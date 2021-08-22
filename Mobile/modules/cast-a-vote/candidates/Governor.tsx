@@ -10,8 +10,8 @@ import style from '../../../styles/Vote.style'
 import { departmentExist, existInVotes, position_is_in_votes, removeVote, toggleCard, warningAlert } from '../VoteProcesses';
 
 type Props = {
-    ids?: string[]
-};
+    onVote: Function
+}
 const Governor: FC<Props> = ( props ) => {
 
     const [ candidates, setCandidates ] = React.useState<any>( [] )
@@ -56,6 +56,7 @@ const Governor: FC<Props> = ( props ) => {
             return setvotes( tempVotes )
         }
         setvotes( removeVote( candidate, votes ) )
+        props.onVote( votes )
     }
 
     return (

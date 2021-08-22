@@ -9,8 +9,8 @@ import style from '../../../styles/Vote.style'
 import { courseExist, departmentExist, existInVotes, position_is_in_votes, removeVote, sectionExist, toggleCard, warningAlert, yearExist } from '../VoteProcesses';
 
 type Props = {
-    ids?: string[]
-};
+    onVote: Function
+}
 const Mayors: FC<Props> = ( props ) => {
 
     const [ candidates, setCandidates ] = React.useState<any>( [] )
@@ -58,6 +58,7 @@ const Mayors: FC<Props> = ( props ) => {
             return setvotes( tempVotes )
         }
         setvotes( removeVote( candidate, votes ) )
+        props.onVote( votes )
     }
 
     return (
