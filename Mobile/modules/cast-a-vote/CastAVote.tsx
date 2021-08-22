@@ -1,6 +1,6 @@
 
 import React, { FC } from 'react'
-import { Alert, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Dimensions, Image, Text, TouchableOpacity, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { collection } from '../../firebase/firebase'
 import { Collections } from '../../Models/Admin'
@@ -83,6 +83,9 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
             <ScrollView showsVerticalScrollIndicator={false}
                 style={hasVoted ? { position: 'absolute', left: '500' } : {}
                 }>
+                <Image
+                    style={{ width: Dimensions.get( 'screen' ).width, resizeMode: 'contain', height: 200 }}
+                    source={require( '../../assets/landing/election.png' )} />
 
                 <Presidential onVote={( candidates: Candidate[] ) => setVoteIds( [ ...voteIds, ...processCandidates( candidates ) ] )} />
 
