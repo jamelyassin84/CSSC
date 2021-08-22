@@ -35,34 +35,6 @@ const Mayors: FC<Props> = ( props ) => {
         } )
     }
 
-    const renderItem = ( { item }: any ) => (
-        <CandidateList
-            candidate={item}
-            left={
-                <Image style={style.image} source={
-                    item.photo === undefined || null ? require( '../../../assets/avatar/face-7.jpg' ) :
-                        { uri: item.photo }
-                } />
-            }
-            center={
-                <>
-                    <Text style={{ fontSize: 16 }}>{item.voter.name}</Text>
-                    <Text style={{ color: '#28A745' }}>{item.position}</Text>
-                    <Text style={{ fontSize: 14 }}>{item.voter.department}</Text>
-                    <Text style={{ fontSize: 14, color: 'gray' }}>{item.voter.course}</Text>
-                </>
-            }
-            right={
-                <>
-                    <Text style={{ fontSize: 16, marginBottom: 16 }}>{item.voter.year} Year {item.voter.section}</Text>
-                    <Text style={{ color: 'red', borderWidth: 1, textAlign: 'center', padding: 5, borderColor: 'red' }}>{item.partylist}</Text>
-
-                </>
-            }
-            callback={() => alert( ' ma select' )}
-        />
-    )
-
     return (
         <View>
             <Text style={style.subtitle}>Vice Presidential Candidates</Text>
