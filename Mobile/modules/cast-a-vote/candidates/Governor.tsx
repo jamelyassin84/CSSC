@@ -1,19 +1,22 @@
 
 import React, { FC } from 'react';
 import { Image, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
 import CandidateList from '../../../components/lists/CandidateList';
 import { collection } from '../../../firebase/firebase';
 import { Collections } from '../../../Models/Admin';
 import { Candidate } from '../../../Models/Candidtate';
 import { LineUpType } from '../../../Models/LineUp';
 import style from '../../../styles/Vote.style'
+import { departmentExist, existInVotes, position_is_in_votes, removeVote, toggleCard, warningAlert } from '../VoteProcesses';
 
 type Props = {
     ids?: string[]
 };
 const Governor: FC<Props> = ( props ) => {
+
     const [ candidates, setCandidates ] = React.useState<any>( [] )
+    const [ votes, setvotes ] = React.useState<any>( [] )
+    const [ voteNames, setVoteNames ] = React.useState<any>( {} )
 
     React.useEffect( () => {
         candidateList()
@@ -35,36 +38,56 @@ const Governor: FC<Props> = ( props ) => {
         } )
     }
 
+    const vote = ( candidate: Candidate ) => {
+        if ( candidate.position === LineUpType.Governor ) {
+            if (
+                position_is_in_votes( candidate, votes ) === 1 &&
+                !existInVotes( candidate, votes ) &&
+                departmentExist( candidate, votes )
+            ) {
+                return warningAlert( 1 )
+            }
+        }
+        const name = toggleCard( candidate, voteNames )
+        setVoteNames( { ...voteNames, name } )
+        if ( !existInVotes( candidate, votes ) ) {
+            let tempVotes = votes
+            tempVotes.push( candidate )
+            return setvotes( tempVotes )
+        }
+        setvotes( removeVote( candidate, votes ) )
+    }
+
     return (
         <View>
-            <Text style={style.subtitle}>Vice Presidential Candidates</Text>
+            <Text style={style.subtitle}>Candidates for Governor</Text>
             {
-                candidates.map( ( item: any, index: number ) => (
+                candidates.map( ( candidate: any, index: number ) => (
                     <CandidateList
                         key={index}
-                        candidate={item}
+                        candidate={candidate}
                         left={
                             <Image style={style.image} source={
-                                item.photo === undefined || null ? require( '../../../assets/avatar/face-7.jpg' ) :
-                                    { uri: item.photo }
+                                candidate.photo === undefined || null ? require( '../../../assets/avatar/face-7.jpg' ) :
+                                    { uri: candidate.photo }
                             } />
                         }
                         center={
                             <>
-                                <Text style={{ fontSize: 16 }}>{item.voter.name}</Text>
-                                <Text style={{ color: '#28A745' }}>{item.position}</Text>
-                                <Text style={{ fontSize: 14 }}>{item.voter.department}</Text>
-                                <Text style={{ fontSize: 14, color: 'gray' }}>{item.voter.course}</Text>
+                                <Text style={{ fontSize: 16 }}>{candidate.voter.name}</Text>
+                                <Text style={{ color: 'white', textAlign: 'center', padding: 2, alignSelf: 'flex-start', backgroundColor: 'red', marginVertical: 4 }}>{candidate.position}</Text>
+                                <Text style={{ fontSize: 14 }}>{candidate.voter.department}</Text>
+                                <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.voter.course}</Text>
                             </>
                         }
                         right={
                             <>
-                                <Text style={{ fontSize: 16, marginBottom: 16 }}>{item.voter.year} Year {item.voter.section}</Text>
-                                <Text style={{ color: 'red', borderWidth: 1, textAlign: 'center', padding: 5, borderColor: 'red' }}>{item.partylist}</Text>
-
+                                <Text style={{ marginBottom: 26, color: '#ccc', textAlign: 'right' }}>{candidate.voter.year} yr {candidate.voter.section}</Text>
+                                <Text style={{ color: 'blue', textAlign: 'right' }}>{candidate.partylist}</Text>
                             </>
                         }
-                        callback={() => alert( ' ma select' )}
+                        callback={() => vote( candidate )}
+                        active={voteNames[ candidate.voter.name ]}
                     />
                 ) )
             }

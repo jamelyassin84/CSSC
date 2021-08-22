@@ -26,3 +26,27 @@ export function removeVote(candidate: Candidate, votes: string[] | any) {
 		return element.id !== candidate.id
 	})
 }
+
+export function yearExist(candidate: Candidate, votes: string[] | any) {
+	return votes.some((element: any) => {
+		return element.voter.year === candidate.voter.year
+	})
+}
+
+export function departmentExist(candidate: Candidate, votes: string[] | any) {
+	return votes.some((element: any) => {
+		return element.voter.department === candidate.voter.department
+	})
+}
+
+export function courseExist(candidate: Candidate, votes: string[] | any) {
+	return votes.some((element: any) => {
+		return element.voter.course === candidate.voter.course
+	})
+}
+
+export function sectionExist(candidate: Candidate, votes: string[] | any) {
+	return votes.some((element: any) => {
+		return element.voter.section === candidate.voter.section
+	})
+}

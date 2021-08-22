@@ -9,11 +9,9 @@ import style from '../../../styles/Vote.style'
 import CandidateList from '../../../components/lists/CandidateList';
 import { existInVotes, position_is_in_votes, removeVote, toggleCard, warningAlert } from '../VoteProcesses';
 
-
 type Props = {
     ids?: string[]
 };
-
 const VPs: FC<Props> = ( props ) => {
 
     const [ candidates, setCandidates ] = React.useState<any>( [] )

@@ -12,7 +12,6 @@ import { existInVotes, position_is_in_votes, removeVote, toggleCard, warningAler
 type Props = {
     ids?: string[]
 };
-
 const Senatorial: FC<Props> = ( props ) => {
 
     const [ candidates, setCandidates ] = React.useState<any>( [] )
