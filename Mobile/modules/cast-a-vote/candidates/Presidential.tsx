@@ -1,7 +1,6 @@
 
 import React, { FC } from 'react';
 import { Image, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
 import CandidateList from '../../../components/lists/CandidateList';
 import { collection } from '../../../firebase/firebase';
 import { Collections } from '../../../Models/Admin';
@@ -41,7 +40,7 @@ const Presidential: FC<Props> = ( props ) => {
     }
 
     const vote = ( candidate: Candidate ) => {
-        if ( candidate.position === LineUpType.President || candidate.position === LineUpType.VP ) {
+        if ( candidate.position === LineUpType.President ) {
             if ( position_is_in_votes( candidate, votes ) === 1 && !existInVotes( candidate, votes ) ) {
                 return warningAlert( 1 )
             }

@@ -18,7 +18,7 @@ export function existInVotes(candidate: Candidate, votes: string[] | any) {
 }
 
 export function warningAlert(maximumVotes: number) {
-	alert(`Maximum votes exceeded  Maximum of only ${maximumVotes} vote(s) for this position`)
+	alert(`Maximum votes exceeded ${'\n'}  Maximum of only ${maximumVotes} vote(s) for this position`)
 }
 
 export function removeVote(candidate: Candidate, votes: string[] | any) {
