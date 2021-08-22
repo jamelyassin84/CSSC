@@ -6,10 +6,15 @@ import style from '../../styles/steps/step.style'
 import ActiveDot from '../../components/steps/ActiveDot'
 import Dot from '../../components/steps/Dot'
 import * as Animatable from 'react-native-animatable'
+import Colors from '../../constants/Colors'
+import useColorScheme from '../../hooks/useColorScheme'
 
 type Props = {}
 const Step1: FC<Props> = ( props ) => {
+
+    const mode = useColorScheme()
     const navigation = useNavigation()
+
     return (
         <StepContainer callback={() => {
             navigation.navigate( 'Step2' )
@@ -17,6 +22,7 @@ const Step1: FC<Props> = ( props ) => {
             <Animatable.Text
                 animation="fadeIn"
                 style={{
+                    color: Colors[ mode ].text,
                     zIndex: 9,
                     alignSelf: 'center', position: 'absolute',
                     top: '45%',
@@ -28,6 +34,7 @@ const Step1: FC<Props> = ( props ) => {
             <Animatable.Text
                 animation="slideInUp"
                 style={{
+                    color: Colors[ mode ].text,
                     zIndex: 9,
                     alignSelf: 'center', position: 'absolute',
                     top: '58%',

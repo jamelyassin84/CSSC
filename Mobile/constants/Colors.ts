@@ -10,9 +10,10 @@ export default {
 		tabIconSelected: tintColorLight,
 	},
 	dark: {
-		text: '#000',
-		background: '#fff',
-		tint: tintColorLight,
+		text: 'white',
+		background: 'black',
+		bg: '252526',
+		tint: tintColorDark,
 		tabIconDefault: 'lightgray',
 		tabIconSelected: tintColorLight,
 	},

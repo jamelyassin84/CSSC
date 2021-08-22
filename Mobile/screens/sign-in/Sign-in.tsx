@@ -11,17 +11,20 @@ import {
     View,
     KeyboardAvoidingView,
     Platform,
-    Keyboard
+    Keyboard,
 } from 'react-native';
 import Container from '../../constants/Layout';
 import { collection } from '../../firebase/firebase';
 import { Collections } from '../../Models/Admin';
 import { Voter } from '../../Models/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Colors from '../../constants/Colors';
+import useTheme from '../../hooks/useColorScheme';
 
-type Props = {};
 
-const SignIn: FC<Props> = ( props ) => {
+const SignIn: FC = () => {
+
+    const mode = useTheme()
 
     const [ isLoading, setLoading ] = React.useState( false )
     const [ hasError, sethasError ] = React.useState( false )
@@ -68,7 +71,7 @@ const SignIn: FC<Props> = ( props ) => {
                 behavior={Platform.OS == 'ios' ? 'position' : 'height'}
                 style={{ flex: 1 }}
             >
-                <Text style={style.title}><Text style={{ color: '#FFC107' }} >Answer</Text> the call of time! {'\n'}
+                <Text style={[ style.title, { color: Colors[ mode ].text } ]}><Text style={{ color: '#FFC107' }} >Answer</Text> the call of time! {'\n'}
                     <Text style={{ color: '#FFC107' }} >Exercise</Text> your right to <Text style={{ color: 'white', backgroundColor: '#FFC107' }}> vote! </Text>
                 </Text>
                 <Text style={{ textAlign: 'center' }}>Your vote matters! {'\n'} <Text style={{ color: '#FFC107' }}>College Supreme Student Council</Text></Text>
@@ -77,18 +80,18 @@ const SignIn: FC<Props> = ( props ) => {
                 <View style={{ padding: 35 }}>
                     <TextInput
                         clearButtonMode="always"
-                        placeholderTextColor="#ccc"
+                        placeholderTextColor="gray"
                         value={IDnumber}
                         onChangeText={( text: string ) => setIDnumber( text.toUpperCase() )}
-                        style={style.input} placeholder="ID Number" />
+                        style={[ style.input, { color: Colors[ mode ].text } ]} placeholder="ID Number" />
 
                     <TextInput
                         clearButtonMode="always"
-                        placeholderTextColor="#ccc"
+                        placeholderTextColor="gray"
                         secureTextEntry={true}
                         value={Section}
                         onChangeText={( text: string ) => setSection( text.toUpperCase() )}
-                        style={style.input} placeholder="Section" />
+                        style={[ style.input, { color: Colors[ mode ].text } ]} placeholder="Section" />
 
                     <Text style={{ color: 'red', textAlign: 'center', marginBottom: 10 }}>
                         {
@@ -107,7 +110,7 @@ const SignIn: FC<Props> = ( props ) => {
                 </View>
 
             </KeyboardAvoidingView>
-            <Text style={{ position: 'absolute', bottom: 20, textAlign: 'center', width: '100%' }}>All Rights Reserved. Powered By: <Text style={{ color: 'orange' }}>Jamel Eid Yassin</Text></Text>
+            <Text style={{ position: 'absolute', bottom: 20, textAlign: 'center', width: '100%', color: Colors[ mode ].text }}>All Rights Reserved. Powered By: <Text style={{ color: 'orange' }}>Jamel Eid Yassin</Text></Text>
         </Container>
     );
 };
