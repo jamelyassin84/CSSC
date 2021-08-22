@@ -13,28 +13,24 @@ import Presidential from './candidates/Presidential'
 import Reps from './candidates/Reps'
 import Senatorial from './candidates/Senatorial'
 import VPs from './candidates/VPs'
-
+import Voted from '../officers/Voted'
+import Loader from '../../components/utils/Loader'
 
 type Props = {}
 const CastAVote: FC<Props> = ( { route }: any ) => {
 
     const data = route.params
 
+    const [ isLoading, setLoading ] = React.useState<boolean>( true )
     const [ voteIds, setVoteIds ] = React.useState<string[]>( [] )
     const [ hasVoted, setHasVoted ] = React.useState<boolean>( false )
-
-    const processCandidates = ( candidates: Candidate[] ) => {
-        const temp = candidates.map( ( candidate: Candidate ) => {
-            return candidate.id
-        } )
-        return temp
-    }
 
     React.useEffect( () => {
         CheckVoterIfVoted()
     }, [] )
 
     const CheckVoterIfVoted = () => {
+        setLoading( true )
         collection( Collections.Votes )
             .where( 'voter', '==', data.user_id )
             .get()
@@ -44,6 +40,7 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
                     temp.push( 1 )
                 } );
                 setHasVoted( temp.length !== 0 ? true : false )
+                setLoading( false )
             } )
     }
 
@@ -77,36 +74,61 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
         )
     }
 
+    const processCandidates = ( candidates: Candidate[] ) => {
+        const temp = candidates.map( ( candidate: Candidate ) => {
+            return candidate.id
+        } )
+        setVoteIds( [ ...voteIds, ...temp ] )
+    }
+
     return (
-        <Container>
-            <HomeHeader text={`CSSC ${ data.campus } Campus`} />
-            <ScrollView showsVerticalScrollIndicator={false}
-                style={hasVoted ? { position: 'absolute', left: '500' } : {}
+        <>
+            <Loader show={isLoading} />
+            <Voted voted={isLoading === false && hasVoted === true} campus={data.campus} />
+            <View
+                style={hasVoted === false && isLoading === false ? { position: 'absolute', left: -500 } : {}
                 }>
-                <Image
-                    style={{ width: Dimensions.get( 'screen' ).width, resizeMode: 'contain', height: 200 }}
-                    source={require( '../../assets/landing/election.png' )} />
+                <Container>
+                    <HomeHeader text={`CSSC ${ data.campus } Campus`} />
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <Image
+                            style={{ width: Dimensions.get( 'screen' ).width, resizeMode: 'contain', height: 200 }}
+                            source={require( '../../assets/landing/election.png' )} />
 
-                <Presidential onVote={( candidates: Candidate[] ) => setVoteIds( [ ...voteIds, ...processCandidates( candidates ) ] )} />
+                        <Presidential
+                            onVote={( candidates: Candidate[] ) => processCandidates( candidates )}
+                        />
 
-                <VPs onVote={( candidates: Candidate[] ) => setVoteIds( [ ...voteIds, ...processCandidates( candidates ) ] )} />
+                        <VPs
+                            onVote={( candidates: Candidate[] ) => processCandidates( candidates )}
+                        />
 
-                <Senatorial onVote={( candidates: Candidate[] ) => setVoteIds( [ ...voteIds, ...processCandidates( candidates ) ] )} />
+                        <Senatorial
+                            onVote={( candidates: Candidate[] ) => processCandidates( candidates )}
+                        />
 
-                <Governor onVote={( candidates: Candidate[] ) => setVoteIds( [ ...voteIds, ...processCandidates( candidates ) ] )} />
+                        <Governor
+                            onVote={( candidates: Candidate[] ) => processCandidates( candidates )}
+                        />
 
-                <Reps onVote={( candidates: Candidate[] ) => setVoteIds( [ ...voteIds, ...processCandidates( candidates ) ] )} />
+                        <Reps
+                            onVote={( candidates: Candidate[] ) => processCandidates( candidates )}
+                        />
 
-                <Mayors onVote={( candidates: Candidate[] ) => setVoteIds( [ ...voteIds, ...processCandidates( candidates ) ] )} />
+                        <Mayors
+                            onVote={( candidates: Candidate[] ) => processCandidates( candidates )}
+                        />
 
-                <TouchableOpacity onPress={() => submitVote()} style={{ backgroundColor: '#FFC107', padding: 16, margin: 32 }}>
-                    <Text style={{ textAlign: 'center' }}>Submit Vote</Text>
-                </TouchableOpacity>
+                        <TouchableOpacity onPress={() => submitVote()} style={{ backgroundColor: '#FFC107', padding: 16, margin: 32 }}>
+                            <Text style={{ textAlign: 'center' }}>Submit Vote</Text>
+                        </TouchableOpacity>
 
-                <View style={{ height: 450 }} />
+                        <View style={{ height: 450 }} />
 
-            </ScrollView>
-        </Container>
+                    </ScrollView>
+                </Container>
+            </View>
+        </>
     )
 }
 

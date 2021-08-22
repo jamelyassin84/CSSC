@@ -58,14 +58,15 @@ const Presidential: FC<Props> = ( props ) => {
         if ( !existInVotes( candidate, votes ) ) {
             let tempVotes = votes
             tempVotes.push( candidate )
-            return setvotes( tempVotes )
+            setvotes( tempVotes )
         }
-        setvotes( removeVote( candidate, votes ) )
+        if ( name === true ) {
+            setvotes( removeVote( candidate, votes ) )
+        }
         props.onVote( votes )
     }
 
     const resolveBorder = ( candidate: Candidate ) => {
-        console.log( parties )
         if ( candidate.partylist === parties[ 0 ] ) {
             return { borderColor: PoliticalColors[ 0 ], borderRadius: 3 }
         }
