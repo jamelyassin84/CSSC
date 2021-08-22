@@ -10,7 +10,6 @@ import {
     TouchableOpacity,
     View,
     KeyboardAvoidingView,
-    TouchableWithoutFeedback,
     Platform,
     Keyboard
 } from 'react-native';
@@ -56,6 +55,9 @@ const SignIn: FC<Props> = ( props ) => {
                 await AsyncStorage.setItem( 'user', JSON.stringify( user ) )
                 navigation.navigate( 'ElectionResults', { campus: user.campus, user_id: user.id } )
                 setLoading( false )
+            } )
+            .catch( () => {
+                alert( 'Oops! There is something wrong with your connection. Try Again' )
             } )
     }
 

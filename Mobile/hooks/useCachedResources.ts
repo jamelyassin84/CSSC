@@ -6,7 +6,7 @@ import * as React from 'react'
 export default function useCachedResources() {
 	const [isLoadingComplete, setLoadingComplete] = React.useState(false)
 	React.useEffect(() => {
-		const loadResourcesAndDataAsync = async () => {
+		async function loadResourcesAndDataAsync() {
 			try {
 				SplashScreen.preventAutoHideAsync()
 				await Font.loadAsync({
@@ -22,5 +22,6 @@ export default function useCachedResources() {
 		}
 		loadResourcesAndDataAsync()
 	}, [])
+
 	return isLoadingComplete
 }

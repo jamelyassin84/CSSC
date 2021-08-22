@@ -1,30 +1,50 @@
 
-import React, { FC } from 'react';
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import HomeHeader from '../../components/headers/Home';
-import Container from '../../constants/Layout';
-import { Candidate } from '../../Models/Candidtate';
-import Governor from './candidates/Governor';
-import Mayors from './candidates/Mayors';
-import Presidential from './candidates/Presidential';
-import Reps from './candidates/Reps';
-import Senatorial from './candidates/Senatorial';
-import VPs from './candidates/VPs';
+import React, { FC } from 'react'
+import { Alert, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import { collection } from '../../firebase/firebase'
+import { Collections } from '../../Models/Admin'
+import { Candidate } from '../../Models/Candidtate'
+import HomeHeader from '../../components/headers/Home'
+import Container from '../../constants/Layout'
+import Governor from './candidates/Governor'
+import Mayors from './candidates/Mayors'
+import Presidential from './candidates/Presidential'
+import Reps from './candidates/Reps'
+import Senatorial from './candidates/Senatorial'
+import VPs from './candidates/VPs'
 
-type Props = {};
 
+type Props = {}
 const CastAVote: FC<Props> = ( { route }: any ) => {
 
     const data = route.params
 
     const [ voteIds, setVoteIds ] = React.useState<string[]>( [] )
+    const [ hasVoted, setHasVoted ] = React.useState<boolean>( false )
 
     const processCandidates = ( candidates: Candidate[] ) => {
         const temp = candidates.map( ( candidate: Candidate ) => {
             return candidate.id
         } )
         return temp
+    }
+
+    React.useEffect( () => {
+        CheckVoterIfVoted()
+    }, [] )
+
+    const CheckVoterIfVoted = () => {
+        collection( Collections.Votes )
+            .where( 'voter', '==', data.user_id )
+            .get()
+            .then( ( snapShot: any ) => {
+                let temp = []
+                snapShot.forEach( ( doc: any ) => {
+                    temp.push( 1 )
+                } );
+                setHasVoted( temp.length !== 0 ? true : false )
+            } )
     }
 
     const submitVote = () => {
@@ -35,7 +55,9 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
                 { text: "Cancel", },
                 {
                     text: "OK", onPress: () => {
-
+                        if ( voteIds.length === 0 ) {
+                            return alert( 'Please vote atleast one candidate' )
+                        }
                         let temp: string[] = []
                         for ( let id of voteIds ) {
                             if ( !temp.includes( id ) ) {
@@ -44,8 +66,11 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
                         }
                         let vote: any = {}
                         vote[ 'bets' ] = temp
-                        vote[ 'voter' ] = ''
-
+                        vote[ 'voter' ] = data.user_id
+                        collection( Collections.Votes ).add( vote )
+                        alert( 'You have successfully Voted' )
+                        setHasVoted( true )
+                        CheckVoterIfVoted()
                     }
                 }
             ]
@@ -55,7 +80,9 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
     return (
         <Container>
             <HomeHeader text={`CSSC ${ data.campus } Campus`} />
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false}
+                style={hasVoted ? { position: 'absolute', left: '500' } : {}
+                }>
 
                 <Presidential onVote={( candidates: Candidate[] ) => setVoteIds( [ ...voteIds, ...processCandidates( candidates ) ] )} />
 
@@ -77,7 +104,7 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
 
             </ScrollView>
         </Container>
-    );
-};
+    )
+}
 
-export default CastAVote;
+export default CastAVote

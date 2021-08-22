@@ -5,5 +5,5 @@ export enum Modes {
 	PartyListLineUps = 'Lining Up PartyLists',
 	PlatformCustomization = 'Candidate Platform Customization',
 	Voting = 'Voting Period',
-	Results = 'Reviewing of Results',
+	Finished = 'Voting is finished',
 }
