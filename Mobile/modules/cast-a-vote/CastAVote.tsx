@@ -38,7 +38,7 @@ export const style = StyleSheet.create( {
         backgroundColor: '#FFC107',
         padding: 5,
         paddingLeft: 15,
-        color: 'white'
+        fontWeight: 'bold'
     },
     image: {
         height: 50,

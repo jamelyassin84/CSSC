@@ -22,18 +22,10 @@ export default function BottomTabNavigator( { route }: any ) {
                 activeTintColor: Colors[ colorScheme ].tint
             }}>
             <Tab.Screen
-                name="Election Results"
-                component={ElectionResultsNavigator}
-                options={{
-                    tabBarIcon: ( { color } ) => <AntDesign name="barchart" size={24} color={color} />,
-                }}
-                initialParams={{ campus: data.campus }}
-            />
-            <Tab.Screen
                 name="Cast a Vote"
                 component={CastAVoteNavigator}
                 options={{
-                    tabBarIcon: ( { color } ) => <MaterialCommunityIcons name="vote-outline" size={34} color={color} />,
+                    tabBarIcon: ( { color } ) => <MaterialCommunityIcons name="vote-outline" size={24} color={color} />,
                 }}
                 initialParams={{ campus: data.campus }}
             />
@@ -42,6 +34,14 @@ export default function BottomTabNavigator( { route }: any ) {
                 component={PartiesNavigator}
                 options={{
                     tabBarIcon: ( { color } ) => <Feather name="users" size={24} color={color} />,
+                }}
+                initialParams={{ campus: data.campus }}
+            />
+            <Tab.Screen
+                name="Election Results"
+                component={ElectionResultsNavigator}
+                options={{
+                    tabBarIcon: ( { color } ) => <AntDesign name="barchart" size={24} color={color} />,
                 }}
                 initialParams={{ campus: data.campus }}
             />
