@@ -95,7 +95,7 @@ const Reps: FC<Props> = ( props ) => {
         return { color: PoliticalColors[ 1 ] }
     }
     return (
-        <View>
+        <View style={candidates.length === 0 ? { position: 'absolute', left: -500 } : {}}>
             <Text style={style.subtitle}>Candidates for Representatives</Text>
             {
                 candidates.map( ( candidate: any, index: number ) => (

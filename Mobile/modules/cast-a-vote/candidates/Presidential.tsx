@@ -92,7 +92,7 @@ const Presidential: FC<Props> = ( props ) => {
     }
 
     return (
-        <View>
+        <View style={candidates.length === 0 ? { position: 'absolute', left: -500 } : {}}>
             <Text style={style.subtitle}>Presidential Candidates</Text>
             {
                 candidates.map( ( candidate: any, index: number ) => (
