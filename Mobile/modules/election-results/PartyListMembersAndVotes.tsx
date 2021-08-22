@@ -7,9 +7,14 @@ import CommonHeader from '../../components/headers/CommonHeader'
 import MemberAndVotesList from '../../components/lists/MemberAndVotesList'
 import WithRefreshComponent from '../../components/utils/WithRefreshComponent'
 import Container from '../../constants/Layout'
+import Colors from '../../constants/Colors'
+import useTheme from '../../hooks/useColorScheme'
+import { sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses'
 
 type Props = {}
 const PartyListMembersAndVotes: FC<Props> = ( { route }: any ) => {
+
+    const mode = useTheme()
     const data = route.params
 
     const [ isLoading, setLoading ] = React.useState( false )
@@ -60,7 +65,7 @@ const PartyListMembersAndVotes: FC<Props> = ( { route }: any ) => {
                         } )
                     } )
                 }
-                setcandidates( candidatesData )
+                setcandidates( sortCandidatesByPosition( candidatesData ) )
                 setLoading( false )
             } )
     }
@@ -81,14 +86,14 @@ const PartyListMembersAndVotes: FC<Props> = ( { route }: any ) => {
                             }
                             body={
                                 <>
-                                    <Text style={{ fontSize: 16 }}>{candidate.voter.name}</Text>
+                                    <Text style={{ fontSize: 16, color: Colors[ mode ].text }}>{candidate.voter.name}</Text>
                                     <Text style={{ color: '#28A745' }}>{candidate.position}</Text>
                                 </>
                             }
                             values={
                                 <>
-                                    <Text>{candidate.votes || 0}</Text>
-                                    <Text style={{ color: '#28A745', fontWeight: 'bold' }}>
+                                    <Text style={{ color: '#ccc', textAlign: 'right' }}>{candidate.votes || 0}</Text>
+                                    <Text style={{ color: '#28A745', fontWeight: 'bold', textAlign: 'right' }}>
                                         {getPercent( parseInt( candidate.votes || 0 ), parseInt( data.voters || 0 ) )}
                                         %</Text>
                                 </>

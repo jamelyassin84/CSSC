@@ -7,7 +7,7 @@ import { Collections } from '../../../Models/Admin'
 import { Candidate } from '../../../Models/Candidtate'
 import { LineUpType } from '../../../Models/LineUp'
 import style from '../../../styles/Vote.style'
-import { existInVotes, position_is_in_votes, removeVote, toggleCard, warningAlert } from '../VoteProcesses'
+import { existInVotes, position_is_in_votes, removeVote, sortCandidatByName, toggleCard, warningAlert } from '../VoteProcesses'
 import Colors from '../../../constants/Colors'
 import useTheme from '../../../hooks/useColorScheme'
 import { PoliticalColors } from '../../../constants/AppConstants'
@@ -43,7 +43,7 @@ const Presidential: FC<Props> = ( props ) => {
                     presidents.push( candidate )
                 }
             } )
-            setCandidates( presidents )
+            setCandidates( sortCandidatByName( presidents ) )
         } )
     }
 

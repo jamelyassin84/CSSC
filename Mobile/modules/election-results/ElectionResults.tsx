@@ -21,7 +21,7 @@ const ElectionResults: FC<Props> = ( { route }: any ) => {
     const navigation = useNavigation()
 
     const [ isLoading, setLoading ] = React.useState( false )
-    const [ partylists_data, setpartylists_data ] = React.useState( [] )
+    const [ partylists_data, setpartylists_data ] = React.useState<PartyList[]>( [] )
     const [ partylists, setpartylists ] = React.useState( 0 )
     const [ candidates, setcandidates ] = React.useState( 0 )
     const [ voters, setvoters ] = React.useState( 0 )
@@ -58,7 +58,7 @@ const ElectionResults: FC<Props> = ( { route }: any ) => {
                 snapshot.forEach( ( doc: any ) => {
                     temp.push( doc.data() )
                 } )
-                setpartylists_data( temp )
+                setpartylists_data( temp.sort( ( a: PartyList, b: PartyList ) => a.acronym.localeCompare( b.acronym ) ) )
                 setpartylists( temp.length )
             } )
     }

@@ -122,7 +122,7 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
                             <Text style={{ textAlign: 'center' }}>Submit Vote</Text>
                         </TouchableOpacity>
 
-                        <View style={{ height: 250 }} />
+                        <View style={{ height: 150 }} />
 
                     </ScrollView>
                 </Container>

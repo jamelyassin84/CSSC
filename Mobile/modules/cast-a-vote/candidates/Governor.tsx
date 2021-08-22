@@ -10,7 +10,7 @@ import { Collections } from '../../../Models/Admin'
 import { Candidate } from '../../../Models/Candidtate'
 import { LineUpType } from '../../../Models/LineUp'
 import style from '../../../styles/Vote.style'
-import { departmentExist, existInVotes, position_is_in_votes, removeVote, toggleCard, warningAlert } from '../VoteProcesses'
+import { departmentExist, existInVotes, position_is_in_votes, removeVote, sortCandidatByName, toggleCard, warningAlert } from '../VoteProcesses'
 
 type Props = {
     onVote: Function
@@ -30,20 +30,20 @@ const Governor: FC<Props> = ( props ) => {
 
     const candidateList = () => {
         collection( Collections.Candidate ).get().then( ( data: any ) => {
-            let presidents: Candidate[] = []
+            let govs: Candidate[] = []
             let candidates: Candidate[] = []
             data.forEach( ( canndidate: any ) => {
                 candidates.push( Object.assign( canndidate.data(), { id: canndidate.id } ) )
             } )
             candidates.forEach( ( candidate: Candidate ) => {
                 if ( candidate.position === LineUpType.Governor ) {
-                    presidents.push( candidate )
+                    govs.push( candidate )
                 }
                 if ( !parties.includes( candidate.partylist ) ) {
                     setparties( [ ...parties, candidate.partylist ] )
                 }
             } )
-            setCandidates( presidents )
+            setCandidates( sortCandidatByName( govs ) )
         } )
     }
 

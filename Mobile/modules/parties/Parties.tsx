@@ -17,7 +17,7 @@ const Parties: FC<Props> = ( { route }: any ) => {
     const navigation = useNavigation()
 
     const [ isLoading, setLoading ] = React.useState( false )
-    const [ parties, setparties ] = React.useState( [] )
+    const [ parties, setparties ] = React.useState<PartyList[]>( [] )
 
     React.useEffect( () => {
         collection( Collections.Partylist ).onSnapshot( () => {
@@ -34,11 +34,11 @@ const Parties: FC<Props> = ( { route }: any ) => {
         collection( Collections.Partylist )
             .where( 'campus', '==', data.campus )
             .get().then( ( snapshot ) => {
-                let temp: any = []
+                let temp: PartyList[] = []
                 snapshot.forEach( ( doc: any ) => {
                     temp.push( doc.data() )
                 } )
-                setparties( temp )
+                setparties( temp.sort( ( a: PartyList, b: PartyList ) => a.acronym.localeCompare( b.acronym ) ) )
                 setLoading( false )
             } )
     }

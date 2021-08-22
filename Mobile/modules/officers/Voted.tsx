@@ -12,6 +12,7 @@ import useTheme from '../../hooks/useColorScheme';
 import { Collections } from '../../Models/Admin';
 import { Candidate } from '../../Models/Candidtate';
 import style from '../../styles/Vote.style'
+import { sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses';
 
 type Props = {
     voted: boolean
@@ -53,7 +54,7 @@ const Voted: FC<Props> = ( props ) => {
     }
 
     const newLineUps = ( candidates: Candidate[] ) => {
-        setLineUp( candidates )
+        setLineUp( sortCandidatesByPosition( candidates ) )
     }
 
     return (

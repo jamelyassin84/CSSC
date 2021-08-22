@@ -45,11 +45,12 @@ const style = StyleSheet.create( {
         borderWidth: 1,
         borderColor: 'rgba(150,150,150,.2)',
         alignItems: 'center',
-        minWidth: 300
+        minWidth: 300,
+        height: 100,
     },
     iconContainer: {
-        width: 70,
-        height: 70,
+        width: 100,
+        height: 100,
         marginRight: 20
     },
     iconHolder: {

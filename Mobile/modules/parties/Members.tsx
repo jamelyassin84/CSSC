@@ -4,15 +4,20 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import CommonHeader from '../../components/headers/CommonHeader'
 import MemberList from '../../components/lists/MemberList'
 import WithRefreshComponent from '../../components/utils/WithRefreshComponent'
+import Colors from '../../constants/Colors'
 import Container from '../../constants/Layout'
 import { collection } from '../../firebase/firebase'
+import useTheme from '../../hooks/useColorScheme'
 import { Collections } from '../../Models/Admin'
 import { Candidate } from '../../Models/Candidtate'
+import { LineUpType } from '../../Models/LineUp'
 import { PartyList } from '../../Models/Partylist'
+import { sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses'
 
 type Props = {}
 const Members: FC<Props> = ( { route }: any ) => {
 
+    const mode = useTheme()
     const navigation = useNavigation()
 
     const data = route.params
@@ -50,9 +55,11 @@ const Members: FC<Props> = ( { route }: any ) => {
                 snapshot.forEach( ( doc: any ) => {
                     temp.push( Object.assign( doc.data(), { id: doc.id } ) )
                 } )
-                setCandidates( temp )
+                setCandidates( sortCandidatesByPosition( temp ) )
             } )
     }
+
+
 
     return (
         <Container>
@@ -83,9 +90,9 @@ const Members: FC<Props> = ( { route }: any ) => {
                                 }
                                 center={
                                     <>
-                                        <Text style={{ fontSize: 16 }}>{candidate.voter.name}</Text>
+                                        <Text style={{ fontSize: 16, color: Colors[ mode ].text }}>{candidate.voter.name}</Text>
                                         <Text style={{ color: '#28A745' }}>{candidate.position}</Text>
-                                        <Text style={{ fontSize: 14 }}>{candidate.voter.department}</Text>
+                                        <Text style={{ fontSize: 14, color: Colors[ mode ].text }}>{candidate.voter.department}</Text>
                                         <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.voter.course}</Text>
                                     </>
                                 }

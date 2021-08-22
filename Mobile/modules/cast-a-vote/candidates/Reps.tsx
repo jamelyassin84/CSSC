@@ -9,7 +9,7 @@ import { Collections } from '../../../Models/Admin'
 import { Candidate } from '../../../Models/Candidtate'
 import { LineUpType } from '../../../Models/LineUp'
 import style from '../../../styles/Vote.style'
-import { departmentExist, existInVotes, position_is_in_votes, removeVote, toggleCard, warningAlert, yearExist } from '../VoteProcesses'
+import { departmentExist, existInVotes, position_is_in_votes, removeVote, sortCandidatByName, toggleCard, warningAlert, yearExist } from '../VoteProcesses'
 
 type Props = {
     onVote: Function
@@ -29,20 +29,20 @@ const Reps: FC<Props> = ( props ) => {
 
     const candidateList = () => {
         collection( Collections.Candidate ).get().then( ( data: any ) => {
-            let presidents: Candidate[] = []
+            let reps: Candidate[] = []
             let candidates: Candidate[] = []
             data.forEach( ( canndidate: any ) => {
                 candidates.push( Object.assign( canndidate.data(), { id: canndidate.id } ) )
             } )
             candidates.forEach( ( candidate: Candidate ) => {
                 if ( candidate.position === LineUpType.Representative ) {
-                    presidents.push( candidate )
+                    reps.push( candidate )
                 }
                 if ( !parties.includes( candidate.partylist ) ) {
                     setparties( [ ...parties, candidate.partylist ] )
                 }
             } )
-            setCandidates( presidents )
+            setCandidates( sortCandidatByName( reps ) )
         } )
     }
 
