@@ -42,7 +42,7 @@ const style = StyleSheet.create( {
         marginLeft: 16
     },
     active: {
-        borderWidth: 3,
+        borderWidth: 1,
         borderColor: '#007BFF',
         shadowColor: "#007BFF",
         shadowOffset: {
@@ -53,6 +53,7 @@ const style = StyleSheet.create( {
         shadowRadius: 3.84,
         borderRadius: 5,
         elevation: 5,
+        margin: 5
     }
 } )
 

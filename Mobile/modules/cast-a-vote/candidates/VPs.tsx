@@ -58,7 +58,7 @@ const VPs: FC<Props> = ( props ) => {
 
     return (
         <View>
-            <Text style={style.subtitle}>Presidential Candidates</Text>
+            <Text style={style.subtitle}>Vice Presidential Candidates</Text>
             {
                 candidates.map( ( candidate: any, index: number ) => (
                     <CandidateList
