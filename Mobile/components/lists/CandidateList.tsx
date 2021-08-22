@@ -9,13 +9,14 @@ type Props = {
     left?: any
     center?: any
     right?: any
+    active?: boolean | any
 };
 
 const CandidateList: FC<Props> = ( props ) => {
     return (
         <TouchableOpacity
             onPress={() => props.callback()}
-            style={style.container}>
+            style={[ style.container, ( props.active === true ? style.active : {} ) ]}>
             {props.left}
             <View style={style.body}>
                 {props.center}
@@ -31,13 +32,27 @@ const style = StyleSheet.create( {
     container: {
         flexDirection: 'row',
         padding: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(150,150,150,.2)',
-        alignItems: 'center'
+        borderWidth: 1,
+        borderColor: 'rgba(150,150,150,.2)',
+        alignItems: 'center',
+        backgroundColor: 'white'
     },
     body: {
         flex: 1,
         marginLeft: 16
+    },
+    active: {
+        borderWidth: 3,
+        borderColor: '#007BFF',
+        shadowColor: "#007BFF",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        borderRadius: 5,
+        elevation: 5,
     }
 } )
 
