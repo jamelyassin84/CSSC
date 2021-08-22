@@ -22,8 +22,8 @@ const Summaries: FC<Props> = ( props ) => {
                 </View>
             </View>
             <View>
-                <Text style={{ fontSize: 16, color: Colors[ colorScheme ].text, fontWeight: 'bold' }}>{props.title}</Text>
-                <Text style={{ color: '#ccc' }}>{props.value}</Text>
+                <Text style={{ fontSize: 20, color: Colors[ colorScheme ].text, fontWeight: 'bold' }}>{props.value}</Text>
+                <Text style={{ color: '#ccc' }}>{props.title}</Text>
             </View>
         </View>
     );
@@ -33,8 +33,7 @@ const style = StyleSheet.create( {
     container: {
         margin: 5,
         marginHorizontal: 20,
-        padding: 10,
-        shadowColor: "rgba(5, 36, 86,.9)",
+        shadowColor: "rgba(15, 136, 186,.9)",
         shadowOffset: {
             width: 0,
             height: 4,
@@ -46,7 +45,7 @@ const style = StyleSheet.create( {
         borderWidth: 1,
         borderColor: 'rgba(150,150,150,.2)',
         alignItems: 'center',
-        minWidth: 250
+        minWidth: 300
     },
     iconContainer: {
         width: 70,

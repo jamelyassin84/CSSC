@@ -4,6 +4,8 @@ import { Entypo } from '@expo/vector-icons'
 import { StyleSheet, View } from 'react-native'
 import { Text } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import useTheme from '../../hooks/useColorScheme'
+import Colors from '../../constants/Colors'
 
 type Props = {
     icon?: any,
@@ -11,12 +13,13 @@ type Props = {
     callback?: Function,
 }
 const DefaultListView: FC<Props> = ( props ) => {
+    const mode = useTheme()
     return (
         <TouchableOpacity style={style.container} onPress={() => {
             props.callback === undefined ? void 0 : props.callback()
         }}>
             {props.icon}
-            <Text style={style.text}>{props.title}</Text>
+            <Text style={[ style.text, { color: Colors[ mode ].text } ]}>{props.title}</Text>
             <Entypo name="chevron-thin-right" size={14} color="black" />
         </TouchableOpacity>
     )

@@ -1,6 +1,8 @@
 
 import React, { FC } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import Colors from '../../constants/Colors'
+import useTheme from '../../hooks/useColorScheme'
 import { Candidate } from '../../Models/Candidtate'
 
 type Props = {
@@ -12,10 +14,11 @@ type Props = {
     active?: boolean | any
 }
 const CandidateList: FC<Props> = ( props ) => {
+    const mode = useTheme()
     return (
         <TouchableOpacity
             onPress={() => props.callback()}
-            style={[ style.container, ( props.active === true ? style.active : {} ) ]}>
+            style={[ style.container, ( props.active === true ? style.active : {} ), { backgroundColor: Colors[ mode ].background } ]}>
             {props.left}
             <View style={style.body}>
                 {props.center}
