@@ -33,10 +33,9 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
         setLoading( true )
         collection( Collections.Votes )
             .where( 'voter', '==', data.user_id )
-            .get()
-            .then( ( snapShot: any ) => {
+            .onSnapshot( ( snapShot: any ) => {
                 let temp = []
-                snapShot.forEach( ( doc: any ) => {
+                snapShot.forEach( () => {
                     temp.push( 1 )
                 } );
                 setHasVoted( temp.length !== 0 ? true : false )
@@ -86,7 +85,7 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
             <Loader show={isLoading} />
             <Voted voted={isLoading === false && hasVoted === true} campus={data.campus} />
             <View
-                style={hasVoted === false && isLoading === false ? { position: 'absolute', left: -500 } : {}
+                style={hasVoted === true && isLoading === true ? { position: 'absolute', left: -500 } : {}
                 }>
                 <Container>
                     <HomeHeader text={`CSSC ${ data.campus } Campus`} />
@@ -123,7 +122,7 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
                             <Text style={{ textAlign: 'center' }}>Submit Vote</Text>
                         </TouchableOpacity>
 
-                        <View style={{ height: 450 }} />
+                        <View style={{ height: 250 }} />
 
                     </ScrollView>
                 </Container>

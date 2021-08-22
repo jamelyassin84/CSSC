@@ -24,7 +24,9 @@ const Voted: FC<Props> = ( props ) => {
     const [ lineUp, setLineUp ] = React.useState<any>( [] )
 
     React.useEffect( () => {
-        getLineUps()
+        collection( Collections.Votes ).onSnapshot( () => {
+            getLineUps()
+        } )
     }, [] )
 
     const getLineUps = () => {
@@ -49,7 +51,6 @@ const Voted: FC<Props> = ( props ) => {
             } )
         } )
     }
-
 
     const newLineUps = ( candidates: Candidate[] ) => {
         setLineUp( candidates )
