@@ -1,16 +1,14 @@
 import { Dimensions, StyleSheet } from 'react-native';
 export default StyleSheet.create( {
     subtitle: {
-        backgroundColor: '#FFC107',
         padding: 5,
         paddingLeft: 15,
-        fontWeight: 'bold'
+        marginTop: 20,
+        color: 'gray',
     },
     image: {
-        height: 50,
-        width: 50,
+        height: 80,
+        width: 80,
         borderRadius: 50,
-        borderWidth: 1,
-        borderColor: 'orange'
     }
 } )

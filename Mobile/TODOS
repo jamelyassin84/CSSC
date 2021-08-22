@@ -4,7 +4,6 @@ order by name alphabetically
 reset senators only 
 reset reps only
 reset mayors only
-partylist color
 officers
 
 hooks

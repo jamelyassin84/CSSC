@@ -1,4 +1,3 @@
-
 import React, { FC } from 'react'
 import { Image, Text, View } from 'react-native'
 import CandidateList from '../../../components/lists/CandidateList'
@@ -8,15 +7,21 @@ import { Candidate } from '../../../Models/Candidtate'
 import { LineUpType } from '../../../Models/LineUp'
 import style from '../../../styles/Vote.style'
 import { existInVotes, position_is_in_votes, removeVote, toggleCard, warningAlert } from '../VoteProcesses'
+import Colors from '../../../constants/Colors'
+import useTheme from '../../../hooks/useColorScheme'
+import { PoliticalColors } from '../../../constants/AppConstants'
 
 type Props = {
     onVote: Function
 }
 const Senatorial: FC<Props> = ( props ) => {
 
+    const mode = useTheme()
+
     const [ candidates, setCandidates ] = React.useState<any>( [] )
     const [ votes, setvotes ] = React.useState<any>( [] )
     const [ voteNames, setVoteNames ] = React.useState<any>( {} )
+    const [ parties, setparties ] = React.useState<any>( [] )
 
     React.useEffect( () => {
         candidateList()
@@ -32,6 +37,9 @@ const Senatorial: FC<Props> = ( props ) => {
             candidates.forEach( ( candidate: Candidate ) => {
                 if ( candidate.position === LineUpType.Senator ) {
                     senators.push( candidate )
+                }
+                if ( !parties.includes( candidate.partylist ) ) {
+                    setparties( [ ...parties, candidate.partylist ] )
                 }
             } )
             setCandidates( senators )
@@ -55,6 +63,33 @@ const Senatorial: FC<Props> = ( props ) => {
         props.onVote( votes )
     }
 
+    const resolveBorder = ( candidate: Candidate ) => {
+        console.log( parties )
+        if ( candidate.partylist === parties[ 0 ] ) {
+            return { borderColor: PoliticalColors[ 0 ], borderRadius: 3 }
+        }
+        if ( candidate.partylist === parties[ 1 ] ) {
+            return { borderColor: PoliticalColors[ 1 ], borderRadius: 3 }
+        }
+        if ( candidate.partylist === parties[ 2 ] ) {
+            return { borderColor: PoliticalColors[ 2 ], borderRadius: 3 }
+        }
+        return { borderColor: PoliticalColors[ 1 ], borderRadius: 3 }
+    }
+
+    const resolveText = ( candidate: Candidate ) => {
+        if ( candidate.partylist === parties[ 0 ] ) {
+            return { color: PoliticalColors[ 0 ] }
+        }
+        if ( candidate.partylist === parties[ 1 ] ) {
+            return { color: PoliticalColors[ 1 ] }
+        }
+        if ( candidate.partylist === parties[ 2 ] ) {
+            return { color: PoliticalColors[ 2 ] }
+        }
+        return { color: PoliticalColors[ 1 ] }
+    }
+
     return (
         <View>
             <Text style={style.subtitle}>Senatorial Candidates</Text>
@@ -71,16 +106,12 @@ const Senatorial: FC<Props> = ( props ) => {
                         }
                         center={
                             <>
-                                <Text style={{ fontSize: 16 }}>{candidate.voter.name}</Text>
-                                <Text style={{ color: 'white', textAlign: 'center', padding: 2, alignSelf: 'flex-start', backgroundColor: 'red', marginVertical: 4 }}>{candidate.position}</Text>
-                                <Text style={{ fontSize: 14 }}>{candidate.voter.department}</Text>
-                                <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.voter.course}</Text>
-                            </>
-                        }
-                        right={
-                            <>
-                                <Text style={{ marginBottom: 26, color: '#ccc', textAlign: 'right' }}>{candidate.voter.year} yr {candidate.voter.section}</Text>
-                                <Text style={{ color: 'blue', textAlign: 'right' }}>{candidate.partylist}</Text>
+                                <Text style={{ fontSize: 16, color: Colors[ mode ].text }}>{candidate.voter.name}</Text>
+                                <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.position}</Text>
+                                <View style={[ { paddingHorizontal: 10, paddingVertical: 5, alignSelf: 'flex-start', marginVertical: 4, borderWidth: 1 }, resolveBorder( candidate ) ]}>
+                                    <Text style={[ { textAlign: 'center' }, resolveText( candidate ) ]}>{candidate.partylist}</Text>
+                                </View>
+                                <Text style={{ fontSize: 11, color: 'gray' }}>{candidate.voter.department}-{candidate.voter.course} {candidate.voter.section}</Text>
                             </>
                         }
                         callback={() => vote( candidate )}

@@ -35,12 +35,11 @@ const style = StyleSheet.create( {
         flexDirection: 'row',
         padding: 16,
         borderWidth: 1,
-        borderColor: 'rgba(150,150,150,.2)',
+        borderColor: 'transparent',
         alignItems: 'center',
         backgroundColor: 'white'
     },
     body: {
-        flex: 1,
         marginLeft: 16
     },
     active: {
