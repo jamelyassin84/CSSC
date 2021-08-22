@@ -7,7 +7,7 @@ import { collection } from '../../../firebase/firebase';
 import { Collections } from '../../../Models/Admin';
 import { Candidate } from '../../../Models/Candidtate';
 import { LineUpType } from '../../../Models/LineUp';
-import { style } from '../CastAVote';
+import style from '../../../styles/Vote.style'
 
 type Props = {
     ids?: string[]

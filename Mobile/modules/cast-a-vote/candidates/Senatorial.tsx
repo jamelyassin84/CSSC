@@ -3,12 +3,11 @@ import React, { FC } from 'react';
 import { Image, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import CandidateList from '../../../components/lists/CandidateList';
-import { groupBy } from '../../../constants/helpers';
 import { collection } from '../../../firebase/firebase';
 import { Collections } from '../../../Models/Admin';
 import { Candidate } from '../../../Models/Candidtate';
 import { LineUpType } from '../../../Models/LineUp';
-import { style } from '../CastAVote';
+import style from '../../../styles/Vote.style'
 
 type Props = {
     ids?: string[]
