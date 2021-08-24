@@ -32,8 +32,8 @@ const OfficerList: FC<Props> = ( props ) => {
             }
             values={
                 <>
-                    <Text style={{ color: '#ccc', textAlign: 'right' }}>Total Votes</Text>
-                    <Text style={{ color: '#28A745', textAlign: 'right', fontSize: 17 }}>{props.candidate.votes || 0}</Text>
+                    <Text style={{ color: '#ccc', textAlign: 'right' }}>Total Vote(s)</Text>
+                    <Text style={{ color: 'red', textAlign: 'right', fontSize: 17, fontWeight: 'bold' }}>{props.candidate.votes || 0}</Text>
                 </>
             }
         />

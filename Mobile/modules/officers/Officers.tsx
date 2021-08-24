@@ -9,10 +9,10 @@ import { Collections } from '../../Models/Admin'
 import { Candidate } from '../../Models/Candidtate'
 import { LineUpType } from '../../Models/LineUp'
 import { sortByVotes, sortCandidatByName, sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses'
-import firebase from 'firebase'
 import { VoteType } from '../election-results/PartyListMembersAndVotes'
 import OfficerList from '../../components/lists/OfficerList'
-import { GovProcesses } from './CSSGOfficersProcess'
+import { GovProcesses, RepProcesses } from './CSSGOfficersProcess'
+import { yearLevels } from '../../constants/AppConstants'
 
 type Props = {}
 const Officers: FC<Props> = ( { route }: any ) => {
@@ -111,11 +111,16 @@ const Officers: FC<Props> = ( { route }: any ) => {
                 mayors.push( candidate )
             }
         } )
-        senators = senators.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 12 )
-        govs = GovProcesses( govs, departments )
-        reps = reps.sort( ( a: any, b: any ) => a.votes + b.votes )
         mayors = mayors.sort( ( a: any, b: any ) => a.votes + b.votes )
-        setcandidates( sortCandidatesByPosition( [ ...[], president, vp, ...senators, ...sortByVotes( govs ), ...reps, ...mayors ] ) )
+        setcandidates( sortCandidatesByPosition( [
+            ...[],
+            president,
+            vp,
+            ...senators.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 12 ),
+            ...sortByVotes( GovProcesses( govs, departments ) ),
+            ...sortByVotes( RepProcesses( reps, departments ) ),
+            ...mayors
+        ] ) )
         setLoading( false )
     }
 
