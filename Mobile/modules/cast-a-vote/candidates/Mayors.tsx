@@ -23,7 +23,9 @@ const Mayors: FC<Props> = ( props ) => {
     const [ parties, setparties ] = React.useState<any>( [] )
 
     React.useEffect( () => {
-        candidateList()
+        collection( Collections.Candidate ).onSnapshot( () => {
+            candidateList()
+        } )
     }, [] )
 
     const candidateList = () => {
