@@ -97,6 +97,7 @@ const Members: FC<Props> = ( { route }: any ) => {
                                 }
                                 callback={() => navigation.navigate( 'ViewPlatform', {
                                     voter_id: candidate.voter.id,
+                                    candidate: candidate,
                                     name: candidate.voter.name,
                                     style: style,
                                 } )}
@@ -120,7 +121,6 @@ const style = StyleSheet.create( {
         color: 'red',
         fontSize: 16,
         fontWeight: 'bold',
-        textAlign: 'center'
     },
     image: {
         height: 50,
