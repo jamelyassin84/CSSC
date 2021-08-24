@@ -19,4 +19,5 @@ export type BottomTabParamList = {
     'Cast a Vote': any
     'Political Parties': any
     campus: any
+    'CSSC Officers': any
 }

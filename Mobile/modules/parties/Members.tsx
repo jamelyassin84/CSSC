@@ -12,7 +12,7 @@ import { Collections } from '../../Models/Admin'
 import { Candidate } from '../../Models/Candidtate'
 import { LineUpType } from '../../Models/LineUp'
 import { PartyList } from '../../Models/Partylist'
-import { sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses'
+import { sortCandidatByName, sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses'
 
 type Props = {}
 const Members: FC<Props> = ( { route }: any ) => {
@@ -67,14 +67,14 @@ const Members: FC<Props> = ( { route }: any ) => {
             <WithRefreshComponent onRefresh={() => onRefresh} loading={isLoading}>
 
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={style.title}>English Title</Text>
-                    <Text style={style.subtitle}>{party.english_title} </Text>
+                    <Text style={style.subtitle}>English Title</Text>
+                    <Text style={style.title}>{party.english_title} </Text>
 
-                    <Text style={style.title}>Filpino Title</Text>
-                    <Text style={style.subtitle}>{party.filipino_title} </Text>
+                    <Text style={style.subtitle}>Filpino Title</Text>
+                    <Text style={style.title}>{party.filipino_title} </Text>
 
-                    <Text style={style.title}>Platform</Text>
-                    <Text style={style.subtitle}>{party.platform}</Text>
+                    <Text style={style.subtitle}>Platform</Text>
+                    <Text style={style.title}>{party.platform}</Text>
 
                     <Text style={style.title}>Members</Text>
                     {
@@ -119,12 +119,13 @@ const Members: FC<Props> = ( { route }: any ) => {
 const style = StyleSheet.create( {
     title: {
         color: 'gray',
-        marginTop: 26
     },
     subtitle: {
+        marginTop: 26,
         color: 'orange',
         fontSize: 20,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     image: {
         height: 50,

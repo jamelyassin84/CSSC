@@ -116,7 +116,7 @@ const style = StyleSheet.create( {
     }
 } )
 
-type VoteType = {
+export type VoteType = {
     bets: any[]
     voter: string
 }

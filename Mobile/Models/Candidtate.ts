@@ -6,4 +6,5 @@ export type Candidate = {
 	partylist: any
 	voter: Voter
 	id?: any
+	votes?: number
 }

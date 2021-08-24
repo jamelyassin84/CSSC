@@ -35,9 +35,12 @@ export function yearExist(candidate: Candidate, votes: string[] | any) {
 }
 
 export function departmentExist(candidate: Candidate, votes: string[] | any) {
-	return votes.some((element: any) => {
-		return element.voter.department === candidate.voter.department
-	})
+	for (let element of votes) {
+		if (element.voter.department === candidate.voter.department) {
+			return true
+		}
+	}
+	return false
 }
 
 export function courseExist(candidate: Candidate, votes: string[] | any) {

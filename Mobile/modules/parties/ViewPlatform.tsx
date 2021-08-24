@@ -53,13 +53,13 @@ const ViewPlatform: FC<Props> = ( { route }: any ) => {
                     Candidate hasn't added its platform yet..
                 </Text>
                 <View style={[ { justifyContent: 'center', alignItems: 'center' }, noData !== true ? { position: 'absolute', left: 500 } : {} ]}>
-                    <Text style={data.style.title}>Title</Text>
-                    <Text style={data.style.subtitle}>{platform.title}</Text>
+                    <Text style={data.style.subtitle}>Title</Text>
+                    <Text style={data.style.title}>{platform.title}</Text>
 
-                    <Text style={data.style.title}>Description</Text>
-                    <Text style={data.style.subtitle}>{platform.description}</Text>
+                    <Text style={data.style.subtitle}>Description</Text>
+                    <Text style={data.style.title}>{platform.description}</Text>
 
-                    <Text style={data.style.title}>Link to Platform Video</Text>
+                    <Text style={data.style.subtitle}>Link to Platform Video</Text>
                     <TouchableOpacity onPress={() => {
                         Linking.openURL( platform.video_link )
                     }}>

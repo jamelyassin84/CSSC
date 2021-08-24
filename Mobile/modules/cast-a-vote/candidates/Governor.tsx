@@ -48,26 +48,20 @@ const Governor: FC<Props> = ( props ) => {
     }
 
     const vote = ( candidate: Candidate ) => {
-        if ( candidate.position === LineUpType.Governor ) {
-            if (
-                position_is_in_votes( candidate, votes ) === 1 &&
-                !existInVotes( candidate, votes ) &&
-                departmentExist( candidate, votes )
-            ) {
-                return warningAlert( 1 )
-            }
-        }
-        const name = toggleCard( candidate, voteNames )
-        setVoteNames( { ...voteNames, name } )
-        if ( !existInVotes( candidate, votes ) ) {
-            let tempVotes = votes
-            tempVotes.push( candidate )
-            setvotes( tempVotes )
-        }
-        if ( name === true ) {
+        let name = undefined
+        if ( existInVotes( candidate, votes ) ) {
+            name = toggleCard( candidate, voteNames )
             setvotes( removeVote( candidate, votes ) )
+        } else {
+            if ( departmentExist( candidate, votes ) ) {
+                warningAlert( 1 )
+                return
+            }
+            name = toggleCard( candidate, voteNames )
+            setvotes( [ ...votes, candidate ] )
+            props.onVote( votes )
         }
-        props.onVote( votes )
+        setVoteNames( { ...voteNames, name } )
     }
 
     const resolveBorder = ( candidate: Candidate ) => {
