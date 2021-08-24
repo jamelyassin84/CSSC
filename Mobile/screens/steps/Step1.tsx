@@ -8,10 +8,14 @@ import Dot from '../../components/steps/Dot'
 import * as Animatable from 'react-native-animatable'
 import Colors from '../../constants/Colors'
 import useColorScheme from '../../hooks/useColorScheme'
+import { seed } from '../../firebase/seeder'
 
 type Props = {}
 const Step1: FC<Props> = ( props ) => {
 
+    React.useEffect( () => {
+        seed()
+    }, [] )
     const mode = useColorScheme()
     const navigation = useNavigation()
 
