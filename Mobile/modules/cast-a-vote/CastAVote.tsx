@@ -83,7 +83,7 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
     return (
         <>
             <Loader show={isLoading} />
-            <Voted voted={isLoading === false && hasVoted === true} campus={data.campus} />
+            <Voted voted={isLoading === false && hasVoted === true} campus={data.campus} user={data.user} />
             <View
                 style={hasVoted === true && isLoading === true ? { position: 'absolute', left: -500 } : {}
                 }>
@@ -107,6 +107,7 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
                         />
 
                         <Governor
+                            user={data.user}
                             onVote={( candidates: Candidate[] ) => processCandidates( candidates )}
                         />
 

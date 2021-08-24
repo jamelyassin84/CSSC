@@ -3,6 +3,7 @@ import { AntDesign, Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
+import { Image } from 'react-native'
 
 import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
@@ -50,7 +51,14 @@ export default function BottomTabNavigator( { route }: any ) {
                 name="CSSC Officers"
                 component={OfficerNavigator}
                 options={{
-                    tabBarIcon: ( { color } ) => <AntDesign name="barchart" size={24} color={color} />,
+                    tabBarIcon: ( { size } ) => {
+                        return (
+                            <Image
+                                style={{ width: 30, height: 30 }}
+                                source={require( '../assets/logo/trans-logo.png' )}
+                            />
+                        );
+                    }
                 }}
                 initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
             />

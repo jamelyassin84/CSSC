@@ -9,11 +9,13 @@ import useTheme from '../../../hooks/useColorScheme'
 import { Collections } from '../../../Models/Admin'
 import { Candidate } from '../../../Models/Candidtate'
 import { LineUpType } from '../../../Models/LineUp'
+import { Voter } from '../../../Models/User'
 import style from '../../../styles/Vote.style'
-import { departmentExist, existInVotes, position_is_in_votes, removeVote, sortCandidatByName, toggleCard, warningAlert } from '../VoteProcesses'
+import { departmentExist, existInVotes, removeVote, sortCandidatByName, toggleCard, warningAlert } from '../VoteProcesses'
 
 type Props = {
     onVote: Function
+    user: Voter
 }
 const Governor: FC<Props> = ( props ) => {
 
@@ -29,22 +31,24 @@ const Governor: FC<Props> = ( props ) => {
     }, [] )
 
     const candidateList = () => {
-        collection( Collections.Candidate ).get().then( ( data: any ) => {
-            let govs: Candidate[] = []
-            let candidates: Candidate[] = []
-            data.forEach( ( canndidate: any ) => {
-                candidates.push( Object.assign( canndidate.data(), { id: canndidate.id } ) )
+        collection( Collections.Candidate )
+            .where( 'voter.department', '==', props.user.department )
+            .get().then( ( data: any ) => {
+                let govs: Candidate[] = []
+                let candidates: Candidate[] = []
+                data.forEach( ( canndidate: any ) => {
+                    candidates.push( Object.assign( canndidate.data(), { id: canndidate.id } ) )
+                } )
+                candidates.forEach( ( candidate: Candidate ) => {
+                    if ( candidate.position === LineUpType.Governor ) {
+                        govs.push( candidate )
+                    }
+                    if ( !parties.includes( candidate.partylist ) ) {
+                        setparties( [ ...parties, candidate.partylist ] )
+                    }
+                } )
+                setCandidates( sortCandidatByName( govs ) )
             } )
-            candidates.forEach( ( candidate: Candidate ) => {
-                if ( candidate.position === LineUpType.Governor ) {
-                    govs.push( candidate )
-                }
-                if ( !parties.includes( candidate.partylist ) ) {
-                    setparties( [ ...parties, candidate.partylist ] )
-                }
-            } )
-            setCandidates( sortCandidatByName( govs ) )
-        } )
     }
 
     const vote = ( candidate: Candidate ) => {

@@ -8,10 +8,11 @@ import { collection } from '../../firebase/firebase'
 import { Collections } from '../../Models/Admin'
 import { Candidate } from '../../Models/Candidtate'
 import { LineUpType } from '../../Models/LineUp'
-import { sortByVotes, sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses'
+import { sortByVotes, sortCandidatByName, sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses'
 import firebase from 'firebase'
 import { VoteType } from '../election-results/PartyListMembersAndVotes'
 import OfficerList from '../../components/lists/OfficerList'
+import { GovProcesses } from './CSSGOfficersProcess'
 
 type Props = {}
 const Officers: FC<Props> = ( { route }: any ) => {
@@ -111,39 +112,9 @@ const Officers: FC<Props> = ( { route }: any ) => {
             }
         } )
         senators = senators.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 12 )
-        let obj: any = {}
-        for ( let department of departments ) {
-            obj[ department ] = {}
-        }
-        govs.forEach( ( candidate ) => {
-            for ( let key in obj ) {
-                if ( candidate.votes === obj[ key ].votes ) {
-                    const data = obj[ key ]
-                    obj[ key ] = []
-                    obj[ key ].push( data )
-                    obj[ key ].push( candidate )
-                }
-                else {
-                    if ( obj[ key ].votes === undefined || candidate.votes > obj[ key ].votes ) {
-                        if ( candidate.voter.department === key ) {
-                            obj[ key ] = candidate
-                        }
-                    }
-                }
-            }
-        } )
-        govs = []
-        for ( let key in obj ) {
-            if ( Array.isArray( obj[ key ] ) ) {
-                for ( let candidate of obj[ key ] ) {
-                    govs.push( candidate )
-                }
-            } else {
-                govs.push( obj[ key ] )
-            }
-        }
-        reps = reps.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 4 )
-        mayors = mayors.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 4 )
+        govs = GovProcesses( govs, departments )
+        reps = reps.sort( ( a: any, b: any ) => a.votes + b.votes )
+        mayors = mayors.sort( ( a: any, b: any ) => a.votes + b.votes )
         setcandidates( sortCandidatesByPosition( [ ...[], president, vp, ...senators, ...sortByVotes( govs ), ...reps, ...mayors ] ) )
         setLoading( false )
     }

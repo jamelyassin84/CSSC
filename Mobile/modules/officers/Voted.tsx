@@ -11,12 +11,15 @@ import { collection } from '../../firebase/firebase';
 import useTheme from '../../hooks/useColorScheme';
 import { Collections } from '../../Models/Admin';
 import { Candidate } from '../../Models/Candidtate';
+import { Voter } from '../../Models/User';
 import style from '../../styles/Vote.style'
 import { sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses';
 
 type Props = {
     voted: boolean
-    campus: string
+    campus: string,
+    user: Voter
+
 };
 const Voted: FC<Props> = ( props ) => {
 
@@ -31,26 +34,28 @@ const Voted: FC<Props> = ( props ) => {
     }, [] )
 
     const getLineUps = () => {
-        collection( Collections.Votes ).get().then( ( snapShot ) => {
-            let bets: string[] = []
-            snapShot.forEach( ( doc ) => {
-                const data = doc.data()[ 'bets' ]
-                data.forEach( ( id: string ) => {
-                    bets.push( id )
-                } );
-            } )
-            let candidates: any = []
-            let itemsProcessed = 0;
-            bets.forEach( ( bet: string, index: number, array ) => {
-                collection( Collections.Candidate ).doc( bet ).get().then( ( doc ) => {
-                    itemsProcessed++
-                    candidates.push( doc.data() )
-                    if ( itemsProcessed === array.length ) {
-                        newLineUps( candidates )
-                    }
+        collection( Collections.Votes )
+            .where( 'voter', '==', props.user.id )
+            .get().then( ( snapShot ) => {
+                let bets: string[] = []
+                snapShot.forEach( ( doc ) => {
+                    const data = doc.data()[ 'bets' ]
+                    data.forEach( ( id: string ) => {
+                        bets.push( id )
+                    } );
+                } )
+                let candidates: any = []
+                let itemsProcessed = 0;
+                bets.forEach( ( bet: string, index: number, array ) => {
+                    collection( Collections.Candidate ).doc( bet ).get().then( ( doc ) => {
+                        itemsProcessed++
+                        candidates.push( doc.data() )
+                        if ( itemsProcessed === array.length ) {
+                            newLineUps( candidates )
+                        }
+                    } )
                 } )
             } )
-        } )
     }
 
     const newLineUps = ( candidates: Candidate[] ) => {
