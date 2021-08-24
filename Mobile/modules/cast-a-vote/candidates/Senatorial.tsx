@@ -50,7 +50,7 @@ const Senatorial: FC<Props> = ( props ) => {
     const vote = ( candidate: Candidate ) => {
         if ( candidate.position === LineUpType.Senator ) {
             if ( position_is_in_votes( candidate, votes ) === 12 && !existInVotes( candidate, votes ) ) {
-                return warningAlert( 1 )
+                return warningAlert( 12 )
             }
         }
         const name = toggleCard( candidate, voteNames )

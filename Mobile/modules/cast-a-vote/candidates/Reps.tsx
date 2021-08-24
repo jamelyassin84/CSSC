@@ -89,11 +89,11 @@ const Reps: FC<Props> = ( props ) => {
                         center={
                             <>
                                 <Text style={{ fontSize: 16, color: Colors[ mode ].text }}>{candidate.voter.name}</Text>
-                                <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.position}</Text>
+                                <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.position} for {candidate.voter.department} {candidate.voter.year} year</Text>
                                 <View style={[ { paddingHorizontal: 10, paddingVertical: 5, alignSelf: 'flex-start', marginVertical: 4, borderWidth: 1 }, resolveBorder( candidate, parties ) ]}>
                                     <Text style={[ { textAlign: 'center' }, resolveText( candidate, parties ) ]}>{candidate.partylist}</Text>
                                 </View>
-                                <Text style={{ fontSize: 11, color: 'gray' }}>{candidate.voter.department}-{candidate.voter.course} {candidate.voter.section}</Text>
+                                <Text style={{ fontSize: 11, color: 'gray' }}>{candidate.voter.course} {candidate.voter.section}</Text>
                             </>
                         }
                         callback={() => vote( candidate )}
