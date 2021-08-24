@@ -29,6 +29,9 @@ const Members: FC<Props> = ( { route }: any ) => {
         collection( Collections.Partylist ).onSnapshot( () => {
             onRefresh()
         } )
+        collection( Collections.Candidate ).onSnapshot( () => {
+            onRefresh()
+        } )
     }, [] )
 
     const onRefresh = () => {
@@ -59,24 +62,21 @@ const Members: FC<Props> = ( { route }: any ) => {
             } )
     }
 
-
-
     return (
         <Container>
             <CommonHeader title={data.title} />
             <WithRefreshComponent onRefresh={() => onRefresh} loading={isLoading}>
-
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={style.subtitle}>English Title</Text>
+                    <Text style={[ style.subtitle, { color: Colors[ mode ].text } ]}>English Title</Text>
                     <Text style={style.title}>{party.english_title} </Text>
 
-                    <Text style={style.subtitle}>Filpino Title</Text>
+                    <Text style={[ style.subtitle, { color: Colors[ mode ].text } ]}>Filpino Title</Text>
                     <Text style={style.title}>{party.filipino_title} </Text>
 
-                    <Text style={style.subtitle}>Platform</Text>
+                    <Text style={[ style.subtitle, { color: Colors[ mode ].text } ]}>Platform</Text>
                     <Text style={style.title}>{party.platform}</Text>
 
-                    <Text style={style.title}>Members</Text>
+                    <Text style={[ style.subtitle, { color: Colors[ mode ].text } ]}>{data.title} Members</Text>
                     {
 
                         candidates.map( ( candidate: Candidate, index: any ) => (
@@ -91,15 +91,8 @@ const Members: FC<Props> = ( { route }: any ) => {
                                 center={
                                     <>
                                         <Text style={{ fontSize: 16, color: Colors[ mode ].text }}>{candidate.voter.name}</Text>
-                                        <Text style={{ color: '#28A745' }}>{candidate.position}</Text>
-                                        <Text style={{ fontSize: 14, color: Colors[ mode ].text }}>{candidate.voter.department}</Text>
-                                        <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.voter.course}</Text>
-                                    </>
-                                }
-                                right={
-                                    <>
-                                        <Text style={{ fontSize: 16 }}>{candidate.voter.year} Year</Text>
-                                        <Text style={{ color: '#28A745' }}>{candidate.voter.section}</Text>
+                                        <Text style={{ color: 'red' }}>{candidate.position}</Text>
+                                        <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.voter.department}-{candidate.voter.course} {candidate.voter.year} year{candidate.voter.section}</Text>
                                     </>
                                 }
                                 callback={() => navigation.navigate( 'ViewPlatform', {
@@ -119,11 +112,13 @@ const Members: FC<Props> = ( { route }: any ) => {
 const style = StyleSheet.create( {
     title: {
         color: 'gray',
+        paddingHorizontal: 32,
+        lineHeight: 32
     },
     subtitle: {
         marginTop: 26,
-        color: 'orange',
-        fontSize: 20,
+        color: 'red',
+        fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center'
     },

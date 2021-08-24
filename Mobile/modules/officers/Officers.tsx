@@ -119,7 +119,7 @@ const Officers: FC<Props> = ( { route }: any ) => {
             ...senators.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 12 ),
             ...sortByVotes( GovProcesses( govs, departments ) ),
             ...sortByVotes( RepProcesses( reps, departments ) ),
-            ...mayors
+            // ...mayors
         ] ) )
         setLoading( false )
     }
@@ -130,12 +130,16 @@ const Officers: FC<Props> = ( { route }: any ) => {
             <HomeHeader text={`CSSC ${ data.campus } Campus`} />
             <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
                 {
-                    candidates.map( ( candidate: any, index: number ) => (
-                        <OfficerList
-                            candidate={candidate}
-                            key={index}
-                        />
-                    ) )
+                    candidates.map( ( candidate: any, index: number ) => {
+                        if ( candidate.votes !== 0 ) {
+                            return (
+                                <OfficerList
+                                    candidate={candidate}
+                                    key={index}
+                                />
+                            )
+                        }
+                    } )
                 }
                 <Text></Text>
             </WithRefreshComponent>

@@ -117,7 +117,7 @@ function OfficerNavigator( { route }: any ) {
     return (
         <OfficerStack.Navigator>
             <OfficerStack.Screen
-                name="Political Parties"
+                name="CSSC Officers"
                 component={Officers}
                 options={{ headerShown: false }}
                 initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
