@@ -20,4 +20,5 @@ export type BottomTabParamList = {
     'Political Parties': any
     campus: any
     'CSSC Officers': any
+    user: any
 }

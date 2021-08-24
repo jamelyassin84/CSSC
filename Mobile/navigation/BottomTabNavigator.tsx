@@ -28,7 +28,7 @@ export default function BottomTabNavigator( { route }: any ) {
                 options={{
                     tabBarIcon: ( { color } ) => <MaterialCommunityIcons name="vote-outline" size={24} color={color} />,
                 }}
-                initialParams={{ campus: data.campus, user_id: data.user_id }}
+                initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
             />
             <Tab.Screen
                 name="Political Parties"
@@ -36,7 +36,7 @@ export default function BottomTabNavigator( { route }: any ) {
                 options={{
                     tabBarIcon: ( { color } ) => <Feather name="users" size={24} color={color} />,
                 }}
-                initialParams={{ campus: data.campus, user_id: data.user_id }}
+                initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
             />
             <Tab.Screen
                 name="Election Results"
@@ -44,7 +44,7 @@ export default function BottomTabNavigator( { route }: any ) {
                 options={{
                     tabBarIcon: ( { color } ) => <AntDesign name="barchart" size={24} color={color} />,
                 }}
-                initialParams={{ campus: data.campus, user_id: data.user_id }}
+                initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
             />
             <Tab.Screen
                 name="CSSC Officers"
@@ -52,7 +52,7 @@ export default function BottomTabNavigator( { route }: any ) {
                 options={{
                     tabBarIcon: ( { color } ) => <AntDesign name="barchart" size={24} color={color} />,
                 }}
-                initialParams={{ campus: data.campus, user_id: data.user_id }}
+                initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
             />
         </Tab.Navigator>
     )
@@ -67,7 +67,7 @@ function ElectionResultsNavigator( { route }: any ) {
                 name="Election Results"
                 component={ElectionResults}
                 options={{ headerShown: false }}
-                initialParams={{ campus: data.campus, user_id: data.user_id }}
+                initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
             />
         </ElectionResultsStack.Navigator>
     )
@@ -82,7 +82,7 @@ function CastAVoteNavigator( { route }: any ) {
                 name="Cast a Vote"
                 component={CastAVote}
                 options={{ headerShown: false }}
-                initialParams={{ campus: data.campus, user_id: data.user_id }}
+                initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
             />
         </CastAVoteStack.Navigator>
     )
@@ -97,7 +97,7 @@ function PartiesNavigator( { route }: any ) {
                 name="Political Parties"
                 component={Parties}
                 options={{ headerShown: false }}
-                initialParams={{ campus: data.campus, user_id: data.user_id }}
+                initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
             />
         </PartiesStack.Navigator>
     )
@@ -112,7 +112,7 @@ function OfficerNavigator( { route }: any ) {
                 name="Political Parties"
                 component={Officers}
                 options={{ headerShown: false }}
-                initialParams={{ campus: data.campus, user_id: data.user_id }}
+                initialParams={{ campus: data.campus, user_id: data.user_id, user: data.user }}
             />
         </OfficerStack.Navigator>
     )

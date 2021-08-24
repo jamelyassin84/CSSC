@@ -13,3 +13,18 @@ export const FirebaseConfig = {
 export function collection(collection: any) {
 	return firebase.firestore().collection(collection)
 }
+
+export async function getCollection(collection: any, ref = firebase.firestore().collection(collection)) {
+	ref.get()
+		.then((snapShot) => {
+			let temp: any = []
+			snapShot.forEach((doc) => {
+				temp.push(Object.assign(doc.data(), { id: doc.id }))
+			})
+			return temp
+		})
+		.catch((error) => {
+			console.warn(error)
+			alert('Connection Error')
+		})
+}

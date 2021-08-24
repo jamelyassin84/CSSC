@@ -56,7 +56,7 @@ const SignIn: FC = () => {
                 } )
                 let user: Voter = data
                 await AsyncStorage.setItem( 'user', JSON.stringify( user ) )
-                navigation.navigate( 'ElectionResults', { campus: user.campus, user_id: user.id } )
+                navigation.navigate( 'ElectionResults', { campus: user.campus, user_id: user.id, user: user } )
                 setLoading( false )
             } )
             .catch( () => {
