@@ -62,7 +62,7 @@ const Voted: FC<Props> = ( props ) => {
             <Container>
                 <HomeHeader text={`CSSC ${ props.campus } Campus`} />
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <Text style={style.subtitle}>Your Line Up</Text>
+                    <Text style={style.subtitle}>Your have voted</Text>
                     {
                         lineUp.map( ( candidate: Candidate, index: number ) => (
                             <LineUp

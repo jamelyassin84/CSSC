@@ -88,3 +88,7 @@ export const sortCandidatesByPosition = (temp: Candidate[]) => {
 export const sortCandidatByName = (candidates: Candidate[]) => {
 	return candidates.sort((a: Candidate, b: Candidate) => a.voter.name.localeCompare(b.voter.name))
 }
+
+export const sortByVotes = (candidates: any[]) => {
+	return candidates.sort((a: any, b: any) => b.votes - a.votes)
+}

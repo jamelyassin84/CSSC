@@ -8,7 +8,7 @@ import { collection } from '../../firebase/firebase'
 import { Collections } from '../../Models/Admin'
 import { Candidate } from '../../Models/Candidtate'
 import { LineUpType } from '../../Models/LineUp'
-import { sortCandidatByName, sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses'
+import { sortByVotes, sortCandidatesByPosition } from '../cast-a-vote/VoteProcesses'
 import firebase from 'firebase'
 import { VoteType } from '../election-results/PartyListMembersAndVotes'
 import OfficerList from '../../components/lists/OfficerList'
@@ -20,6 +20,7 @@ const Officers: FC<Props> = ( { route }: any ) => {
 
     const [ isLoading, setLoading ] = React.useState( false )
     const [ candidates, setcandidates ] = React.useState<Candidate[] | any>( [] )
+    const [ departments, setdepartments ] = React.useState<string[]>( [] )
 
     React.useEffect( () => {
         collection( Collections.Votes ).onSnapshot( () => {
@@ -28,6 +29,7 @@ const Officers: FC<Props> = ( { route }: any ) => {
     }, [] )
 
     const onRefresh = async () => {
+        getDepartments()
         getCandidates()
     }
 
@@ -64,6 +66,19 @@ const Officers: FC<Props> = ( { route }: any ) => {
             } )
     }
 
+    const getDepartments = () => {
+        setdepartments( [] )
+        collection( Collections.Voters ).get().then( ( snapshot ) => {
+            let departments: string[] = []
+            snapshot.forEach( ( doc ) => {
+                if ( !departments.includes( doc.data()[ 'department' ] ) ) {
+                    departments.push( doc.data()[ 'department' ] )
+                }
+            } )
+            setdepartments( departments )
+        } )
+    }
+
     const processCandidates = ( candidatesData: any[] ) => {
         let president: any = {}
         let vp: any = {}
@@ -96,12 +111,43 @@ const Officers: FC<Props> = ( { route }: any ) => {
             }
         } )
         senators = senators.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 12 )
-        govs = govs.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 4 )
+        let obj: any = {}
+        for ( let department of departments ) {
+            obj[ department ] = {}
+        }
+        govs.forEach( ( candidate ) => {
+            for ( let key in obj ) {
+                if ( candidate.votes === obj[ key ].votes ) {
+                    const data = obj[ key ]
+                    obj[ key ] = []
+                    obj[ key ].push( data )
+                    obj[ key ].push( candidate )
+                }
+                else {
+                    if ( obj[ key ].votes === undefined || candidate.votes > obj[ key ].votes ) {
+                        if ( candidate.voter.department === key ) {
+                            obj[ key ] = candidate
+                        }
+                    }
+                }
+            }
+        } )
+        govs = []
+        for ( let key in obj ) {
+            if ( Array.isArray( obj[ key ] ) ) {
+                for ( let candidate of obj[ key ] ) {
+                    govs.push( candidate )
+                }
+            } else {
+                govs.push( obj[ key ] )
+            }
+        }
         reps = reps.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 4 )
         mayors = mayors.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 4 )
-        setcandidates( sortCandidatesByPosition( [ ...[], president, vp, ...senators ] ) )
+        setcandidates( sortCandidatesByPosition( [ ...[], president, vp, ...senators, ...sortByVotes( govs ), ...reps, ...mayors ] ) )
         setLoading( false )
     }
+
 
     return (
         <Container>
@@ -109,7 +155,10 @@ const Officers: FC<Props> = ( { route }: any ) => {
             <WithRefreshComponent loading={isLoading} onRefresh={() => onRefresh}>
                 {
                     candidates.map( ( candidate: any, index: number ) => (
-                        <OfficerList candidate={candidate} key={index} />
+                        <OfficerList
+                            candidate={candidate}
+                            key={index}
+                        />
                     ) )
                 }
                 <Text></Text>

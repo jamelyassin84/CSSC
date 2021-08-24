@@ -23,20 +23,17 @@ const OfficerList: FC<Props> = ( props ) => {
             body={
                 <>
                     <Text style={{ fontSize: 16, color: Colors[ mode ].text }}>{props.candidate.voter.name}</Text>
+                    <Text style={{ color: 'gray' }}>{props.candidate.position}</Text>
                     <View style={[ { paddingHorizontal: 10, paddingVertical: 5, alignSelf: 'flex-start', marginVertical: 4, borderWidth: 1, borderColor: '#28A745' } ]}>
                         <Text style={{ color: '#28A745' }}>{props.candidate.partylist}</Text>
                     </View>
-                    <Text style={{ color: 'gray' }}>{props.candidate.position}</Text>
-
+                    <Text style={{ color: 'gray' }}>{props.candidate.voter.department}-{props.candidate.voter.year} year | {props.candidate.voter.section} </Text>
                 </>
             }
             values={
                 <>
                     <Text style={{ color: '#ccc', textAlign: 'right' }}>Total Votes</Text>
                     <Text style={{ color: '#28A745', textAlign: 'right', fontSize: 17 }}>{props.candidate.votes || 0}</Text>
-                    {/* <Text style={{ color: '#28A745', fontWeight: 'bold', textAlign: 'right' }}>
-                        {getPercent( parseInt( props.candidate.votes || 0 ), parseInt( data.voters || 0 ) )}
-                        %</Text> */}
                 </>
             }
         />

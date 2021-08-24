@@ -51,6 +51,7 @@ const Governor: FC<Props> = ( props ) => {
         let name = undefined
         if ( existInVotes( candidate, votes ) ) {
             name = toggleCard( candidate, voteNames )
+            props.onVote( removeVote( candidate, votes ) )
             setvotes( removeVote( candidate, votes ) )
         } else {
             if ( departmentExist( candidate, votes ) ) {
@@ -58,8 +59,8 @@ const Governor: FC<Props> = ( props ) => {
                 return
             }
             name = toggleCard( candidate, voteNames )
+            props.onVote( [ ...votes, candidate ] )
             setvotes( [ ...votes, candidate ] )
-            props.onVote( votes )
         }
         setVoteNames( { ...voteNames, name } )
     }
