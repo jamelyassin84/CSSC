@@ -7,10 +7,9 @@ import { Collections } from '../../../Models/Admin'
 import { Candidate } from '../../../Models/Candidtate'
 import { LineUpType } from '../../../Models/LineUp'
 import style from '../../../styles/Vote.style'
-import { existInVotes, position_is_in_votes, removeVote, sortCandidatByName, toggleCard, warningAlert } from '../VoteProcesses'
+import { existInVotes, position_is_in_votes, removeVote, resolveBorder, resolveText, sortCandidatByName, toggleCard, warningAlert } from '../VoteProcesses'
 import Colors from '../../../constants/Colors'
 import useTheme from '../../../hooks/useColorScheme'
-import { PoliticalColors } from '../../../constants/AppConstants'
 
 type Props = {
     onVote: Function
@@ -66,32 +65,6 @@ const Presidential: FC<Props> = ( props ) => {
         props.onVote( votes )
     }
 
-    const resolveBorder = ( candidate: Candidate ) => {
-        if ( candidate.partylist === parties[ 0 ] ) {
-            return { borderColor: PoliticalColors[ 0 ], borderRadius: 3 }
-        }
-        if ( candidate.partylist === parties[ 1 ] ) {
-            return { borderColor: PoliticalColors[ 1 ], borderRadius: 3 }
-        }
-        if ( candidate.partylist === parties[ 2 ] ) {
-            return { borderColor: PoliticalColors[ 2 ], borderRadius: 3 }
-        }
-        return { borderColor: PoliticalColors[ 1 ], borderRadius: 3 }
-    }
-
-    const resolveText = ( candidate: Candidate ) => {
-        if ( candidate.partylist === parties[ 0 ] ) {
-            return { color: PoliticalColors[ 0 ] }
-        }
-        if ( candidate.partylist === parties[ 1 ] ) {
-            return { color: PoliticalColors[ 1 ] }
-        }
-        if ( candidate.partylist === parties[ 2 ] ) {
-            return { color: PoliticalColors[ 2 ] }
-        }
-        return { color: PoliticalColors[ 1 ] }
-    }
-
     return (
         <View style={candidates.length === 0 ? { position: 'absolute', left: -500 } : {}}>
             <Text style={style.subtitle}>Presidential Candidates</Text>
@@ -110,8 +83,8 @@ const Presidential: FC<Props> = ( props ) => {
                             <>
                                 <Text style={{ fontSize: 16, color: Colors[ mode ].text }}>{candidate.voter.name}</Text>
                                 <Text style={{ fontSize: 14, color: 'gray' }}>{candidate.position}</Text>
-                                <View style={[ { paddingHorizontal: 10, paddingVertical: 5, alignSelf: 'flex-start', marginVertical: 4, borderWidth: 1 }, resolveBorder( candidate ) ]}>
-                                    <Text style={[ { textAlign: 'center' }, resolveText( candidate ) ]}>{candidate.partylist}</Text>
+                                <View style={[ { paddingHorizontal: 10, paddingVertical: 5, alignSelf: 'flex-start', marginVertical: 4, borderWidth: 1 }, resolveBorder( candidate, parties ) ]}>
+                                    <Text style={[ { textAlign: 'center' }, resolveText( candidate, parties ) ]}>{candidate.partylist}</Text>
                                 </View>
                                 <Text style={{ fontSize: 11, color: 'gray' }}>{candidate.voter.department}-{candidate.voter.course} {candidate.voter.section}</Text>
                             </>

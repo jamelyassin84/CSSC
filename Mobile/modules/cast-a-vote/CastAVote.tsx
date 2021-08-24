@@ -112,6 +112,7 @@ const CastAVote: FC<Props> = ( { route }: any ) => {
                         />
 
                         <Reps
+                            user={data.user}
                             onVote={( candidates: Candidate[] ) => processCandidates( candidates )}
                         />
 

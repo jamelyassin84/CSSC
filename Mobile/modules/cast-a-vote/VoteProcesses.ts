@@ -1,5 +1,6 @@
 import { LineUpType } from './../../Models/LineUp'
 import { Candidate } from '../../Models/Candidtate'
+import { PoliticalColors } from '../../constants/AppConstants'
 
 export function toggleCard(candidate: Candidate, voteNames: any) {
 	const name = voteNames[candidate.voter.name.toString()]
@@ -91,4 +92,30 @@ export const sortCandidatByName = (candidates: Candidate[]) => {
 
 export const sortByVotes = (candidates: any[]) => {
 	return candidates.sort((a: any, b: any) => b.votes - a.votes)
+}
+
+export const resolveBorder = (candidate: Candidate, parties: any) => {
+	if (candidate.partylist === parties[0]) {
+		return { borderColor: PoliticalColors[0], borderRadius: 3 }
+	}
+	if (candidate.partylist === parties[1]) {
+		return { borderColor: PoliticalColors[1], borderRadius: 3 }
+	}
+	if (candidate.partylist === parties[2]) {
+		return { borderColor: PoliticalColors[2], borderRadius: 3 }
+	}
+	return { borderColor: PoliticalColors[1], borderRadius: 3 }
+}
+
+export const resolveText = (candidate: Candidate, parties: any) => {
+	if (candidate.partylist === parties[0]) {
+		return { color: PoliticalColors[0] }
+	}
+	if (candidate.partylist === parties[1]) {
+		return { color: PoliticalColors[1] }
+	}
+	if (candidate.partylist === parties[2]) {
+		return { color: PoliticalColors[2] }
+	}
+	return { color: PoliticalColors[1] }
 }
