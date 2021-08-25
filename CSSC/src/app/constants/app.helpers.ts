@@ -1,3 +1,4 @@
+import { Voter } from './../Models/User'
 import { PartyList } from './../Models/Partylist'
 import { Candidate } from '../Models/Candidtate'
 import { LineUpType } from '../Models/LineUp'
@@ -56,4 +57,28 @@ export const resolvePosition = (candidate: Candidate) => {
 		return ` ${candidate.voter.department} ${candidate.voter.year} year Representative`
 	}
 	return candidate.position
+}
+
+export const filterByStudent = (
+	candidates: Candidate[],
+	type: LineUpType.Governor | LineUpType.Representative
+) => {
+	let user: Voter = JSON.parse(localStorage.getItem('user') || '')
+	if (type === LineUpType.Governor) {
+		return candidates.filter(
+			(candidate: Candidate) =>
+				user.campus &&
+				user.department === candidate.voter.department &&
+				candidate.voter.campus
+		)
+	}
+
+	return candidates.filter(
+		(candidate: Candidate) =>
+			user.campus &&
+			user.department &&
+			user.year === candidate.voter.department &&
+			candidate.voter.campus &&
+			candidate.voter.year
+	)
 }

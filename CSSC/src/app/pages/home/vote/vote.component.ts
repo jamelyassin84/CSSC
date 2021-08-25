@@ -4,9 +4,10 @@ import { Component, OnInit } from '@angular/core'
 import { Collections } from 'src/app/Models/Admin'
 import { Candidate } from 'src/app/Models/Candidtate'
 import { ReloadService } from 'src/app/services/reload.service'
-import { groupBy } from 'src/app/constants/helpers'
+import { groupBy, sortBy } from 'src/app/constants/helpers'
 import { Alert, Fire } from 'src/app/components/Alert'
 import { UserService } from 'src/app/services/user.service'
+import { filterByStudent } from 'src/app/constants/app.helpers'
 
 @Component({
 	selector: 'app-vote',
@@ -14,7 +15,11 @@ import { UserService } from 'src/app/services/user.service'
 	styleUrls: ['./vote.component.scss'],
 })
 export class VoteComponent implements OnInit {
-	constructor(private service: BaseService, private component: ReloadService, private user: UserService) {}
+	constructor(
+		private service: BaseService,
+		private component: ReloadService,
+		private user: UserService
+	) {}
 
 	hasVoted = false
 	ngOnInit(): void {
@@ -28,7 +33,9 @@ export class VoteComponent implements OnInit {
 	isLoading = true
 	checkIfHasVoted() {
 		this.service.firestore
-			.collection(Collections.Votes, (ref) => ref.where('voter', '==', this.user.id()))
+			.collection(Collections.Votes, (ref) =>
+				ref.where('voter', '==', this.user.id())
+			)
 			.valueChanges()
 			.subscribe((voted: any) => {
 				this.isLoading = false
@@ -68,10 +75,31 @@ export class VoteComponent implements OnInit {
 						this.reps.push(candidate)
 					}
 				})
-				this.senators = groupBy(this.senators, 'partylist')
-				this.govs = groupBy(this.govs, 'partylist')
-				this.reps = groupBy(this.reps, 'partylist')
-				this.mayors = groupBy(this.reps, 'partylist')
+				this.presidents = sortBy(
+					this.presidents,
+					'name',
+					'ASC',
+					'string',
+					true
+				)
+				this.senators = groupBy(
+					sortBy(this.senators, 'name', 'ASC', 'string', true),
+					'partylist'
+				)
+				this.govs = groupBy(
+					filterByStudent(
+						sortBy(this.govs, 'department', 'ASC', 'string', true),
+						LineUpType.Governor
+					),
+					'partylist'
+				)
+				this.reps = groupBy(
+					filterByStudent(
+						sortBy(this.reps, 'year', 'ASC', 'string', true),
+						LineUpType.Governor
+					),
+					'partylist'
+				)
 			})
 	}
 
@@ -83,23 +111,41 @@ export class VoteComponent implements OnInit {
 
 	votes: string[] | any = []
 	vote(candidate: Candidate) {
-		if (candidate.position === LineUpType.President || candidate.position === LineUpType.VP) {
-			if (this.position_is_in_votes(candidate) === 1 && !this.existInVotes(candidate)) {
+		if (
+			candidate.position === LineUpType.President ||
+			candidate.position === LineUpType.VP
+		) {
+			if (
+				this.position_is_in_votes(candidate) === 1 &&
+				!this.existInVotes(candidate)
+			) {
 				return this.warningAlert(1)
 			}
 		}
 		if (candidate.position === LineUpType.Senator) {
-			if (this.position_is_in_votes(candidate) === 12 && !this.existInVotes(candidate)) {
+			if (
+				this.position_is_in_votes(candidate) === 12 &&
+				!this.existInVotes(candidate)
+			) {
 				return this.warningAlert(12)
 			}
 		}
 		if (candidate.position === LineUpType.Governor) {
-			if (this.position_is_in_votes(candidate) === 1 && this.departmentExist(candidate) && !this.existInVotes(candidate)) {
+			if (
+				this.position_is_in_votes(candidate) === 1 &&
+				this.departmentExist(candidate) &&
+				!this.existInVotes(candidate)
+			) {
 				return this.warningAlert(1)
 			}
 		}
 		if (candidate.position === LineUpType.Representative) {
-			if (this.position_is_in_votes(candidate) === 1 && this.departmentExist(candidate) && this.yearExist(candidate) && !this.existInVotes(candidate)) {
+			if (
+				this.position_is_in_votes(candidate) === 1 &&
+				this.departmentExist(candidate) &&
+				this.yearExist(candidate) &&
+				!this.existInVotes(candidate)
+			) {
 				return this.warningAlert(1)
 			}
 		}
@@ -122,7 +168,8 @@ export class VoteComponent implements OnInit {
 	}
 	toggleCard(candidate: Candidate) {
 		const name = this.voteIds[candidate.voter.name.toString()]
-		this.voteIds[candidate.voter.name.toString()] = name === false || name === undefined ? true : false
+		this.voteIds[candidate.voter.name.toString()] =
+			name === false || name === undefined ? true : false
 	}
 	removeVote(candidate: Candidate) {
 		this.votes = this.votes.filter((element: any) => {
@@ -160,28 +207,46 @@ export class VoteComponent implements OnInit {
 		})
 	}
 	warningAlert(maximumVotes: number) {
-		Alert('Maximum votes exceeded', `Maximum of only ${maximumVotes} vote(s) for this position`, 'error')
+		Alert(
+			'Maximum votes exceeded',
+			`Maximum of only ${maximumVotes} vote(s) for this position`,
+			'error'
+		)
 	}
 
 	voteIds: any = {}
 	submitVote() {
-		Fire('Submit Vote?', 'Are you sure you dont want to review your candidates?', 'info', () => {
-			const keysToRemove = ['partylist', 'photo', 'position', 'voter']
-			let bets = this.votes
-			for (let index in bets) {
-				for (let keyToRemove of keysToRemove) {
-					delete bets[index][keyToRemove]
+		Fire(
+			'Submit Vote?',
+			'Are you sure you dont want to review your candidates?',
+			'info',
+			() => {
+				const keysToRemove = ['partylist', 'photo', 'position', 'voter']
+				let bets = this.votes
+				for (let index in bets) {
+					for (let keyToRemove of keysToRemove) {
+						delete bets[index][keyToRemove]
+					}
 				}
+				let temp = []
+				for (let candidate of bets) {
+					temp.push(candidate.id)
+				}
+				let vote: any = {}
+				vote['bets'] = temp
+				vote['voter'] = this.user.id()
+				new BaseService(
+					this.service.firestore,
+					Collections.Votes,
+					[],
+					this.service.store
+				).add(vote)
+				Alert(
+					'Thank you for using CSSC Cloud Based Voting System.',
+					`Your vote has been successfully submitted. Stay tuned for the election results.`,
+					'success'
+				)
 			}
-			let temp = []
-			for (let candidate of bets) {
-				temp.push(candidate.id)
-			}
-			let vote: any = {}
-			vote['bets'] = temp
-			vote['voter'] = this.user.id()
-			new BaseService(this.service.firestore, Collections.Votes, [], this.service.store).add(vote)
-			Alert('Thank you for using CSSC Cloud Based Voting System.', `Your vote has been successfully submitted. Stay tuned for the election results.`, 'success')
-		})
+		)
 	}
 }

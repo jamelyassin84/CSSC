@@ -3,6 +3,7 @@ import { BaseService } from './../../services/base.service'
 import { Component, Input, OnInit } from '@angular/core'
 import { Candidate } from 'src/app/Models/Candidtate'
 import { Collections } from 'src/app/Models/Admin'
+import { resolvePosition } from 'src/app/constants/app.helpers'
 
 @Component({
 	selector: 'app-candidate-card',
@@ -41,5 +42,9 @@ export class CandidateCardComponent implements OnInit {
 	voter_id: string | any = ''
 	setVoterId(id: string | any) {
 		this.voter_id = id
+	}
+
+	resolvePosition(candidate: Candidate) {
+		return resolvePosition(candidate)
 	}
 }
