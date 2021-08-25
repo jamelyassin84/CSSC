@@ -21,20 +21,21 @@
                     <td class="text-center">
                         <div class="avatar">
                             <img src="../../../../assets/avatar/face-7.jpg" class="img-avatar" />
-                            <span class="avatar-status badge-dark"></span>
                         </div>
                     </td>
                     <td>
                         <div>{{ candidate.voter.name }}</div>
-                        <span class="badge badge-success">{{
-							candidate.position
-						}}</span>
+                        <h4 class="badge badge-success">
+                            {{ resolvePosition(candidate) }}
+                        </h4>
                     </td>
-                    <td class="text-center text-info">{{ candidate.votes }}</td>
+                    <td class="text-center text-info h3">
+                        {{ candidate.votes }}
+                    </td>
                     <td>
                         <div class="clearfix">
                             <div class="float-left">
-                                {{ percentOf(candidate.votes, voters) }}%
+                                {{ percentOf(candidate.votes, voters) | twoDecimals }}%
                             </div>
                         </div>
                         <div class="progress progress-xs">

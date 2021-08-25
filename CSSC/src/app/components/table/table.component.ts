@@ -2,6 +2,10 @@ import { Collections } from 'src/app/Models/Admin'
 import { Component, Input, OnInit } from '@angular/core'
 import { BaseService } from 'src/app/services/base.service'
 import { Candidate } from 'src/app/Models/Candidtate'
+import {
+	resolvePosition,
+	sortCandidatesByPosition,
+} from 'src/app/constants/app.helpers'
 
 @Component({
 	selector: 'app-table',
@@ -23,10 +27,12 @@ export class TableComponent implements OnInit {
 
 	getCandidates() {
 		this.service.firestore
-			.collection(Collections.Candidate, (ref) => ref.where('partylist', '==', this.header))
+			.collection(Collections.Candidate, (ref) =>
+				ref.where('partylist', '==', this.header)
+			)
 			.valueChanges({ idField: 'id' })
 			.subscribe((data: any) => {
-				this.candidates = data
+				this.candidates = sortCandidatesByPosition(data)
 				this.processVotes()
 			})
 	}
@@ -52,6 +58,10 @@ export class TableComponent implements OnInit {
 
 	percentOf(x: number | any, y: number | any) {
 		return (parseFloat(x) * 100) / parseFloat(y)
+	}
+
+	resolvePosition(candidate: Candidate) {
+		return resolvePosition(candidate)
 	}
 }
 
