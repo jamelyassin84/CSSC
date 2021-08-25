@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-12 mb-3">
         <label for=""> ID Number</label>
-        <input [(ngModel)]="id_number" type="text" class="form-control" />
+        <input (keyup.enter)="login()" [(ngModel)]="id_number" type="text" class="form-control" />
     </div>
     <div class="col-md-12 mb-3">
         <label for="">Section</label>
-        <input [(ngModel)]="section" type="text" class="form-control" />
+        <input (keyup.enter)="login()" [(ngModel)]="section" type="text" class="form-control" />
     </div>
 </div>
 
