@@ -11,7 +11,6 @@ export const sortCandidatesByPosition = (temp: Candidate[]) => {
 	let sens: Candidate[] = []
 	let govs: Candidate[] = []
 	let reps: Candidate[] = []
-	let mayors: Candidate[] = []
 	temp.forEach((candidate: Candidate) => {
 		if (candidate.position === LineUpType.President) pres.push(candidate)
 		if (candidate.position === LineUpType.VP) vps.push(candidate)
@@ -19,7 +18,6 @@ export const sortCandidatesByPosition = (temp: Candidate[]) => {
 		if (candidate.position === LineUpType.Governor) govs.push(candidate)
 		if (candidate.position === LineUpType.Representative)
 			reps.push(candidate)
-		if (candidate.position === LineUpType.Mayor) mayors.push(candidate)
 	})
 	return [
 		...[],
@@ -27,8 +25,13 @@ export const sortCandidatesByPosition = (temp: Candidate[]) => {
 		...vps,
 		...sortBy(sens, 'votes', 'ASC', 'number'),
 		...sortBy(govs, 'department', 'ASC', 'string', true),
-		...sortBy(reps, 'department', 'ASC', 'string', true),
-		...mayors,
+		...sortBy(
+			sortBy(reps, 'year', 'ASC', 'string', true),
+			'department',
+			'ASC',
+			'string',
+			true
+		),
 	]
 }
 

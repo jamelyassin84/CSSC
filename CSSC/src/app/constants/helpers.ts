@@ -10,7 +10,6 @@ export function groupBy(data: Array<any>, property: string) {
 		}
 		temp[key].push(item)
 	})
-
 	return Object.keys(temp).map((key) => temp[key])
 }
 
@@ -48,10 +47,10 @@ export function where(data: Array<any>, key: string, value: any) {
 	return data.filter((item) => item[key] === value)
 }
 
-export function dataExist(
-	object: any,
-	array: Array<any>,
-	key: string,
+export function dataExist<T, K extends keyof T>(
+	object: T | any,
+	array: Array<T>,
+	key: K | any,
 	child: boolean = false
 ) {
 	if (!child) {

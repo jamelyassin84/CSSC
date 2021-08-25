@@ -7,6 +7,7 @@ import { Fire } from 'src/app/components/Alert'
 import { ReloadService } from 'src/app/services/reload.service'
 import { Subscription } from 'rxjs'
 import { yearLevels } from 'src/app/constants/AppConstants'
+import { sortBy } from 'src/app/constants/helpers'
 
 @Component({
 	selector: 'app-votes',
@@ -70,7 +71,7 @@ export class VotesComponent implements OnInit {
 		)
 			.fetchAll()
 			.subscribe((voters: any) => {
-				this.voters = voters
+				this.voters = sortBy(voters, 'name', 'ASC', 'string', false)
 				for (let data of voters) {
 					if (!this.departments.includes(data.department)) {
 						this.departments.push(data.department)
@@ -101,7 +102,7 @@ export class VotesComponent implements OnInit {
 		)
 			.fetchAll()
 			.subscribe((voters: any) => {
-				this.voters = voters
+				this.voters = sortBy(voters, 'name', 'ASC', 'string', false)
 			})
 	}
 

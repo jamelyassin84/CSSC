@@ -3,6 +3,10 @@ import { Component, Input, OnInit } from '@angular/core'
 import { Fire } from 'src/app/components/Alert'
 import { Candidate } from 'src/app/Models/Candidtate'
 import { BaseService } from 'src/app/services/base.service'
+import {
+	resolvePosition,
+	sortCandidatesByPosition,
+} from 'src/app/constants/app.helpers'
 
 @Component({
 	selector: 'app-view-member',
@@ -26,7 +30,7 @@ export class ViewMemberComponent implements OnInit {
 				)
 				.valueChanges({ idField: 'id' })
 				.subscribe((candidates: Candidate[] | any) => {
-					this.candidates = candidates
+					this.candidates = sortCandidatesByPosition(candidates)
 				})
 		}, 500)
 	}
@@ -50,5 +54,9 @@ export class ViewMemberComponent implements OnInit {
 	voter_id: string | any = ''
 	setVoterId(id: string | any) {
 		this.voter_id = id
+	}
+
+	resolvePosition(candidate: Candidate) {
+		return resolvePosition(candidate)
 	}
 }
