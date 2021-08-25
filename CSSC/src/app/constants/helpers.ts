@@ -48,13 +48,16 @@ export function where(data: Array<any>, key: string, value: any) {
 	return data.filter((item) => item[key] === value)
 }
 
-export function dataExist<T, K extends keyof T>(
+export function dataExist(
 	object: any,
-	array: Array<T>,
-	key: K
+	array: Array<any>,
+	key: string,
+	child: boolean = false
 ) {
-	if (array.length > 0 && !(key in array[0])) {
-		throw new Error(`${key} does not exist in data.`)
+	if (!child) {
+		return array.some((element: any) => element[key] === object[key])
 	}
-	return array.some((element: any) => element[key] === object[key])
+	return array.some(
+		(element: any) => element.voter[key] === object.voter[key]
+	)
 }

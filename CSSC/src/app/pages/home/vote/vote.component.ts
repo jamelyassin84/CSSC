@@ -3,8 +3,7 @@ import { LineUpType } from './../../../Models/LineUp'
 import { Component, OnInit } from '@angular/core'
 import { Collections } from 'src/app/Models/Admin'
 import { Candidate } from 'src/app/Models/Candidtate'
-import { ReloadService } from 'src/app/services/reload.service'
-import { groupBy, sortBy } from 'src/app/constants/helpers'
+import { dataExist, groupBy, sortBy } from 'src/app/constants/helpers'
 import { Alert, Fire } from 'src/app/components/Alert'
 import { UserService } from 'src/app/services/user.service'
 import { filterByStudent } from 'src/app/constants/app.helpers'
@@ -15,11 +14,7 @@ import { filterByStudent } from 'src/app/constants/app.helpers'
 	styleUrls: ['./vote.component.scss'],
 })
 export class VoteComponent implements OnInit {
-	constructor(
-		private service: BaseService,
-		private component: ReloadService,
-		private user: UserService
-	) {}
+	constructor(private service: BaseService, private user: UserService) {}
 
 	hasVoted = false
 	ngOnInit(): void {
@@ -76,14 +71,27 @@ export class VoteComponent implements OnInit {
 					}
 				})
 				this.presidents = sortBy(
-					this.presidents,
+					filterByStudent(this.presidents, LineUpType.President),
+					'name',
+					'ASC',
+					'string',
+					true
+				)
+				this.vps = sortBy(
+					filterByStudent(this.vps, LineUpType.VP),
 					'name',
 					'ASC',
 					'string',
 					true
 				)
 				this.senators = groupBy(
-					sortBy(this.senators, 'name', 'ASC', 'string', true),
+					sortBy(
+						filterByStudent(this.senators, LineUpType.VP),
+						'name',
+						'ASC',
+						'string',
+						true
+					),
 					'partylist'
 				)
 				this.govs = groupBy(
@@ -116,7 +124,7 @@ export class VoteComponent implements OnInit {
 			candidate.position === LineUpType.VP
 		) {
 			if (
-				this.position_is_in_votes(candidate) === 1 &&
+				dataExist(candidate, this.votes, 'position', false) &&
 				!this.existInVotes(candidate)
 			) {
 				return this.warningAlert(1)
@@ -132,7 +140,7 @@ export class VoteComponent implements OnInit {
 		}
 		if (candidate.position === LineUpType.Governor) {
 			if (
-				this.position_is_in_votes(candidate) === 1 &&
+				dataExist(candidate, this.votes, 'position', false) &&
 				this.departmentExist(candidate) &&
 				!this.existInVotes(candidate)
 			) {
@@ -141,20 +149,9 @@ export class VoteComponent implements OnInit {
 		}
 		if (candidate.position === LineUpType.Representative) {
 			if (
-				this.position_is_in_votes(candidate) === 1 &&
-				this.departmentExist(candidate) &&
-				this.yearExist(candidate) &&
-				!this.existInVotes(candidate)
-			) {
-				return this.warningAlert(1)
-			}
-		}
-		if (candidate.position === LineUpType.Mayor) {
-			if (
-				this.position_is_in_votes(candidate) === 1 &&
-				this.courseExist(candidate) &&
-				this.yearExist(candidate) &&
-				this.sectionExist(candidate) &&
+				dataExist(candidate, this.votes, 'position', false) &&
+				dataExist(candidate, this.votes, 'department', true) &&
+				dataExist(candidate, this.votes, 'year', true) &&
 				!this.existInVotes(candidate)
 			) {
 				return this.warningAlert(1)

@@ -61,9 +61,23 @@ export const resolvePosition = (candidate: Candidate) => {
 
 export const filterByStudent = (
 	candidates: Candidate[],
-	type: LineUpType.Governor | LineUpType.Representative
+	type:
+		| LineUpType.Governor
+		| LineUpType.Representative
+		| LineUpType.President
+		| LineUpType.VP
+		| LineUpType.Senator
 ) => {
 	let user: Voter = JSON.parse(localStorage.getItem('user') || '')
+	if (
+		type === LineUpType.President ||
+		type === LineUpType.VP ||
+		type === LineUpType.Senator
+	) {
+		return candidates.filter(
+			(candidate: Candidate) => user.campus === candidate.voter.campus
+		)
+	}
 	if (type === LineUpType.Governor) {
 		return candidates.filter(
 			(candidate: Candidate) =>
@@ -72,7 +86,6 @@ export const filterByStudent = (
 				candidate.voter.campus
 		)
 	}
-
 	return candidates.filter(
 		(candidate: Candidate) =>
 			user.campus &&

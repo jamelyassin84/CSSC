@@ -5,9 +5,9 @@
             <h4 class="m-0" style="font-weight: 500">
                 {{ candidate.voter.name }}
             </h4>
-            <span class="badge" [class]="color">{{
-				resolvePosition(candidate)
-			}}</span>
+            <h5 style="white-space: normal" class="badge" [class]="color">
+                {{ resolvePosition(candidate) }}
+            </h5>
             <div class="others mt-2 text-muted">
                 <div>Department: {{ candidate.voter.department }}</div>
                 <div>Course: {{ candidate.voter.course }}</div>
