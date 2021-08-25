@@ -99,3 +99,7 @@ export function total(x: string | any, y: string | any) {
 export function isOdd(num: number) {
 	return num % 2
 }
+
+export function twoDecimals(num: number) {
+	return Math.round(num * 100) / 100
+}

@@ -1,6 +1,6 @@
 
 import React, { FC } from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import HomeHeader from '../../components/headers/Home'
 import WithRefreshComponent from '../../components/utils/WithRefreshComponent'
 import Container from '../../constants/Layout'
@@ -86,7 +86,6 @@ const Officers: FC<Props> = ( { route }: any ) => {
         let senators: any[] = []
         let govs: any[] = []
         let reps: any[] = []
-        let mayors: any[] = []
         candidatesData.forEach( ( candidate: any ) => {
             if ( candidate.position === LineUpType.President ) {
                 if ( candidate.votes > president.votes || president.votes === undefined ) {
@@ -107,23 +106,20 @@ const Officers: FC<Props> = ( { route }: any ) => {
             if ( candidate.position === LineUpType.Representative ) {
                 reps.push( candidate )
             }
-            if ( candidate.position === LineUpType.Mayor ) {
-                mayors.push( candidate )
-            }
         } )
-        mayors = mayors.sort( ( a: any, b: any ) => a.votes + b.votes )
+        senators = senators.sort( ( a: any, b: any ) => a.votes + b.votes )
+        senators = senators.filter( ( candidate ) => candidate.votes !== 0 )
+        senators = senators.filter( ( candidate, idx ) => idx < 12 )
         setcandidates( sortCandidatesByPosition( [
             ...[],
             president,
             vp,
-            ...senators.sort( ( a: any, b: any ) => a.votes + b.votes ).splice( 0, 12 ),
+            ...senators,
             ...sortByVotes( GovProcesses( govs, departments ) ),
             ...sortByVotes( RepProcesses( reps, departments ) ),
-            // ...mayors
         ] ) )
         setLoading( false )
     }
-
 
     return (
         <Container>
@@ -141,7 +137,6 @@ const Officers: FC<Props> = ( { route }: any ) => {
                         }
                     } )
                 }
-                <Text></Text>
             </WithRefreshComponent>
         </Container>
     )

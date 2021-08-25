@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Image, StyleSheet, Text } from 'react-native'
-import { getPercent } from '../../constants/helpers'
+import { getPercent, twoDecimals } from '../../constants/helpers'
 import { collection } from '../../firebase/firebase'
 import { Collections } from '../../Models/Admin'
 import CommonHeader from '../../components/headers/CommonHeader'
@@ -94,7 +94,7 @@ const PartyListMembersAndVotes: FC<Props> = ( { route }: any ) => {
                                 <>
                                     <Text style={{ color: '#ccc', textAlign: 'right' }}>{candidate.votes || 0}</Text>
                                     <Text style={{ color: '#28A745', fontWeight: 'bold', textAlign: 'right' }}>
-                                        {getPercent( parseInt( candidate.votes || 0 ), parseInt( data.voters || 0 ) )}
+                                        {twoDecimals( getPercent( parseInt( candidate.votes || 0 ), parseInt( data.voters || 0 ) ) )}
                                         %</Text>
                                 </>
                             }

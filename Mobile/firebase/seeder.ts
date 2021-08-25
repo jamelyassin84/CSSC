@@ -121,7 +121,6 @@ export function RepSeeder() {
 }
 
 export function seed() {
-	alert('Seeding ...')
 	// PresidentSeeder()
 	// SenatorSeeder()
 	// GovSeeder()

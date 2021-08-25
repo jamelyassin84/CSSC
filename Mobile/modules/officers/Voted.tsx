@@ -91,6 +91,7 @@ const Voted: FC<Props> = ( props ) => {
                             />
                         ) )
                     }
+                    <View style={{ height: 150 }} />
                 </ScrollView>
             </Container>
         </View>

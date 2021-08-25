@@ -27,7 +27,7 @@ const WithRefreshComponent: FC<Props> = ( props ) => {
                 />
             }>
             {props.children}
-            <View style={{ height: 150 }}></View>
+            <View style={{ height: 250 }}></View>
         </ScrollView>
     );
 };

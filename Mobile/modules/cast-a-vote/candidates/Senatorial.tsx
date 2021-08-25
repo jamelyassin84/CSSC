@@ -48,22 +48,21 @@ const Senatorial: FC<Props> = ( props ) => {
     }
 
     const vote = ( candidate: Candidate ) => {
-        if ( candidate.position === LineUpType.Senator ) {
-            if ( position_is_in_votes( candidate, votes ) === 12 && !existInVotes( candidate, votes ) ) {
-                return warningAlert( 12 )
-            }
-        }
-        const name = toggleCard( candidate, voteNames )
-        setVoteNames( { ...voteNames, name } )
-        if ( !existInVotes( candidate, votes ) ) {
-            let tempVotes = votes
-            tempVotes.push( candidate )
-            setvotes( tempVotes )
-        }
-        if ( name === true ) {
+        let name = undefined
+        if ( existInVotes( candidate, votes ) ) {
+            name = toggleCard( candidate, voteNames )
+            props.onVote( removeVote( candidate, votes ) )
             setvotes( removeVote( candidate, votes ) )
+        } else {
+            if ( position_is_in_votes( candidate, votes ) === 12 ) {
+                warningAlert( 12 )
+                return
+            }
+            name = toggleCard( candidate, voteNames )
+            props.onVote( [ ...votes, candidate ] )
+            setvotes( [ ...votes, candidate ] )
         }
-        props.onVote( votes )
+        setVoteNames( { ...voteNames, name } )
     }
 
     return (

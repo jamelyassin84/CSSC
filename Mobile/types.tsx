@@ -21,4 +21,5 @@ export type BottomTabParamList = {
     campus: any
     'CSSC Officers': any
     user: any
+    'Sign-Out': any
 }
