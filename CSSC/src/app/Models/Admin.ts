@@ -21,4 +21,5 @@ export enum Collections {
 	Platform = 'platforms',
 	Voters = 'voters',
 	Votes = 'votes',
+	Mode = 'votes',
 }

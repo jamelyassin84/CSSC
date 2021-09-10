@@ -64,7 +64,8 @@ import { EditPartyListComponent } from './modals/edits/edit-party-list/edit-part
 import { PartyListForVotersComponent } from './pages/home/party-list-for-voters/party-list-for-voters.component';
 import { OfficersComponent } from './pages/home/officers/officers.component';
 import { TwoDecimalsPipe } from './pipes/two-decimals.pipe';
-import { VotedCandidatesComponent } from './pages/home/voted-candidates/voted-candidates.component'
+import { VotedCandidatesComponent } from './pages/home/voted-candidates/voted-candidates.component';
+import { ModesComponent } from './pages/home/modes/modes.component'
 
 @NgModule({
 	declarations: [
@@ -107,6 +108,7 @@ import { VotedCandidatesComponent } from './pages/home/voted-candidates/voted-ca
   OfficersComponent,
   TwoDecimalsPipe,
   VotedCandidatesComponent,
+  ModesComponent,
 	],
 	imports: [
 		BrowserModule,

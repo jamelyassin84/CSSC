@@ -1,3 +1,4 @@
+import { ModesComponent } from './pages/home/modes/modes.component'
 import { VoterGuardGuard } from './guards/voter-guard.guard'
 import { AdminGuard } from './guards/admin.guard'
 import { NotAuthorizedComponent } from './pages/not-authorized/not-authorized.component'
@@ -59,6 +60,10 @@ const routes: Routes = [
 				path: 'parties',
 				component: PartyListForVotersComponent,
 				canActivate: [VoterGuardGuard],
+			},
+			{
+				path: 'mode',
+				component: ModesComponent,
 			},
 		],
 	},

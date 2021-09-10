@@ -9,6 +9,11 @@ export const SUPERADMIN = [
 		route: 'administrators',
 		icon: 'bi-shield-lock',
 	},
+	{
+		name: 'CSSC Officers',
+		route: 'administrators',
+		icon: 'bi-people-fill',
+	},
 ]
 
 export const ADMIN = [
@@ -27,6 +32,16 @@ export const ADMIN = [
 		route: 'party-lists',
 		icon: 'bi-card-checklist',
 	},
+	{
+		name: 'Mode',
+		route: 'mode',
+		icon: 'bi-stack',
+	},
+	{
+		name: 'CSSC Officers',
+		route: 'administrators',
+		icon: 'bi-people-fill',
+	},
 ]
 
 export const VOTER = [
@@ -44,6 +59,11 @@ export const VOTER = [
 		name: 'Political Parties',
 		route: 'parties',
 		icon: 'bi-list-stars',
+	},
+	{
+		name: 'CSSC Officers',
+		route: 'administrators',
+		icon: 'bi-people-fill',
 	},
 ]
 
@@ -67,5 +87,10 @@ export const CANDIDATE = [
 		name: 'Political Parties',
 		route: 'parties',
 		icon: 'bi-list-stars',
+	},
+	{
+		name: 'CSSC Officers',
+		route: 'administrators',
+		icon: 'bi-people-fill',
 	},
 ]
