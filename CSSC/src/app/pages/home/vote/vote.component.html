@@ -1,7 +1,8 @@
-<div *ngIf="hasVoted && !isLoading" class="d-flex aic jcc">
+<div *ngIf="hasVoted && !isLoading" class="d-flex aic jcc" style="flex-direction: column">
     <div class="alert alert-success">
         You have already Submitted your votes. We are processing your votes and we will announce the election results soon!
     </div>
+    <app-voted-candidates></app-voted-candidates>
 </div>
 <app-spinner *ngIf="isLoading"></app-spinner>
 <div *ngIf="!hasVoted && !isLoading" class="p-5">

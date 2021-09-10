@@ -61,11 +61,12 @@ import { ViewPlatformComponent } from './modals/views/view-platform/view-platfor
 import { CandidateCardComponent } from './components/candidate-card/candidate-card.component'
 import { ButtonLoadersComponent } from './components/button-loaders/button-loaders.component'
 import { EditPartyListComponent } from './modals/edits/edit-party-list/edit-party-list.component'
-import { PartyListForVotersComponent } from './pages/home/party-list-for-voters/party-list-for-voters.component';
-import { OfficersComponent } from './pages/home/officers/officers.component';
-import { TwoDecimalsPipe } from './pipes/two-decimals.pipe';
-import { VotedCandidatesComponent } from './pages/home/voted-candidates/voted-candidates.component';
+import { PartyListForVotersComponent } from './pages/home/party-list-for-voters/party-list-for-voters.component'
+import { OfficersComponent } from './pages/home/officers/officers.component'
+import { TwoDecimalsPipe } from './pipes/two-decimals.pipe'
+import { VotedCandidatesComponent } from './pages/home/voted-candidates/voted-candidates.component'
 import { ModesComponent } from './pages/home/modes/modes.component'
+import { CandidateTrComponent } from './components/candidate-tr/candidate-tr.component'
 
 @NgModule({
 	declarations: [
@@ -105,10 +106,11 @@ import { ModesComponent } from './pages/home/modes/modes.component'
 		ButtonLoadersComponent,
 		EditPartyListComponent,
 		PartyListForVotersComponent,
-  OfficersComponent,
-  TwoDecimalsPipe,
-  VotedCandidatesComponent,
-  ModesComponent,
+		OfficersComponent,
+		TwoDecimalsPipe,
+		VotedCandidatesComponent,
+		ModesComponent,
+		CandidateTrComponent,
 	],
 	imports: [
 		BrowserModule,

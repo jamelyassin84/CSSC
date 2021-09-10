@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body d-flex">
+                <img [src]="
+						candidate?.photo ||
+						'../../../../assets/avatar/face-7.jpg'
+					" class="img-avatar mr-5" />
+                <div class="mr-5">
+                    <h2 class="m-0">{{ candidate.voter.name }}</h2>
+                    <h5 class="m-0">{{ candidate.partylist }}</h5>
+                    <span class="badge badge-success">
+						{{ resolvePosition(candidate) }}
+					</span>
+                </div>
+                <div class="ml-auto text-right">
+                    {{ candidate.voter.department }} <br /> {{ candidate.voter.course }} <br /> {{ candidate.voter.year }} year <br /> {{ candidate.voter.section }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
