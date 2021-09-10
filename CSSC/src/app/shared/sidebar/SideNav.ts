@@ -10,9 +10,9 @@ export const SUPERADMIN = [
 		icon: 'bi-shield-lock',
 	},
 	{
-		name: 'CSSC Officers',
-		route: 'administrators',
-		icon: 'bi-people-fill',
+		name: 'Mode',
+		route: 'mode',
+		icon: 'bi-stack',
 	},
 ]
 
@@ -32,15 +32,16 @@ export const ADMIN = [
 		route: 'party-lists',
 		icon: 'bi-card-checklist',
 	},
-	{
-		name: 'Mode',
-		route: 'mode',
-		icon: 'bi-stack',
-	},
+
 	{
 		name: 'CSSC Officers',
 		route: 'administrators',
 		icon: 'bi-people-fill',
+	},
+	{
+		name: 'Data Reset',
+		route: 'administrators',
+		icon: 'bi-arrow-counterclockwise',
 	},
 ]
 

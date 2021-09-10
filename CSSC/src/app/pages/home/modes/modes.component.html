@@ -1,1 +1,21 @@
-<p>modes works!</p>
+<div class="row">
+    <div class="col-md-12 d-flex" style="
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+		">
+        <mat-form-field>
+            <mat-label> Select Mode</mat-label>
+            <mat-select [(ngModel)]="mode">
+                <mat-option *ngFor="let item of modes" [value]="item">
+                    {{ item }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button (click)="setMode()" class="btn btn-primary">Set Mode</button>
+    </div>
+    <div class="col-md-12 text-center mt-5" *ngIf="currentMode.mode !== undefined">
+        <p>Current Mode</p>
+        <h1 class="text-danger">{{ currentMode.mode }}</h1>
+    </div>
+</div>
