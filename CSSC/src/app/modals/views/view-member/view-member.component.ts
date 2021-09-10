@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service'
 import { Collections } from '../../../Models/Admin'
 import { Component, Input, OnInit } from '@angular/core'
 import { Fire } from 'src/app/components/Alert'
@@ -14,12 +15,13 @@ import {
 	styleUrls: ['./view-member.component.scss'],
 })
 export class ViewMemberComponent implements OnInit {
-	constructor(private service: BaseService) {}
+	constructor(private service: BaseService, private user: UserService) {}
 	@Input() partylist: string | any = ''
 	ngOnInit(): void {
 		this.getCandidates()
 	}
 
+	isAdmin = this.user.isAdmin()
 	candidates: Candidate[] | any = []
 
 	getCandidates() {

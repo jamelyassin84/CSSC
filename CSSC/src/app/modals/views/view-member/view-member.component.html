@@ -27,7 +27,7 @@
                 <ng-template #dropdown>
                     <btn-modal (click)="setVoterId(candidate.voter.id)" size="xl" [title]="'Platform of ' + candidate.voter.name" btnTitle="View Platform" btnClass="dropdown-item" [template]="viewPlatform"></btn-modal>
 
-                    <button (click)="remove(candidate.id)" class="dropdown-item">
+                    <button *ngIf="isAdmin" (click)="remove(candidate.id)" class="dropdown-item">
 						Remove Candidate
 					</button>
                 </ng-template>
