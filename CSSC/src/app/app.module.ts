@@ -45,7 +45,7 @@ import { FormsModule } from '@angular/forms'
 import { AdminComponent } from './pages/home/admin/admin.component'
 import { DropdownComponent } from './components/dropdown/dropdown.component'
 import { StoreModule } from '@ngrx/store'
-import { CampusReducer } from './store/reducers/campus.reducers'
+import { CampusReducer, ModeReducer } from './store/reducers/campus.reducers'
 import { AddAdminComponent } from './modals/adds/add-admin/add-admin.component'
 import { AddVoterComponent } from './modals/adds/add-voter/add-voter.component'
 import { AddPartyListComponent } from './modals/adds/add-party-list/add-party-list.component'
@@ -135,7 +135,7 @@ import { CandidateTrComponent } from './components/candidate-tr/candidate-tr.com
 		AngularFireStorageModule,
 		AngularFirestoreModule,
 		TextareaAutosizeModule,
-		StoreModule.forRoot({ campus: CampusReducer }),
+		StoreModule.forRoot({ campus: CampusReducer, mode: ModeReducer }),
 	],
 	providers: [AdminGuard, SuperAdminGuard, VoterGuardGuard, CandidateGuard],
 	bootstrap: [AppComponent],

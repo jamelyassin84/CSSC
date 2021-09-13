@@ -1,3 +1,4 @@
+import { BaseService } from 'src/app/services/base.service'
 import { UserService } from './../../services/user.service'
 import { Component, OnInit } from '@angular/core'
 import { campuses } from './../../constants/AppConstants'
@@ -6,6 +7,7 @@ import { AppState } from '../../store/app.state'
 import { Observable } from 'rxjs'
 import { Store } from '@ngrx/store'
 import { ReloadService } from 'src/app/services/reload.service'
+import { Collections } from 'src/app/Models/Admin'
 
 @Component({
 	selector: 'app-campus-picker',
@@ -16,7 +18,8 @@ export class CampusPickerComponent implements OnInit {
 	constructor(
 		private store: Store<AppState>,
 		private Component: ReloadService,
-		private user: UserService
+		private user: UserService,
+		private service: BaseService
 	) {
 		this.campus = this.store.select('campus')
 	}
@@ -24,7 +27,7 @@ export class CampusPickerComponent implements OnInit {
 	isSuperAdmin = this.user.isSuperAdmin()
 
 	campus!: Observable<Campus>
-
+	mode: string | undefined = undefined
 	campuses: any[] = campuses
 
 	ngOnInit(): void {

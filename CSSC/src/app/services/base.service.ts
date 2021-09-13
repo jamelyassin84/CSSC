@@ -1,10 +1,12 @@
+import { Voter } from './../Models/User'
+import { Collections } from './../Models/Admin'
 import { AppState } from '../store/app.state'
 import { Store } from '@ngrx/store'
 import { Campus } from './../Models/Campus'
 import { Inject, Injectable, Optional } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/firestore'
-import { Collections } from '../Models/Admin'
 import { Subject } from 'rxjs'
+import { Modes } from '../Models/Modes'
 
 @Injectable({
 	providedIn: 'root',
@@ -21,9 +23,22 @@ export class BaseService {
 		this.store.select('campus').subscribe((campus) => {
 			this.campus = campus
 		})
+		this.store.select('mode').subscribe((mode) => {
+			this.mode = mode
+		})
 	}
 
 	campus: Campus = ''
+	mode:
+		| Modes.AdminCreation
+		| Modes.VoterRegistration
+		| Modes.PartyListCreation
+		| Modes.PartyListLineUps
+		| Modes.PlatformCustomization
+		| Modes.Voting
+		| Modes.Finished
+		| string
+		| undefined = undefined
 
 	wheres(builder: any) {
 		for (let index of this.where) {

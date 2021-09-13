@@ -1,3 +1,4 @@
+import { OfficersComponent } from './pages/home/officers/officers.component'
 import { ModesComponent } from './pages/home/modes/modes.component'
 import { VoterGuardGuard } from './guards/voter-guard.guard'
 import { AdminGuard } from './guards/admin.guard'
@@ -64,6 +65,11 @@ const routes: Routes = [
 			{
 				path: 'mode',
 				component: ModesComponent,
+				canActivate: [SuperAdminGuard],
+			},
+			{
+				path: 'officers',
+				component: OfficersComponent,
 			},
 		],
 	},

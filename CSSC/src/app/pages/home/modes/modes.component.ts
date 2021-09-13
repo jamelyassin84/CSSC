@@ -1,3 +1,5 @@
+import { AppState } from 'src/app/store/app.state'
+import { Store } from '@ngrx/store'
 import { Collections } from './../../../Models/Admin'
 import { Alert, Fire } from 'src/app/components/Alert'
 import { Component, OnInit } from '@angular/core'
@@ -12,7 +14,7 @@ import { Campus } from 'src/app/Models/Campus'
 	styleUrls: ['./modes.component.scss'],
 })
 export class ModesComponent implements OnInit {
-	constructor(private service: BaseService) {
+	constructor(private service: BaseService, private store: Store<AppState>) {
 		this.service.store.select('campus').subscribe((campus) => {
 			this.campus = campus
 		})
@@ -32,6 +34,7 @@ export class ModesComponent implements OnInit {
 				if (data.lenth !== 0) {
 					this.currentMode = data[0]
 				}
+				this.store.dispatch({ type: data[0] })
 			})
 	}
 

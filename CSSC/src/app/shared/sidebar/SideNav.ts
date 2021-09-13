@@ -9,11 +9,11 @@ export const SUPERADMIN = [
 		route: 'administrators',
 		icon: 'bi-shield-lock',
 	},
-	{
-		name: 'Mode',
-		route: 'mode',
-		icon: 'bi-stack',
-	},
+	// {
+	// 	name: 'Mode',
+	// 	route: 'mode',
+	// 	icon: 'bi-stack',
+	// },
 ]
 
 export const ADMIN = [
@@ -32,17 +32,16 @@ export const ADMIN = [
 		route: 'party-lists',
 		icon: 'bi-card-checklist',
 	},
-
 	{
 		name: 'CSSC Officers',
-		route: 'administrators',
+		route: 'officers',
 		icon: 'bi-people-fill',
 	},
-	{
-		name: 'Data Reset',
-		route: 'administrators',
-		icon: 'bi-arrow-counterclockwise',
-	},
+	// {
+	// 	name: 'Data Reset',
+	// 	route: 'administrators',
+	// 	icon: 'bi-arrow-counterclockwise',
+	// },
 ]
 
 export const VOTER = [
@@ -63,7 +62,7 @@ export const VOTER = [
 	},
 	{
 		name: 'CSSC Officers',
-		route: 'administrators',
+		route: 'officers',
 		icon: 'bi-people-fill',
 	},
 ]
@@ -91,7 +90,7 @@ export const CANDIDATE = [
 	},
 	{
 		name: 'CSSC Officers',
-		route: 'administrators',
+		route: 'officers',
 		icon: 'bi-people-fill',
 	},
 ]
