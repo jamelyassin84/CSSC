@@ -1,6 +1,5 @@
 
 import React, { FC } from 'react'
-import { Text, View } from 'react-native'
 import HomeHeader from '../../components/headers/Home'
 import WithRefreshComponent from '../../components/utils/WithRefreshComponent'
 import Container from '../../constants/Layout'
@@ -12,7 +11,6 @@ import { sortByVotes, sortCandidatByName, sortCandidatesByPosition } from '../ca
 import { VoteType } from '../election-results/PartyListMembersAndVotes'
 import OfficerList from '../../components/lists/OfficerList'
 import { GovProcesses, RepProcesses } from './CSSGOfficersProcess'
-import { yearLevels } from '../../constants/AppConstants'
 
 type Props = {}
 const Officers: FC<Props> = ( { route }: any ) => {
